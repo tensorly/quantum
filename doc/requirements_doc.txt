@@ -1,7 +1,0 @@
-sphinx
-slimit
-rcssmin
-numpydoc
-sphinx-gallery
-tensorly_sphinx_theme
-matplotlib
