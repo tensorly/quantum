@@ -1,0 +1,7 @@
+numpy
+scipy
+pytest
+pytest-cov
+tensorly
+tensorly-torch
+opt-einsum
