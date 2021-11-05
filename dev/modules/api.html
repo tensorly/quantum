@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>API reference &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+ <script src="../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tlquantum.density_tensor.DensityTensor" href="generated/tlquantum.density_tensor.DensityTensor.html" />
+    <link rel="prev" title="2. Solving MaxCut" href="../user_guide/maxcut.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../index.html">
+            <img src="../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="#">
+              API
+            </a>
+            <a class="navbar-item" href="../auto_examples/index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+      <div class="column is-10-mobile is-one-third-tablet is-3-desktop is-hidden-mobile" id="sidebar">
+    <!-- Side menu  -->
+    <aside class="sticky-nav sidebar-menu">
+<div class="sidebar-search">
+  <form class="field" id="searchbox" role="search" action="../search.html" method="get">
+    <!-- <label class="label" id="searchlabel">Quick search</label> -->
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel">
+      </div>
+      <div class="control">
+        <input class="button is-info" type="submit" value="Go" />
+      </div>
+    </div>
+  </form>
+  <script>$('#searchbox').show(0);</script>
+  <script>
+  $(document).ready(function() {
+    Document.highlightSearchWords = function() {
+      var params = $.getQueryParameters();
+      var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
+      if (terms.length) {
+        var body = $('div.body');
+        if (!body.length) {
+          body = $('body');
+        }
+        window.setTimeout(function() {
+          $.each(terms, function() {
+            body.highlightText(this.toLowerCase(), 'highlighted');
+          });
+        }, 10);
+        $('<p class="highlight-link"><a href="javascript:Documentation.' +
+          'hideSearchWords()">' + _('Hide All')
+          + '<span class="tag is-delete"></span>'
+          + '</a></p>')
+            .appendTo($('#searchbox'));
+      }
+    };
+  });
+  </script>
+</div>
+      
+      <div class="sidebar-menu-toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-tlquantum.density_tensor">Density Tensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tensor-trains">Tensor-Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tlquantum.maxcut">Solving MaxCut</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Gallery of examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+ 
+      </div>
+    </aside>
+  </div>
+  
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+        <div class="side-menu-toggle">
+          <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
+            <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+            <span>menu</span> 
+          </button>
+        </div>
+        
+
+        <div class="content main-content">
+          
+  <section id="api-reference">
+<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline"></a></h1>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum</span></code>: Quantum ML</p>
+<section id="module-tlquantum.density_tensor">
+<span id="density-tensors"></span><h2>Density Tensors<a class="headerlink" href="#module-tlquantum.density_tensor" title="Permalink to this headline"></a></h2>
+<p>TensorLy-Quantum provides a convenient class for representing and manipulating density tensors:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor" title="tlquantum.density_tensor.DensityTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DensityTensor</span></code></a>(tensor, subsystems)</p></td>
+<td><p>A quantum state container for state and density matrix operations, including partial traces and quantum information metric calculations.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tensor-trains">
+<h2>Tensor-Trains<a class="headerlink" href="#tensor-trains" title="Permalink to this headline"></a></h2>
+<p>Also known as MPO, MPS, tensor-train is an efficient way to represent state-vectors and operators in factorized form.
+In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT format.</p>
+<span class="target" id="module-tlquantum.tt_gates"></span><section id="gates-in-tt-form">
+<h3>Gates in TT-form<a class="headerlink" href="#gates-in-tt-form" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.Unitary.html#tlquantum.tt_gates.Unitary" title="tlquantum.tt_gates.Unitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unitary</span></code></a>(gates, nqubits, ncontraq[, ...])</p></td>
+<td><p>A unitary for all qubits in a TTCircuit, using tensor ring tensors with PyTorch Autograd support.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.IDENTITY.html#tlquantum.tt_gates.IDENTITY" title="tlquantum.tt_gates.IDENTITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IDENTITY</span></code></a>([device])</p></td>
+<td><p>Identity gate (does not change the state of the qubit on which it acts).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY" title="tlquantum.tt_gates.RotY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotY</span></code></a>([device])</p></td>
+<td><p>Qubit rotations about the Y-axis with randomly initiated theta.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.UnaryGatesUnitary.html#tlquantum.tt_gates.UnaryGatesUnitary" title="tlquantum.tt_gates.UnaryGatesUnitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnaryGatesUnitary</span></code></a>(nqubits, ncontraq[, ...])</p></td>
+<td><p>A Unitary sub-class that generates a layer of unitary, single-qubit rotations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.BinaryGatesUnitary.html#tlquantum.tt_gates.BinaryGatesUnitary" title="tlquantum.tt_gates.BinaryGatesUnitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryGatesUnitary</span></code></a>(nqubits, ncontraq, ...[, ...])</p></td>
+<td><p>A Unitary sub-class that generates a layer of a single two-qubit gates accross all qubits in a TTCircuit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZL.html#tlquantum.tt_gates.CZL" title="tlquantum.tt_gates.CZL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZL</span></code></a>([device])</p></td>
+<td><p>Left (control-qubit) core of a CZ gate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZR.html#tlquantum.tt_gates.CZR" title="tlquantum.tt_gates.CZR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZR</span></code></a>([device])</p></td>
+<td><p>Right (transformed qubit) core of a CZ gate.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTL.html#tlquantum.tt_gates.CNOTL" title="tlquantum.tt_gates.CNOTL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTL</span></code></a>([device])</p></td>
+<td><p>Left (control-qubit) core of a CNOT gate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTR.html#tlquantum.tt_gates.CNOTR" title="tlquantum.tt_gates.CNOTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTR</span></code></a>([device])</p></td>
+<td><p>Right (transformed qubit) core of a CNOT gate.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.SO4LR.html#tlquantum.tt_gates.SO4LR" title="tlquantum.tt_gates.SO4LR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SO4LR</span></code></a>(state1, state2, position[, theta, device])</p></td>
+<td><p>Left or right core of the two-qubit SO4 rotations gate.</p></td>
+</tr>
+</tbody>
+</table>
+<p>We also provide some convenience functions to facilitate creation of some of the gates:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cz.html#tlquantum.tt_gates.cz" title="tlquantum.tt_gates.cz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cz</span></code></a>([device])</p></td>
+<td><p>Pair of CZ class instances, one left (control) and one right (transformed).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cnot.html#tlquantum.tt_gates.cnot" title="tlquantum.tt_gates.cnot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cnot</span></code></a>([device])</p></td>
+<td><p>Pair of CNOT class instances, one left (control) and one right (transformed).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.so4.html#tlquantum.tt_gates.so4" title="tlquantum.tt_gates.so4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">so4</span></code></a>(state1, state2[, device])</p></td>
+<td><p>Pair of SO4 two-qubit rotation class instances, with rotations over different states.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_operators">
+<span id="operators-in-tt-form"></span><h3>Operators in TT-form<a class="headerlink" href="#module-tlquantum.tt_operators" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.unary_hamiltonian.html#tlquantum.tt_operators.unary_hamiltonian" title="tlquantum.tt_operators.unary_hamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unary_hamiltonian</span></code></a>(op, nqubits, qubits, weights)</p></td>
+<td><p>Generates tt-tensor unitary of one single-qubit operator per qubit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.binary_hamiltonian.html#tlquantum.tt_operators.binary_hamiltonian" title="tlquantum.tt_operators.binary_hamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_hamiltonian</span></code></a>(op, nqubits, qubits1, ...)</p></td>
+<td><p>Generates tt-tensor classical Ising model Hamiltonian (two-qubit interaction terms in a single basis).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.identity.html#tlquantum.tt_operators.identity" title="tlquantum.tt_operators.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>([device])</p></td>
+<td><p>Single-qubit identity opertor in the tt-tensor format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_x.html#tlquantum.tt_operators.pauli_x" title="tlquantum.tt_operators.pauli_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_x</span></code></a>([device])</p></td>
+<td><p>Single-qubit Pauli-X opertor in the tt-tensor format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_z.html#tlquantum.tt_operators.pauli_z" title="tlquantum.tt_operators.pauli_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_z</span></code></a>([device])</p></td>
+<td><p>Single-qubit Pauli-Z opertor in the tt-tensor format.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_state">
+<span id="states-in-tt-form"></span><h3>States in TT-form<a class="headerlink" href="#module-tlquantum.tt_state" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state" title="tlquantum.tt_state.spins_to_tt_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spins_to_tt_state</span></code></a>(spins[, device])</p></td>
+<td><p>Generates tt-tensor state of computational basis product space described by spins.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.tt_norm.html#tlquantum.tt_state.tt_norm" title="tlquantum.tt_state.tt_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tt_norm</span></code></a>(tensor)</p></td>
+<td><p>The norm of a TT-tensor state.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_circuit">
+<span id="creating-circuits"></span><h3>Creating circuits<a class="headerlink" href="#module-tlquantum.tt_circuit" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit" title="tlquantum.tt_circuit.TTCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TTCircuit</span></code></a>(unitaries, ncontraq, ncontral[, ...])</p></td>
+<td><p>A simulator for variational quantum circuits using tensor ring tensors with PyTorch Autograd support.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_sum">
+<span id="adding-tt-mps-mpos"></span><h3>Adding TT/MPS/MPOs<a class="headerlink" href="#module-tlquantum.tt_sum" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_sum.tt_sum.html#tlquantum.tt_sum.tt_sum" title="tlquantum.tt_sum.tt_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tt_sum</span></code></a>(t1, t2)</p></td>
+<td><p>Sums two TT tensors in decomposed form</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_sum.tt_matrix_sum.html#tlquantum.tt_sum.tt_matrix_sum" title="tlquantum.tt_sum.tt_matrix_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tt_matrix_sum</span></code></a>(t1, t2)</p></td>
+<td><p>Sums two TT matrices in decomposed form</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_contraction">
+<span id="contracting-tensor-networks"></span><h3>Contracting Tensor Networks<a class="headerlink" href="#module-tlquantum.tt_contraction" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_contraction.contraction_eq.html#tlquantum.tt_contraction.contraction_eq" title="tlquantum.tt_contraction.contraction_eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contraction_eq</span></code></a>(nqubits, nlayers[, kept_inds])</p></td>
+<td><p>Generates einsum contraciton equation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-tlquantum.tt_precontraction">
+<span id="precontraction"></span><h3>Precontraction<a class="headerlink" href="#module-tlquantum.tt_precontraction" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_precontraction.qubits_contract.html#tlquantum.tt_precontraction.qubits_contract" title="tlquantum.tt_precontraction.qubits_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qubits_contract</span></code></a>(layer, ncontraq[, contrsets])</p></td>
+<td><p>Contracts lists (layers) of tt-tensor cores horizontally (merging multiple cores in a single layer) up to some maximum number of qubits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_precontraction.layers_contract.html#tlquantum.tt_precontraction.layers_contract" title="tlquantum.tt_precontraction.layers_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">layers_contract</span></code></a>(layer_list, ncontrl)</p></td>
+<td><p>Contracts sublists of a list of layers vertically (merging cores of multiple layers for a single qubit) up to some maximum contraction depth.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-tlquantum.maxcut">
+<span id="solving-maxcut"></span><h2>Solving MaxCut<a class="headerlink" href="#module-tlquantum.maxcut" title="Permalink to this headline"></a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.maxcut.calculate_cut.html#tlquantum.maxcut.calculate_cut" title="tlquantum.maxcut.calculate_cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_cut</span></code></a>(spins, spins1, spins2, weights)</p></td>
+<td><p>Calculates the MaxCut value of a given state (set of spins) for a given graph (weights).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.maxcut.brute_force_calculate_maxcut.html#tlquantum.maxcut.brute_force_calculate_maxcut" title="tlquantum.maxcut.brute_force_calculate_maxcut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">brute_force_calculate_maxcut</span></code></a>(nqubits, ...)</p></td>
+<td><p>Brute force calculation of MaxCut for a given set of spins and weights.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+        </div>
+
+		
+        <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a class="button is-medium pagination-previous" href="../user_guide/maxcut.html" title="previous page" accesskey="p">
+        <span class="icon">
+            <i class="fa fa-arrow-circle-left"></i>
+        </span>
+        <span><span class="section-number">2. </span>Solving MaxCut</span>
+    </a>
+    
+    
+    <a class="button is-medium pagination-next" href="generated/tlquantum.density_tensor.DensityTensor.html" title="next page" accesskey="n">
+        <span><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.density_tensor</span></code>.DensityTensor </span>
+        <span class="icon">
+            <i class="fa fa-arrow-circle-right"></i>
+        </span>
+    </a>
+    
+</nav>
+
+        
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+    
+    <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
+
+    <aside class="sticky-nav localtoc">  
+        <div class="menu menu-list">
+        <p class="menu-label">On this page</p>
+        <ul>
+<li><a class="reference internal" href="#">API reference</a><ul>
+<li><a class="reference internal" href="#module-tlquantum.density_tensor">Density Tensors</a></li>
+<li><a class="reference internal" href="#tensor-trains">Tensor-Trains</a><ul>
+<li><a class="reference internal" href="#gates-in-tt-form">Gates in TT-form</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_operators">Operators in TT-form</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_state">States in TT-form</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_circuit">Creating circuits</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_sum">Adding TT/MPS/MPOs</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_contraction">Contracting Tensor Networks</a></li>
+<li><a class="reference internal" href="#module-tlquantum.tt_precontraction">Precontraction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-tlquantum.maxcut">Solving MaxCut</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </aside>
+    </div>
+
+    
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

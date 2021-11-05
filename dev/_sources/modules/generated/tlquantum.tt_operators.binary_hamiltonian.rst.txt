@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_operators`.binary_hamiltonian
+=============================================================
+
+.. currentmodule:: tlquantum.tt_operators
+
+.. autofunction:: binary_hamiltonian
+
+.. raw:: html
+
+    <div class="clearer"></div>

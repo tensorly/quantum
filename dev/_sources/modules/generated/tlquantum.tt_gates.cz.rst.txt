@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_gates`.cz
+=========================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autofunction:: cz
+
+.. raw:: html
+
+    <div class="clearer"></div>

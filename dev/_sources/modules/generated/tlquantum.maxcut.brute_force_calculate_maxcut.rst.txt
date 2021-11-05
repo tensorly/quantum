@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.maxcut`.brute_force_calculate_maxcut
+=================================================================
+
+.. currentmodule:: tlquantum.maxcut
+
+.. autofunction:: brute_force_calculate_maxcut
+
+.. raw:: html
+
+    <div class="clearer"></div>

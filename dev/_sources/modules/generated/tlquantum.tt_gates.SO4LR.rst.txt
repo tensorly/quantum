@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.SO4LR
+======================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: SO4LR
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

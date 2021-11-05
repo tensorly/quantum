@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_gates`.cnot
+===========================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autofunction:: cnot
+
+.. raw:: html
+
+    <div class="clearer"></div>
