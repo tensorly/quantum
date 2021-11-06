@@ -2,9 +2,11 @@
 Variational Quantum Eigensolver
 -------------------------------
 
-Variational Quantum Eigensolver [1] (VQE) with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
-TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
-in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.
+Variational Quantum Eigensolver ([1]_) (VQE) 
+with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
+TensorLy-Quantum provides a Pythonic API to TT-tensor network circuit simulation
+for large-scale simulation of variational quantum circuits,
+with full Autograd support and an interface similar to PyTorch Neural Networks.
 """
 
 import tensorly as tl
@@ -16,9 +18,10 @@ import matplotlib.pyplot as plt
 
 
 # %% Set up simulation parameters
+# Uncomment the line below to use the GPU
 
-#device = 'cuda' # Use GPU
-device = 'cpu' # Use CPU
+#device = 'cuda' 
+device = 'cpu' 
 
 nepochs = 80 #number of training epochs
 
@@ -34,7 +37,8 @@ state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device) # generate ge
 state = tlq.qubits_contract(state, ncontraq)
 
 
-# %% Build a transverse field Ising model Hamiltonian. Here we build a random spin-spin and transverse field weights.
+# %% Build a transverse field Ising model Hamiltonian. 
+# Here we build a random spin-spin and transverse field weights.
 # two-qubit terms
 qubits1 = randint(nqubits, (nterms,), device=device) # randomly generated first qubits of each two-qubit term
 qubits2 = randint(nqubits, (nterms,), device=device) # randomly generated second qubits of each two-qubit term
@@ -95,17 +99,21 @@ for epoch in range(nepochs):
     energy_vec[epoch] = energy
 
 
+# %% VIsualize the results
 Ising_H = TTMatrix(Ising_H).to_matrix()
 true_energies, _ = tl.eigh(Ising_H)
 ground_state_energy = true_energies[0]
 plt.figure()
-plt.plot(energy_vec.detach().numpy(), color='r', linewidth=5)
-plt.hlines(ground_state_energy, 0, nepochs, color='k', linewidth=5, linestyle='--')
-plt.xlabel('Epochs', fontsize=20)
-plt.ylabel('Energy', fontsize=20)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-plt.legend(['Variational Solution', 'Ground Truth'], fontsize=20)
+plt.plot(energy_vec.detach().numpy(), color='r')
+plt.hlines(ground_state_energy, 0, nepochs, color='k', linestyle='--')
+plt.xlabel('Epochs')
+plt.ylabel('Energy')
+plt.xticks()
+plt.yticks()
+plt.legend(['Variational Solution', 'Ground Truth'])
 plt.show()
 
-# %% [1] Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014). 
+# %% 
+# References
+# ----------
+# .. [1] Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014). 

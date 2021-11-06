@@ -3,7 +3,7 @@
 About Us
 ========
 
-TensorLy-Torch is an open-source effort, led primarily at NVIDIA Research, by:
+TensorLy-Quantum is an open-source effort, led primarily at NVIDIA Research, by:
 
 * `Taylor Lee Patti <https://www.linkedin.com/in/taylor-patti/>`_
 * `Jean Kossaifi <http://jeankossaifi.com/>`_
@@ -15,5 +15,7 @@ TensorLy-Torch is an open-source effort, led primarily at NVIDIA Research, by:
    :target: https://www.nvidia.com
    :alt: NVIDIA
 
-It is part of the TensorLy project and builds on top of the core `TensorLy <tensorly.org/dev>`_ library to enable building efficient quantum circuit simulation on GPU, using tensor methods.
+It is part of the TensorLy project and 
+builds on top of the core `TensorLy <tensorly.org/dev>`_ library 
+to enable building efficient quantum circuit simulation on GPU, using tensor methods.
 
