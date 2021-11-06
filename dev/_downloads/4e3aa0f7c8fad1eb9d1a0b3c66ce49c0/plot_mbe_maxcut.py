@@ -2,11 +2,11 @@
 Multi-Basis Encoding
 --------------------
 
-Multi-Basis Encoding [1] (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
-TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
-in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.
-
-[1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, "Variational Quantum Optimization with Multi-Basis Encodings," (2021), arXiv:2106.13304.
+Multi-Basis Encoding ([1]_) (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
+TensorLy-Quantum provides a Python interface 
+to build TT-tensor network circuit simulator 
+for large-scale simulation of variational quantum circuits
+with full Autograd support similar to traditional PyTorch Neural Networks.
 """
 
 
@@ -18,9 +18,10 @@ import matplotlib.pyplot as plt
 
 
 # %% Set up simulation parameters
+# Uncomment the line below to use the GPU
 
-#device = 'cuda' # Use GPU
-device = 'cpu' # Use CPU
+#device = 'cuda' 
+device = 'cpu' 
 
 nepochs = 40 #number of training epochs
 
@@ -31,7 +32,7 @@ nterms = 20
 lr = 0.7
 
 
-### Generate an input state. For each qubit, 0 --> |0> and 1 --> |1>
+# %% Generate an input state. For each qubit, 0 --> |0> and 1 --> |1>
 state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device) # generate generic zero state |00000>
 state = tlq.qubits_contract(state, ncontraq)
 
@@ -80,15 +81,19 @@ for epoch in range(nepochs):
     loss_vec[epoch] = loss
 
 
-plt.rc('xtick', labelsize=20)
-plt.rc('ytick', labelsize=20)
+# %% VIsualize the result
+plt.rc('xtick')
+plt.rc('ytick')
 fig, ax1 = plt.subplots()
-ax1.plot(loss_vec.detach().numpy(), color='k', linewidth=5)
+ax1.plot(loss_vec.detach().numpy(), color='k')
 ax2 = ax1.twinx()
-ax2.plot(cut_vec.detach().numpy(), color='g', linewidth=5)
-ax1.set_xlabel('Epochs', fontsize=20)
-ax1.set_ylabel('Loss', fontsize=20, color='k')
-ax2.set_ylabel('Cut', fontsize=20, color='g')
-#ax1.set_xticks(fontsize=20)
-#plt.yticks(fontsize=20)
+ax2.plot(cut_vec.detach().numpy(), color='g')
+ax1.set_xlabel('Epochs')
+ax1.set_ylabel('Loss', color='k')
+ax2.set_ylabel('Cut', color='g')
 plt.show()
+
+# %%
+# References
+# ----------
+# .. [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, "Variational Quantum Optimization with Multi-Basis Encodings," (2021), arXiv:2106.13304.

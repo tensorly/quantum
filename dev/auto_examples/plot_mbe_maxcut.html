@@ -183,7 +183,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#general-examples">General examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Multi-Basis Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html">Variational Quantum Eigensolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
@@ -218,10 +221,11 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="multi-basis-encoding">
 <span id="sphx-glr-auto-examples-plot-mbe-maxcut-py"></span><h1>Multi-Basis Encoding<a class="headerlink" href="#multi-basis-encoding" title="Permalink to this headline"></a></h1>
-<p>Multi-Basis Encoding [1] (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
-TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
-in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.</p>
-<p>[1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
+<p>Multi-Basis Encoding (<a class="footnote-reference brackets" href="#id2" id="id1">1</a>) (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
+TensorLy-Quantum provides a Python interface
+to build TT-tensor network circuit simulator
+for large-scale simulation of variational quantum circuits
+with full Autograd support similar to traditional PyTorch Neural Networks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">cat</span><span class="p">,</span> <span class="n">tanh</span><span class="p">,</span> <span class="n">no_grad</span>
@@ -229,8 +233,9 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39; # Use GPU</span>
-<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span> <span class="c1"># Use CPU</span>
+<p>Uncomment the line below to use the GPU</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39;</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
 
 <span class="n">nepochs</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1">#number of training epochs</span>
 
@@ -239,10 +244,9 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 <span class="n">ncontral</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#2 #number of layers to pre-contract into a single core</span>
 <span class="n">nterms</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.7</span>
-
-
-<span class="c1">### Generate an input state. For each qubit, 0 --&gt; |0&gt; and 1 --&gt; |1&gt;</span>
-<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -284,185 +288,196 @@ If y-axis included, we can encode three vertices per qubit.</p>
     <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
     <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
     <span class="n">loss_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Relaxation (raw) loss at epoch 0: -2.6284494400024414.
 
+Rounded MaxCut value (algorithm&#39;s solution): tensor(97.8099).
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+Relaxation (raw) loss at epoch 1: -12.783310890197754.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(80.0263).
+
+Relaxation (raw) loss at epoch 2: -38.53456115722656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(142.2690).
+
+Relaxation (raw) loss at epoch 3: -51.41071319580078.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(151.1608).
+
+Relaxation (raw) loss at epoch 4: -57.42717742919922.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 5: -63.89420700073242.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(160.0526).
+
+Relaxation (raw) loss at epoch 6: -67.4400634765625.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 7: -67.58689880371094.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 8: -70.08534240722656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 9: -72.29042053222656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 10: -71.80409240722656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 11: -71.55767822265625.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 12: -73.4901351928711.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 13: -75.02679443359375.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 14: -74.83492279052734.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 15: -74.6458740234375.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 16: -75.63671112060547.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 17: -77.19610595703125.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 18: -78.34722137451172.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 19: -78.65614318847656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 20: -78.52613830566406.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 21: -78.64408874511719.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 22: -78.69048309326172.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 23: -78.55213165283203.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 24: -78.64849853515625.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 25: -79.02091979980469.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 26: -79.23587036132812.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 27: -79.3052749633789.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 28: -79.5826644897461.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 29: -79.9295883178711.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 30: -80.10233306884766.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 31: -80.21773529052734.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 32: -80.34917449951172.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 33: -80.3924331665039.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 34: -80.26647186279297.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 35: -80.21597290039062.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 36: -80.40888214111328.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 37: -80.52810668945312.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 38: -80.52269744873047.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+
+Relaxation (raw) loss at epoch 39: -80.60596466064453.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(168.9444).
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loss_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loss_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cut_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cut&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
-<span class="c1">#ax1.set_xticks(fontsize=20)</span>
-<span class="c1">#plt.yticks(fontsize=20)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cut_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cut&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_mbe_maxcut_001.png" srcset="../_images/sphx_glr_plot_mbe_maxcut_001.png" alt="plot mbe maxcut" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Relaxation (raw) loss at epoch 0: 4.727077960968018.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(98.1748).
-
-Relaxation (raw) loss at epoch 1: -38.129425048828125.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(174.5330).
-
-Relaxation (raw) loss at epoch 2: -69.657470703125.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(185.4413).
-
-Relaxation (raw) loss at epoch 3: -70.12276458740234.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
-
-Relaxation (raw) loss at epoch 4: -72.77626037597656.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
-
-Relaxation (raw) loss at epoch 5: -89.11137390136719.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
-
-Relaxation (raw) loss at epoch 6: -93.39468383789062.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 7: -90.75611114501953.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 8: -91.01602935791016.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 9: -94.56245422363281.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 10: -98.09518432617188.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 11: -100.19799041748047.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 12: -99.46804809570312.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 13: -99.5732650756836.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 14: -101.93372344970703.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 15: -103.63218688964844.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 16: -102.83998107910156.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 17: -101.21794128417969.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 18: -102.41798400878906.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 19: -105.82402801513672.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 20: -107.06025695800781.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 21: -105.70433044433594.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 22: -104.61807250976562.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 23: -105.12229919433594.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 24: -106.37655639648438.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 25: -106.974365234375.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 26: -106.85466003417969.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 27: -106.61402130126953.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 28: -106.71804809570312.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 29: -107.39781951904297.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 30: -107.93941497802734.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 31: -107.65807342529297.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 32: -107.2333984375.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 33: -107.56609344482422.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 34: -108.2602767944336.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 35: -108.2996597290039.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 36: -107.91377258300781.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 37: -107.84062194824219.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 38: -108.09676361083984.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-
-Relaxation (raw) loss at epoch 39: -108.31858825683594.
-
-Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.946 seconds)</p>
+<img src="../_images/sphx_glr_plot_mbe_maxcut_001.png" srcset="../_images/sphx_glr_plot_mbe_maxcut_001.png" alt="plot mbe maxcut" class = "sphx-glr-single-img"/></section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h1>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><ol class="upperalpha simple" start="20">
+<li><ol class="upperalpha simple" start="12">
+<li><p>Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p></li>
+</ol>
+</li>
+</ol>
+</dd>
+</dl>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.513 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-mbe-maxcut-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4e3aa0f7c8fad1eb9d1a0b3c66ce49c0/plot_mbe_maxcut.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_mbe_maxcut.py</span></code></a></p>
@@ -513,6 +528,19 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
 
 	
     
+    <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
+
+    <aside class="sticky-nav localtoc">  
+        <div class="menu menu-list">
+        <p class="menu-label">On this page</p>
+        <ul>
+<li><a class="reference internal" href="#">Multi-Basis Encoding</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+        </div>
+    </aside>
+    </div>
 
     
 

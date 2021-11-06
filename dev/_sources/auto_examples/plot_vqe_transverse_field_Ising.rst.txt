@@ -21,11 +21,13 @@
 Variational Quantum Eigensolver
 -------------------------------
 
-Variational Quantum Eigensolver [1] (VQE) with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
-TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
-in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.
+Variational Quantum Eigensolver ([1]_) (VQE) 
+with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
+TensorLy-Quantum provides a Pythonic API to TT-tensor network circuit simulation
+for large-scale simulation of variational quantum circuits,
+with full Autograd support and an interface similar to PyTorch Neural Networks.
 
-.. GENERATED FROM PYTHON SOURCE LINES 9-18
+.. GENERATED FROM PYTHON SOURCE LINES 11-20
 
 .. code-block:: default
 
@@ -45,13 +47,17 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-32
+.. GENERATED FROM PYTHON SOURCE LINES 21-22
+
+Uncomment the line below to use the GPU
+
+.. GENERATED FROM PYTHON SOURCE LINES 22-35
 
 .. code-block:: default
 
 
-    #device = 'cuda' # Use GPU
-    device = 'cpu' # Use CPU
+    #device = 'cuda' 
+    device = 'cpu' 
 
     nepochs = 80 #number of training epochs
 
@@ -69,7 +75,7 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-37
+.. GENERATED FROM PYTHON SOURCE LINES 36-40
 
 .. code-block:: default
 
@@ -84,11 +90,12 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-39
+.. GENERATED FROM PYTHON SOURCE LINES 41-43
 
+Here we build a random spin-spin and transverse field weights.
 two-qubit terms
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-46
+.. GENERATED FROM PYTHON SOURCE LINES 43-50
 
 .. code-block:: default
 
@@ -106,7 +113,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 47-51
+.. GENERATED FROM PYTHON SOURCE LINES 51-55
 
 .. code-block:: default
 
@@ -121,7 +128,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-55
+.. GENERATED FROM PYTHON SOURCE LINES 56-59
 
 .. code-block:: default
 
@@ -135,7 +142,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-60
+.. GENERATED FROM PYTHON SOURCE LINES 62-64
 
 .. code-block:: default
 
@@ -148,7 +155,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-68
+.. GENERATED FROM PYTHON SOURCE LINES 65-72
 
 .. code-block:: default
 
@@ -166,7 +173,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-73
+.. GENERATED FROM PYTHON SOURCE LINES 75-77
 
 .. code-block:: default
 
@@ -179,7 +186,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 74-79
+.. GENERATED FROM PYTHON SOURCE LINES 78-83
 
 .. code-block:: default
 
@@ -195,7 +202,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 82-111
+.. GENERATED FROM PYTHON SOURCE LINES 86-102
 
 .. code-block:: default
 
@@ -215,17 +222,195 @@ two-qubit terms
         energy_vec[epoch] = energy
 
 
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    Energy (loss) at epoch 0 is 0.35286226868629456. 
+
+    Energy (loss) at epoch 1 is 0.11432325839996338. 
+
+    Energy (loss) at epoch 2 is -0.8854392766952515. 
+
+    Energy (loss) at epoch 3 is -1.9031805992126465. 
+
+    Energy (loss) at epoch 4 is -2.8604869842529297. 
+
+    Energy (loss) at epoch 5 is -3.249041795730591. 
+
+    Energy (loss) at epoch 6 is -3.4797170162200928. 
+
+    Energy (loss) at epoch 7 is -3.6749234199523926. 
+
+    Energy (loss) at epoch 8 is -4.315454006195068. 
+
+    Energy (loss) at epoch 9 is -4.4944071769714355. 
+
+    Energy (loss) at epoch 10 is -4.137401580810547. 
+
+    Energy (loss) at epoch 11 is -3.8999099731445312. 
+
+    Energy (loss) at epoch 12 is -3.959174633026123. 
+
+    Energy (loss) at epoch 13 is -4.259740829467773. 
+
+    Energy (loss) at epoch 14 is -4.513095378875732. 
+
+    Energy (loss) at epoch 15 is -4.539089679718018. 
+
+    Energy (loss) at epoch 16 is -4.450244903564453. 
+
+    Energy (loss) at epoch 17 is -4.378736972808838. 
+
+    Energy (loss) at epoch 18 is -4.381353855133057. 
+
+    Energy (loss) at epoch 19 is -4.456562519073486. 
+
+    Energy (loss) at epoch 20 is -4.529877185821533. 
+
+    Energy (loss) at epoch 21 is -4.5504679679870605. 
+
+    Energy (loss) at epoch 22 is -4.567878246307373. 
+
+    Energy (loss) at epoch 23 is -4.6331706047058105. 
+
+    Energy (loss) at epoch 24 is -4.6638007164001465. 
+
+    Energy (loss) at epoch 25 is -4.601419448852539. 
+
+    Energy (loss) at epoch 26 is -4.539060592651367. 
+
+    Energy (loss) at epoch 27 is -4.588852405548096. 
+
+    Energy (loss) at epoch 28 is -4.692371845245361. 
+
+    Energy (loss) at epoch 29 is -4.715719699859619. 
+
+    Energy (loss) at epoch 30 is -4.671850681304932. 
+
+    Energy (loss) at epoch 31 is -4.658549785614014. 
+
+    Energy (loss) at epoch 32 is -4.68310022354126. 
+
+    Energy (loss) at epoch 33 is -4.6893205642700195. 
+
+    Energy (loss) at epoch 34 is -4.676673889160156. 
+
+    Energy (loss) at epoch 35 is -4.684243679046631. 
+
+    Energy (loss) at epoch 36 is -4.710770130157471. 
+
+    Energy (loss) at epoch 37 is -4.72554349899292. 
+
+    Energy (loss) at epoch 38 is -4.722444534301758. 
+
+    Energy (loss) at epoch 39 is -4.716107368469238. 
+
+    Energy (loss) at epoch 40 is -4.7128214836120605. 
+
+    Energy (loss) at epoch 41 is -4.71507453918457. 
+
+    Energy (loss) at epoch 42 is -4.724740505218506. 
+
+    Energy (loss) at epoch 43 is -4.731003761291504. 
+
+    Energy (loss) at epoch 44 is -4.725940704345703. 
+
+    Energy (loss) at epoch 45 is -4.724460124969482. 
+
+    Energy (loss) at epoch 46 is -4.73636531829834. 
+
+    Energy (loss) at epoch 47 is -4.743655204772949. 
+
+    Energy (loss) at epoch 48 is -4.73574161529541. 
+
+    Energy (loss) at epoch 49 is -4.730616569519043. 
+
+    Energy (loss) at epoch 50 is -4.737227439880371. 
+
+    Energy (loss) at epoch 51 is -4.740490436553955. 
+
+    Energy (loss) at epoch 52 is -4.735815525054932. 
+
+    Energy (loss) at epoch 53 is -4.736509323120117. 
+
+    Energy (loss) at epoch 54 is -4.743719100952148. 
+
+    Energy (loss) at epoch 55 is -4.745886325836182. 
+
+    Energy (loss) at epoch 56 is -4.742626190185547. 
+
+    Energy (loss) at epoch 57 is -4.741430282592773. 
+
+    Energy (loss) at epoch 58 is -4.74271297454834. 
+
+    Energy (loss) at epoch 59 is -4.7436652183532715. 
+
+    Energy (loss) at epoch 60 is -4.743988990783691. 
+
+    Energy (loss) at epoch 61 is -4.743496894836426. 
+
+    Energy (loss) at epoch 62 is -4.74315881729126. 
+
+    Energy (loss) at epoch 63 is -4.744692325592041. 
+
+    Energy (loss) at epoch 64 is -4.746090412139893. 
+
+    Energy (loss) at epoch 65 is -4.745433330535889. 
+
+    Energy (loss) at epoch 66 is -4.745356559753418. 
+
+    Energy (loss) at epoch 67 is -4.746638298034668. 
+
+    Energy (loss) at epoch 68 is -4.746340751647949. 
+
+    Energy (loss) at epoch 69 is -4.74504280090332. 
+
+    Energy (loss) at epoch 70 is -4.745561122894287. 
+
+    Energy (loss) at epoch 71 is -4.746624946594238. 
+
+    Energy (loss) at epoch 72 is -4.7462873458862305. 
+
+    Energy (loss) at epoch 73 is -4.745980262756348. 
+
+    Energy (loss) at epoch 74 is -4.746537685394287. 
+
+    Energy (loss) at epoch 75 is -4.746823310852051. 
+
+    Energy (loss) at epoch 76 is -4.746768474578857. 
+
+    Energy (loss) at epoch 77 is -4.746885299682617. 
+
+    Energy (loss) at epoch 78 is -4.746910572052002. 
+
+    Energy (loss) at epoch 79 is -4.746841907501221. 
+
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 103-116
+
+.. code-block:: default
+
     Ising_H = TTMatrix(Ising_H).to_matrix()
     true_energies, _ = tl.eigh(Ising_H)
     ground_state_energy = true_energies[0]
     plt.figure()
-    plt.plot(energy_vec.detach().numpy(), color='r', linewidth=5)
-    plt.hlines(ground_state_energy, 0, nepochs, color='k', linewidth=5, linestyle='--')
-    plt.xlabel('Epochs', fontsize=20)
-    plt.ylabel('Energy', fontsize=20)
-    plt.xticks(fontsize=20)
-    plt.yticks(fontsize=20)
-    plt.legend(['Variational Solution', 'Ground Truth'], fontsize=20)
+    plt.plot(energy_vec.detach().numpy(), color='r')
+    plt.hlines(ground_state_energy, 0, nepochs, color='k', linestyle='--')
+    plt.xlabel('Epochs')
+    plt.ylabel('Energy')
+    plt.xticks()
+    plt.yticks()
+    plt.legend(['Variational Solution', 'Ground Truth'])
     plt.show()
 
 
@@ -237,180 +422,19 @@ two-qubit terms
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
 
- Out:
 
- .. code-block:: none
 
-    Energy (loss) at epoch 0 is 1.3870817422866821. 
+.. GENERATED FROM PYTHON SOURCE LINES 117-120
 
-    Energy (loss) at epoch 1 is 0.25226911902427673. 
-
-    Energy (loss) at epoch 2 is 0.2505115866661072. 
-
-    Energy (loss) at epoch 3 is -0.48984140157699585. 
-
-    Energy (loss) at epoch 4 is -1.4349086284637451. 
-
-    Energy (loss) at epoch 5 is -2.225308418273926. 
-
-    Energy (loss) at epoch 6 is -2.671506643295288. 
-
-    Energy (loss) at epoch 7 is -2.9844253063201904. 
-
-    Energy (loss) at epoch 8 is -3.786001205444336. 
-
-    Energy (loss) at epoch 9 is -4.507091045379639. 
-
-    Energy (loss) at epoch 10 is -4.780369758605957. 
-
-    Energy (loss) at epoch 11 is -4.630244255065918. 
-
-    Energy (loss) at epoch 12 is -4.350880146026611. 
-
-    Energy (loss) at epoch 13 is -4.168337821960449. 
-
-    Energy (loss) at epoch 14 is -4.178856372833252. 
-
-    Energy (loss) at epoch 15 is -4.323515892028809. 
-
-    Energy (loss) at epoch 16 is -4.464426040649414. 
-
-    Energy (loss) at epoch 17 is -4.597195625305176. 
-
-    Energy (loss) at epoch 18 is -4.791545391082764. 
-
-    Energy (loss) at epoch 19 is -4.992600917816162. 
-
-    Energy (loss) at epoch 20 is -5.040241241455078. 
-
-    Energy (loss) at epoch 21 is -4.940978050231934. 
-
-    Energy (loss) at epoch 22 is -4.83993673324585. 
-
-    Energy (loss) at epoch 23 is -4.781282424926758. 
-
-    Energy (loss) at epoch 24 is -4.764399528503418. 
-
-    Energy (loss) at epoch 25 is -4.8129119873046875. 
-
-    Energy (loss) at epoch 26 is -4.89941930770874. 
-
-    Energy (loss) at epoch 27 is -4.975061416625977. 
-
-    Energy (loss) at epoch 28 is -5.018291473388672. 
-
-    Energy (loss) at epoch 29 is -5.037726402282715. 
-
-    Energy (loss) at epoch 30 is -5.047263145446777. 
-
-    Energy (loss) at epoch 31 is -5.05147647857666. 
-
-    Energy (loss) at epoch 32 is -5.037568092346191. 
-
-    Energy (loss) at epoch 33 is -5.006039619445801. 
-
-    Energy (loss) at epoch 34 is -4.994319438934326. 
-
-    Energy (loss) at epoch 35 is -5.017548561096191. 
-
-    Energy (loss) at epoch 36 is -5.0392351150512695. 
-
-    Energy (loss) at epoch 37 is -5.039334297180176. 
-
-    Energy (loss) at epoch 38 is -5.047135353088379. 
-
-    Energy (loss) at epoch 39 is -5.067873954772949. 
-
-    Energy (loss) at epoch 40 is -5.07968807220459. 
-
-    Energy (loss) at epoch 41 is -5.081919193267822. 
-
-    Energy (loss) at epoch 42 is -5.0813093185424805. 
-
-    Energy (loss) at epoch 43 is -5.08251953125. 
-
-    Energy (loss) at epoch 44 is -5.088953018188477. 
-
-    Energy (loss) at epoch 45 is -5.092121124267578. 
-
-    Energy (loss) at epoch 46 is -5.085857391357422. 
-
-    Energy (loss) at epoch 47 is -5.085341453552246. 
-
-    Energy (loss) at epoch 48 is -5.093048095703125. 
-
-    Energy (loss) at epoch 49 is -5.093312740325928. 
-
-    Energy (loss) at epoch 50 is -5.087295055389404. 
-
-    Energy (loss) at epoch 51 is -5.088972568511963. 
-
-    Energy (loss) at epoch 52 is -5.093959331512451. 
-
-    Energy (loss) at epoch 53 is -5.0924458503723145. 
-
-    Energy (loss) at epoch 54 is -5.08867883682251. 
-
-    Energy (loss) at epoch 55 is -5.090641021728516. 
-
-    Energy (loss) at epoch 56 is -5.093991756439209. 
-
-    Energy (loss) at epoch 57 is -5.0917840003967285. 
-
-    Energy (loss) at epoch 58 is -5.089733600616455. 
-
-    Energy (loss) at epoch 59 is -5.09297513961792. 
-
-    Energy (loss) at epoch 60 is -5.094057083129883. 
-
-    Energy (loss) at epoch 61 is -5.091882705688477. 
-
-    Energy (loss) at epoch 62 is -5.0927557945251465. 
-
-    Energy (loss) at epoch 63 is -5.094701766967773. 
-
-    Energy (loss) at epoch 64 is -5.0941996574401855. 
-
-    Energy (loss) at epoch 65 is -5.094005107879639. 
-
-    Energy (loss) at epoch 66 is -5.09486198425293. 
-
-    Energy (loss) at epoch 67 is -5.095386505126953. 
-
-    Energy (loss) at epoch 68 is -5.095376014709473. 
-
-    Energy (loss) at epoch 69 is -5.095390319824219. 
-
-    Energy (loss) at epoch 70 is -5.095790863037109. 
-
-    Energy (loss) at epoch 71 is -5.096087455749512. 
-
-    Energy (loss) at epoch 72 is -5.09603214263916. 
-
-    Energy (loss) at epoch 73 is -5.096078872680664. 
-
-    Energy (loss) at epoch 74 is -5.0962629318237305. 
-
-    Energy (loss) at epoch 75 is -5.09645938873291. 
-
-    Energy (loss) at epoch 76 is -5.096410751342773. 
-
-    Energy (loss) at epoch 77 is -5.096309661865234. 
-
-    Energy (loss) at epoch 78 is -5.0966291427612305. 
-
-    Energy (loss) at epoch 79 is -5.096649169921875. 
-
-
-
-
+References
+----------
+.. [1] Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014). 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.774 seconds)
+   **Total running time of the script:** ( 0 minutes  0.626 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vqe_transverse_field_Ising.py:

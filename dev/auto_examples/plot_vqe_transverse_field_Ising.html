@@ -183,7 +183,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#general-examples">General examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_mbe_maxcut.html">Multi-Basis Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_mbe_maxcut.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Variational Quantum Eigensolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
@@ -218,9 +221,11 @@ to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="variational-quantum-eigensolver">
 <span id="sphx-glr-auto-examples-plot-vqe-transverse-field-ising-py"></span><h1>Variational Quantum Eigensolver<a class="headerlink" href="#variational-quantum-eigensolver" title="Permalink to this headline"></a></h1>
-<p>Variational Quantum Eigensolver [1] (VQE) with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
-TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
-in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.</p>
+<p>Variational Quantum Eigensolver (<a class="footnote-reference brackets" href="#id2" id="id1">1</a>) (VQE)
+with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
+TensorLy-Quantum provides a Pythonic API to TT-tensor network circuit simulation
+for large-scale simulation of variational quantum circuits,
+with full Autograd support and an interface similar to PyTorch Neural Networks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
 <span class="kn">from</span> <span class="nn">tensorly.tt_matrix</span> <span class="kn">import</span> <span class="n">TTMatrix</span>
@@ -229,8 +234,9 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39; # Use GPU</span>
-<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span> <span class="c1"># Use CPU</span>
+<p>Uncomment the line below to use the GPU</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39;</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
 
 <span class="n">nepochs</span> <span class="o">=</span> <span class="mi">80</span> <span class="c1">#number of training epochs</span>
 
@@ -245,7 +251,8 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
 <span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>two-qubit terms</p>
+<p>Here we build a random spin-spin and transverse field weights.
+two-qubit terms</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qubits1</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated first qubits of each two-qubit term</span>
 <span class="n">qubits2</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated second qubits of each two-qubit term</span>
 <span class="n">qubits2</span><span class="p">[</span><span class="n">qubits2</span><span class="o">==</span><span class="n">qubits1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># because qubits in this Hamiltonian randomly generated, eliminate self-interacting terms</span>
@@ -294,185 +301,193 @@ in a Pythonic/PyTorchian interface with full Autograd support similar to traditi
     <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
     <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
     <span class="n">energy_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is 0.35286226868629456.
 
+Energy (loss) at epoch 1 is 0.11432325839996338.
 
-<span class="n">Ising_H</span> <span class="o">=</span> <span class="n">TTMatrix</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
+Energy (loss) at epoch 2 is -0.8854392766952515.
+
+Energy (loss) at epoch 3 is -1.9031805992126465.
+
+Energy (loss) at epoch 4 is -2.8604869842529297.
+
+Energy (loss) at epoch 5 is -3.249041795730591.
+
+Energy (loss) at epoch 6 is -3.4797170162200928.
+
+Energy (loss) at epoch 7 is -3.6749234199523926.
+
+Energy (loss) at epoch 8 is -4.315454006195068.
+
+Energy (loss) at epoch 9 is -4.4944071769714355.
+
+Energy (loss) at epoch 10 is -4.137401580810547.
+
+Energy (loss) at epoch 11 is -3.8999099731445312.
+
+Energy (loss) at epoch 12 is -3.959174633026123.
+
+Energy (loss) at epoch 13 is -4.259740829467773.
+
+Energy (loss) at epoch 14 is -4.513095378875732.
+
+Energy (loss) at epoch 15 is -4.539089679718018.
+
+Energy (loss) at epoch 16 is -4.450244903564453.
+
+Energy (loss) at epoch 17 is -4.378736972808838.
+
+Energy (loss) at epoch 18 is -4.381353855133057.
+
+Energy (loss) at epoch 19 is -4.456562519073486.
+
+Energy (loss) at epoch 20 is -4.529877185821533.
+
+Energy (loss) at epoch 21 is -4.5504679679870605.
+
+Energy (loss) at epoch 22 is -4.567878246307373.
+
+Energy (loss) at epoch 23 is -4.6331706047058105.
+
+Energy (loss) at epoch 24 is -4.6638007164001465.
+
+Energy (loss) at epoch 25 is -4.601419448852539.
+
+Energy (loss) at epoch 26 is -4.539060592651367.
+
+Energy (loss) at epoch 27 is -4.588852405548096.
+
+Energy (loss) at epoch 28 is -4.692371845245361.
+
+Energy (loss) at epoch 29 is -4.715719699859619.
+
+Energy (loss) at epoch 30 is -4.671850681304932.
+
+Energy (loss) at epoch 31 is -4.658549785614014.
+
+Energy (loss) at epoch 32 is -4.68310022354126.
+
+Energy (loss) at epoch 33 is -4.6893205642700195.
+
+Energy (loss) at epoch 34 is -4.676673889160156.
+
+Energy (loss) at epoch 35 is -4.684243679046631.
+
+Energy (loss) at epoch 36 is -4.710770130157471.
+
+Energy (loss) at epoch 37 is -4.72554349899292.
+
+Energy (loss) at epoch 38 is -4.722444534301758.
+
+Energy (loss) at epoch 39 is -4.716107368469238.
+
+Energy (loss) at epoch 40 is -4.7128214836120605.
+
+Energy (loss) at epoch 41 is -4.71507453918457.
+
+Energy (loss) at epoch 42 is -4.724740505218506.
+
+Energy (loss) at epoch 43 is -4.731003761291504.
+
+Energy (loss) at epoch 44 is -4.725940704345703.
+
+Energy (loss) at epoch 45 is -4.724460124969482.
+
+Energy (loss) at epoch 46 is -4.73636531829834.
+
+Energy (loss) at epoch 47 is -4.743655204772949.
+
+Energy (loss) at epoch 48 is -4.73574161529541.
+
+Energy (loss) at epoch 49 is -4.730616569519043.
+
+Energy (loss) at epoch 50 is -4.737227439880371.
+
+Energy (loss) at epoch 51 is -4.740490436553955.
+
+Energy (loss) at epoch 52 is -4.735815525054932.
+
+Energy (loss) at epoch 53 is -4.736509323120117.
+
+Energy (loss) at epoch 54 is -4.743719100952148.
+
+Energy (loss) at epoch 55 is -4.745886325836182.
+
+Energy (loss) at epoch 56 is -4.742626190185547.
+
+Energy (loss) at epoch 57 is -4.741430282592773.
+
+Energy (loss) at epoch 58 is -4.74271297454834.
+
+Energy (loss) at epoch 59 is -4.7436652183532715.
+
+Energy (loss) at epoch 60 is -4.743988990783691.
+
+Energy (loss) at epoch 61 is -4.743496894836426.
+
+Energy (loss) at epoch 62 is -4.74315881729126.
+
+Energy (loss) at epoch 63 is -4.744692325592041.
+
+Energy (loss) at epoch 64 is -4.746090412139893.
+
+Energy (loss) at epoch 65 is -4.745433330535889.
+
+Energy (loss) at epoch 66 is -4.745356559753418.
+
+Energy (loss) at epoch 67 is -4.746638298034668.
+
+Energy (loss) at epoch 68 is -4.746340751647949.
+
+Energy (loss) at epoch 69 is -4.74504280090332.
+
+Energy (loss) at epoch 70 is -4.745561122894287.
+
+Energy (loss) at epoch 71 is -4.746624946594238.
+
+Energy (loss) at epoch 72 is -4.7462873458862305.
+
+Energy (loss) at epoch 73 is -4.745980262756348.
+
+Energy (loss) at epoch 74 is -4.746537685394287.
+
+Energy (loss) at epoch 75 is -4.746823310852051.
+
+Energy (loss) at epoch 76 is -4.746768474578857.
+
+Energy (loss) at epoch 77 is -4.746885299682617.
+
+Energy (loss) at epoch 78 is -4.746910572052002.
+
+Energy (loss) at epoch 79 is -4.746841907501221.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ising_H</span> <span class="o">=</span> <span class="n">TTMatrix</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
 <span class="n">true_energies</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span>
 <span class="n">ground_state_energy</span> <span class="o">=</span> <span class="n">true_energies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ground_state_energy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nepochs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variational Solution&#39;</span><span class="p">,</span> <span class="s1">&#39;Ground Truth&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ground_state_energy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nepochs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variational Solution&#39;</span><span class="p">,</span> <span class="s1">&#39;Ground Truth&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" srcset="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" alt="plot vqe transverse field Ising" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is 1.3870817422866821.
-
-Energy (loss) at epoch 1 is 0.25226911902427673.
-
-Energy (loss) at epoch 2 is 0.2505115866661072.
-
-Energy (loss) at epoch 3 is -0.48984140157699585.
-
-Energy (loss) at epoch 4 is -1.4349086284637451.
-
-Energy (loss) at epoch 5 is -2.225308418273926.
-
-Energy (loss) at epoch 6 is -2.671506643295288.
-
-Energy (loss) at epoch 7 is -2.9844253063201904.
-
-Energy (loss) at epoch 8 is -3.786001205444336.
-
-Energy (loss) at epoch 9 is -4.507091045379639.
-
-Energy (loss) at epoch 10 is -4.780369758605957.
-
-Energy (loss) at epoch 11 is -4.630244255065918.
-
-Energy (loss) at epoch 12 is -4.350880146026611.
-
-Energy (loss) at epoch 13 is -4.168337821960449.
-
-Energy (loss) at epoch 14 is -4.178856372833252.
-
-Energy (loss) at epoch 15 is -4.323515892028809.
-
-Energy (loss) at epoch 16 is -4.464426040649414.
-
-Energy (loss) at epoch 17 is -4.597195625305176.
-
-Energy (loss) at epoch 18 is -4.791545391082764.
-
-Energy (loss) at epoch 19 is -4.992600917816162.
-
-Energy (loss) at epoch 20 is -5.040241241455078.
-
-Energy (loss) at epoch 21 is -4.940978050231934.
-
-Energy (loss) at epoch 22 is -4.83993673324585.
-
-Energy (loss) at epoch 23 is -4.781282424926758.
-
-Energy (loss) at epoch 24 is -4.764399528503418.
-
-Energy (loss) at epoch 25 is -4.8129119873046875.
-
-Energy (loss) at epoch 26 is -4.89941930770874.
-
-Energy (loss) at epoch 27 is -4.975061416625977.
-
-Energy (loss) at epoch 28 is -5.018291473388672.
-
-Energy (loss) at epoch 29 is -5.037726402282715.
-
-Energy (loss) at epoch 30 is -5.047263145446777.
-
-Energy (loss) at epoch 31 is -5.05147647857666.
-
-Energy (loss) at epoch 32 is -5.037568092346191.
-
-Energy (loss) at epoch 33 is -5.006039619445801.
-
-Energy (loss) at epoch 34 is -4.994319438934326.
-
-Energy (loss) at epoch 35 is -5.017548561096191.
-
-Energy (loss) at epoch 36 is -5.0392351150512695.
-
-Energy (loss) at epoch 37 is -5.039334297180176.
-
-Energy (loss) at epoch 38 is -5.047135353088379.
-
-Energy (loss) at epoch 39 is -5.067873954772949.
-
-Energy (loss) at epoch 40 is -5.07968807220459.
-
-Energy (loss) at epoch 41 is -5.081919193267822.
-
-Energy (loss) at epoch 42 is -5.0813093185424805.
-
-Energy (loss) at epoch 43 is -5.08251953125.
-
-Energy (loss) at epoch 44 is -5.088953018188477.
-
-Energy (loss) at epoch 45 is -5.092121124267578.
-
-Energy (loss) at epoch 46 is -5.085857391357422.
-
-Energy (loss) at epoch 47 is -5.085341453552246.
-
-Energy (loss) at epoch 48 is -5.093048095703125.
-
-Energy (loss) at epoch 49 is -5.093312740325928.
-
-Energy (loss) at epoch 50 is -5.087295055389404.
-
-Energy (loss) at epoch 51 is -5.088972568511963.
-
-Energy (loss) at epoch 52 is -5.093959331512451.
-
-Energy (loss) at epoch 53 is -5.0924458503723145.
-
-Energy (loss) at epoch 54 is -5.08867883682251.
-
-Energy (loss) at epoch 55 is -5.090641021728516.
-
-Energy (loss) at epoch 56 is -5.093991756439209.
-
-Energy (loss) at epoch 57 is -5.0917840003967285.
-
-Energy (loss) at epoch 58 is -5.089733600616455.
-
-Energy (loss) at epoch 59 is -5.09297513961792.
-
-Energy (loss) at epoch 60 is -5.094057083129883.
-
-Energy (loss) at epoch 61 is -5.091882705688477.
-
-Energy (loss) at epoch 62 is -5.0927557945251465.
-
-Energy (loss) at epoch 63 is -5.094701766967773.
-
-Energy (loss) at epoch 64 is -5.0941996574401855.
-
-Energy (loss) at epoch 65 is -5.094005107879639.
-
-Energy (loss) at epoch 66 is -5.09486198425293.
-
-Energy (loss) at epoch 67 is -5.095386505126953.
-
-Energy (loss) at epoch 68 is -5.095376014709473.
-
-Energy (loss) at epoch 69 is -5.095390319824219.
-
-Energy (loss) at epoch 70 is -5.095790863037109.
-
-Energy (loss) at epoch 71 is -5.096087455749512.
-
-Energy (loss) at epoch 72 is -5.09603214263916.
-
-Energy (loss) at epoch 73 is -5.096078872680664.
-
-Energy (loss) at epoch 74 is -5.0962629318237305.
-
-Energy (loss) at epoch 75 is -5.09645938873291.
-
-Energy (loss) at epoch 76 is -5.096410751342773.
-
-Energy (loss) at epoch 77 is -5.096309661865234.
-
-Energy (loss) at epoch 78 is -5.0966291427612305.
-
-Energy (loss) at epoch 79 is -5.096649169921875.
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.774 seconds)</p>
+<img src="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" srcset="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" alt="plot vqe transverse field Ising" class = "sphx-glr-single-img"/></section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h1>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014).</p>
+</dd>
+</dl>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.626 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vqe-transverse-field-ising-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0b8fb627074c71f759271b00e548b574/plot_vqe_transverse_field_Ising.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vqe_transverse_field_Ising.py</span></code></a></p>
@@ -523,6 +538,19 @@ Energy (loss) at epoch 79 is -5.096649169921875.
 
 	
     
+    <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
+
+    <aside class="sticky-nav localtoc">  
+        <div class="menu menu-list">
+        <p class="menu-label">On this page</p>
+        <ul>
+<li><a class="reference internal" href="#">Variational Quantum Eigensolver</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+        </div>
+    </aside>
+    </div>
 
     
 
