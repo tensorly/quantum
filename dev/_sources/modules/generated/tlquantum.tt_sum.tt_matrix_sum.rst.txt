@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_sum`.tt_matrix_sum
+==================================================
+
+.. currentmodule:: tlquantum.tt_sum
+
+.. autofunction:: tt_matrix_sum
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_operators`.identity
+===================================================
+
+.. currentmodule:: tlquantum.tt_operators
+
+.. autofunction:: identity
+
+.. raw:: html
+
+    <div class="clearer"></div>

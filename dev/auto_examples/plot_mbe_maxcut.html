@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Multi-Basis Encoding &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+ <script src="../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variational Quantum Eigensolver" href="plot_vqe_transverse_field_Ising.html" />
+    <link rel="prev" title="Gallery of examples" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../index.html">
+            <img src="../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+      <div class="column is-10-mobile is-one-third-tablet is-3-desktop is-hidden-mobile" id="sidebar">
+    <!-- Side menu  -->
+    <aside class="sticky-nav sidebar-menu">
+<div class="sidebar-search">
+  <form class="field" id="searchbox" role="search" action="../search.html" method="get">
+    <!-- <label class="label" id="searchlabel">Quick search</label> -->
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel">
+      </div>
+      <div class="control">
+        <input class="button is-info" type="submit" value="Go" />
+      </div>
+    </div>
+  </form>
+  <script>$('#searchbox').show(0);</script>
+  <script>
+  $(document).ready(function() {
+    Document.highlightSearchWords = function() {
+      var params = $.getQueryParameters();
+      var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
+      if (terms.length) {
+        var body = $('div.body');
+        if (!body.length) {
+          body = $('body');
+        }
+        window.setTimeout(function() {
+          $.each(terms, function() {
+            body.highlightText(this.toLowerCase(), 'highlighted');
+          });
+        }, 10);
+        $('<p class="highlight-link"><a href="javascript:Documentation.' +
+          'hideSearchWords()">' + _('Hide All')
+          + '<span class="tag is-delete"></span>'
+          + '</a></p>')
+            .appendTo($('#searchbox'));
+      }
+    };
+  });
+  </script>
+</div>
+      
+      <div class="sidebar-menu-toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#general-examples">General examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+ 
+      </div>
+    </aside>
+  </div>
+  
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+        <div class="side-menu-toggle">
+          <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
+            <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+            <span>menu</span> 
+          </button>
+        </div>
+        
+
+        <div class="content main-content">
+          
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-mbe-maxcut-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="multi-basis-encoding">
+<span id="sphx-glr-auto-examples-plot-mbe-maxcut-py"></span><h1>Multi-Basis Encoding<a class="headerlink" href="#multi-basis-encoding" title="Permalink to this headline"></a></h1>
+<p>Multi-Basis Encoding [1] (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
+TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
+in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.</p>
+<p>[1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">cat</span><span class="p">,</span> <span class="n">tanh</span><span class="p">,</span> <span class="n">no_grad</span>
+<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39; # Use GPU</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span> <span class="c1"># Use CPU</span>
+
+<span class="n">nepochs</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1">#number of training epochs</span>
+
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#number of qubits</span>
+<span class="n">ncontraq</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#2 #number of qubits to pre-contract into single core</span>
+<span class="n">ncontral</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#2 #number of layers to pre-contract into a single core</span>
+<span class="n">nterms</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.7</span>
+
+
+<span class="c1">### Generate an input state. For each qubit, 0 --&gt; |0&gt; and 1 --&gt; |1&gt;</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we build a random graph with randomly weighted edges.
+Note: MBE allows us to encode two vertices (typically two qubits) into a single qubit using the z and x-axes.
+If y-axis included, we can encode three vertices per qubit.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vertices1</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated first qubits (vertices) of each two-qubit term (edge)</span>
+<span class="n">vertices2</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated second qubits (vertices) of each two-qubit term (edge)</span>
+<span class="n">vertices2</span><span class="p">[</span><span class="n">vertices2</span><span class="o">==</span><span class="n">vertices1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># because qubits in this graph are randomly generated, eliminate self-interacting terms</span>
+<span class="n">vertices2</span><span class="p">[</span><span class="n">vertices2</span> <span class="o">&gt;=</span> <span class="n">nqubits</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">rand</span><span class="p">((</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated edge weights</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RotY1</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1">#single-qubit rotations about the Y-axis</span>
+<span class="n">RotY2</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">CZ0</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># one controlled-z gate for each pair of qubits using even parity (even qubits control)</span>
+<span class="n">unitaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">RotY1</span><span class="p">,</span> <span class="n">CZ0</span><span class="p">,</span> <span class="n">RotY2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">TTCircuit</span><span class="p">(</span><span class="n">unitaries</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">ncontral</span><span class="p">)</span> <span class="c1"># build TTCircuit using specified unitaries</span>
+<span class="n">opz</span><span class="p">,</span> <span class="n">opx</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># measurement operators for MBE</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">amsgrad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># define PyTorch optimizer</span>
+<span class="n">loss_vec</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nepochs</span><span class="p">)</span>
+<span class="n">cut_vec</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nepochs</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nepochs</span><span class="p">):</span>
+    <span class="c1"># TTCircuit forward pass computes expectation value of single-qubit pauli-z and pauli-x measurements</span>
+    <span class="n">spinsz</span><span class="p">,</span> <span class="n">spinsx</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">forward_single_qubit</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">opz</span><span class="p">,</span> <span class="n">opx</span><span class="p">)</span>
+    <span class="n">spins</span> <span class="o">=</span> <span class="n">cat</span><span class="p">((</span><span class="n">spinsz</span><span class="p">,</span> <span class="n">spinsx</span><span class="p">))</span>
+    <span class="n">nl_spins</span> <span class="o">=</span> <span class="n">tanh</span><span class="p">(</span><span class="n">spins</span><span class="p">)</span> <span class="c1"># apply non-linear activation function to measurement results</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">calculate_cut</span><span class="p">(</span><span class="n">nl_spins</span><span class="p">,</span> <span class="n">vertices1</span><span class="p">,</span> <span class="n">vertices2</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1"># calculate the loss function using MBE</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relaxation (raw) loss at epoch &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39;. </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">cut_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">]</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">calculate_cut</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">spins</span><span class="p">),</span> <span class="n">vertices1</span><span class="p">,</span> <span class="n">vertices2</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">get_cut</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#calculate the rounded MaxCut estimate (algorithm&#39;s result)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rounded MaxCut value (algorithm</span><span class="se">\&#39;</span><span class="s1">s solution): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cut_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;. </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># PyTorch Autograd attends to backwards pass and parameter update</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">]</span> <span class="o">=</span> <span class="n">loss</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loss_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cut_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cut&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="c1">#ax1.set_xticks(fontsize=20)</span>
+<span class="c1">#plt.yticks(fontsize=20)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_mbe_maxcut_001.png" srcset="../_images/sphx_glr_plot_mbe_maxcut_001.png" alt="plot mbe maxcut" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Relaxation (raw) loss at epoch 0: 4.727077960968018.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(98.1748).
+
+Relaxation (raw) loss at epoch 1: -38.129425048828125.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(174.5330).
+
+Relaxation (raw) loss at epoch 2: -69.657470703125.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(185.4413).
+
+Relaxation (raw) loss at epoch 3: -70.12276458740234.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
+
+Relaxation (raw) loss at epoch 4: -72.77626037597656.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
+
+Relaxation (raw) loss at epoch 5: -89.11137390136719.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(207.2579).
+
+Relaxation (raw) loss at epoch 6: -93.39468383789062.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 7: -90.75611114501953.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 8: -91.01602935791016.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 9: -94.56245422363281.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 10: -98.09518432617188.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 11: -100.19799041748047.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 12: -99.46804809570312.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 13: -99.5732650756836.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 14: -101.93372344970703.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 15: -103.63218688964844.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 16: -102.83998107910156.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 17: -101.21794128417969.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 18: -102.41798400878906.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 19: -105.82402801513672.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 20: -107.06025695800781.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 21: -105.70433044433594.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 22: -104.61807250976562.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 23: -105.12229919433594.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 24: -106.37655639648438.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 25: -106.974365234375.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 26: -106.85466003417969.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 27: -106.61402130126953.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 28: -106.71804809570312.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 29: -107.39781951904297.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 30: -107.93941497802734.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 31: -107.65807342529297.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 32: -107.2333984375.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 33: -107.56609344482422.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 34: -108.2602767944336.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 35: -108.2996597290039.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 36: -107.91377258300781.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 37: -107.84062194824219.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 38: -108.09676361083984.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+
+Relaxation (raw) loss at epoch 39: -108.31858825683594.
+
+Rounded MaxCut value (algorithm&#39;s solution): tensor(218.1662).
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.946 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-mbe-maxcut-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/4e3aa0f7c8fad1eb9d1a0b3c66ce49c0/plot_mbe_maxcut.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_mbe_maxcut.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/1e36bd75fad91be353103bf0290e69c9/plot_mbe_maxcut.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_mbe_maxcut.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+        </div>
+
+		
+        <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a class="button is-medium pagination-previous" href="index.html" title="previous page" accesskey="p">
+        <span class="icon">
+            <i class="fa fa-arrow-circle-left"></i>
+        </span>
+        <span>Gallery of examples</span>
+    </a>
+    
+    
+    <a class="button is-medium pagination-next" href="plot_vqe_transverse_field_Ising.html" title="next page" accesskey="n">
+        <span>Variational Quantum Eigensolver </span>
+        <span class="icon">
+            <i class="fa fa-arrow-circle-right"></i>
+        </span>
+    </a>
+    
+</nav>
+
+        
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+    
+
+    
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

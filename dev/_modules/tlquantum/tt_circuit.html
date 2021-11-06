@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tlquantum.tt_circuit &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+ <script src="../../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../../index.html">
+            <img src="../../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="../../auto_examples/index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+
+        <div class="content main-content">
+          
+  <h1>Source code for tlquantum.tt_circuit</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">ModuleList</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">transpose</span><span class="p">,</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">opt_einsum</span> <span class="kn">import</span> <span class="n">contract</span><span class="p">,</span> <span class="n">contract_expression</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ceil</span>
+
+<span class="kn">from</span> <span class="nn">.density_tensor</span> <span class="kn">import</span> <span class="n">DensityTensor</span>
+<span class="kn">from</span> <span class="nn">.tt_precontraction</span> <span class="kn">import</span> <span class="n">qubits_contract</span><span class="p">,</span> <span class="n">layers_contract</span>
+<span class="kn">from</span> <span class="nn">.tt_contraction</span> <span class="kn">import</span> <span class="n">contraction_eq</span>
+
+
+<span class="c1"># Author: Taylor Lee Patti &lt;taylorpatti@g.harvard.edu&gt;</span>
+
+<span class="c1"># License: BSD 3 clause</span>
+
+
+<div class="viewcode-block" id="TTCircuit"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit">[docs]</a><span class="k">class</span> <span class="nc">TTCircuit</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A simulator for variational quantum circuits using tensor ring tensors</span>
+<span class="sd">    with PyTorch Autograd support.</span>
+<span class="sd">    Can be used to compute: 1) the expectation value of an operator, 2) the single-qubit</span>
+<span class="sd">    measurements of circuit&#39;s qubits; specifically for Multi-Basis Encoding [1], and </span>
+<span class="sd">    3) the partial trace of the circuit - all with Autograd support.</span>
+<span class="sd">    [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, &quot;Variational Quantum Optimization with Multi-Basis Encodings,&quot; (2021), arXiv:2106.13304.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    unitaries : list of TT Unitaries, circuit operations</span>
+<span class="sd">    ncontraq : int, number of qubits to do pre-contraction over</span>
+<span class="sd">               (simplifying contraciton path/using fewer indices)</span>
+<span class="sd">    ncontral  : int, number of unitaries to do pre-contraction over</span>
+<span class="sd">               (simplifying contraciton path/using fewer indices)</span>
+<span class="sd">    equations : dictionary, accepts pre-computed/recycled equations for</span>
+<span class="sd">               operator expectation values, single-qubit measurements,</span>
+<span class="sd">               and partial traces.</span>
+<span class="sd">    contractions : dictionary, accepts pre-computed/recycled paths for</span>
+<span class="sd">               operator expectation values, single-qubit measurements,</span>
+<span class="sd">               and partial traces.</span>
+<span class="sd">    max_partial_trace_size : int, the maximum number of cores to keep in</span>
+<span class="sd">               a single partial trace for single-qubit measurements.</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    TTCircuit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unitaries</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">ncontral</span><span class="p">,</span> <span class="n">equations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">contractions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_partial_trace_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span> 
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlayers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontral</span> <span class="o">=</span> <span class="n">unitaries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nqubits</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unitaries</span><span class="p">),</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">ncontral</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_rep</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">)),</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlayers</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">ncontral</span><span class="p">)),</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">equations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">equations</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;expectation_value_equation&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;partial_trace_equation&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;partial_trace_equation_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">contractions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contractions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;expectation_value_contraction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;partial_trace_contraction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;partial_trace_contraction_set&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span> <span class="o">=</span> <span class="n">equations</span><span class="p">,</span> <span class="n">contractions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nparam_layers</span><span class="p">,</span> <span class="n">contrsets</span> <span class="o">=</span> <span class="n">device</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlayers</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">layer_rep</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contrsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">contrsets</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_partial_trace_size</span><span class="p">,</span> <span class="n">segments</span> <span class="o">=</span> <span class="n">max_partial_trace_size</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segments</span> <span class="o">=</span> <span class="p">[</span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">max_partial_trace_size</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">segments</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">max_partial_trace_size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_partial_trace_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_partial_trace_size</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unitaries</span> <span class="o">=</span> <span class="n">ModuleList</span><span class="p">(</span><span class="n">unitaries</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TTCircuit.forward_expectation_value"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_expectation_value">[docs]</a>    <span class="k">def</span> <span class="nf">forward_expectation_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">precontract_operator</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Full expectation value of self.measurement of the unitary evolved state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : tt-tensor, input state to be evolved by unitary</span>
+<span class="sd">        operator: tt-tensor, operator of which to get expectation value</span>
+<span class="sd">        precontract_operator: bool, if true, the operator must be precontracted before main contraction pass</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float, expectation value of self.measurement with unitary evolved state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">precontract_operator</span><span class="p">:</span>
+            <span class="n">operator</span> <span class="o">=</span> <span class="n">qubits_contract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">,</span> <span class="n">contrsets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">contrsets</span><span class="p">)</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_circuit</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;expectation_value_contraction&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;expectation_value_equation&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;expectation_value_equation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contraction_eq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;expectation_value_contraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contract_expression</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;expectation_value_equation&#39;</span><span class="p">],</span> <span class="o">*</span><span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">circuit</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;expectation_value_contraction&#39;</span><span class="p">](</span><span class="o">*</span><span class="n">circuit</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TTCircuit.forward_single_qubit"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_single_qubit">[docs]</a>    <span class="k">def</span> <span class="nf">forward_single_qubit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Expectation values of op for each qubit of state. Takes partial trace of subset of qubits and then</span>
+<span class="sd">        takes single-operator measurements of these qubits.</span>
+<span class="sd">        Specifically useful for Multi-Basis Encoding [1] (MBE).</span>
+<span class="sd">        [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, &quot;Variational Quantum Optimization with Multi-Basis Encodings,&quot; (2021), arXiv:2106.13304.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : tt-tensor, input state to be evolved by unitary</span>
+<span class="sd">        op1 : tt-tensor, first single-measurement operator</span>
+<span class="sd">        op2 : tt-tensor, second single-measurement operator</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float, expectation value of self.measurement with unitary evolved state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">circuit</span><span class="p">,</span> <span class="n">expvals1</span><span class="p">,</span> <span class="n">expvals2</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_circuit</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">op1</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nqubits</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">op1</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction_set&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_partial_trace_contraction_set</span><span class="p">([</span><span class="n">core</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_circuit</span><span class="p">(</span><span class="n">state</span><span class="p">)])</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">)):</span>
+            <span class="n">partial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction_set&#39;</span><span class="p">][</span><span class="n">ind</span><span class="p">](</span><span class="o">*</span><span class="n">circuit</span><span class="p">)</span>
+            <span class="n">partial_nqubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">partial</span><span class="o">.</span><span class="n">shape</span><span class="p">)))</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">partial_nqubits</span><span class="p">)]</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="n">dims</span><span class="p">,</span> <span class="n">dims</span><span class="p">]</span>
+            <span class="n">partial</span> <span class="o">=</span> <span class="n">DensityTensor</span><span class="p">(</span><span class="n">partial</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">dims</span><span class="p">,</span> <span class="p">[])),</span> <span class="n">dims</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">qubit_ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">partial_nqubits</span><span class="p">):</span>
+                <span class="n">qubit</span> <span class="o">=</span> <span class="n">partial</span><span class="o">.</span><span class="n">partial_trace</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">qubit_ind</span><span class="p">,</span> <span class="n">qubit_ind</span><span class="o">+</span><span class="mi">1</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">expvals1</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="n">expvals2</span><span class="p">[</span><span class="n">count</span><span class="p">],</span> <span class="n">count</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">op1</span><span class="p">))),</span> <span class="n">tl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">op2</span><span class="p">))),</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">expvals1</span><span class="p">,</span> <span class="n">expvals2</span></div>
+
+
+<div class="viewcode-block" id="TTCircuit.forward_partial_trace"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_partial_trace">[docs]</a>    <span class="k">def</span> <span class="nf">forward_partial_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">kept_inds</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Partial trace for specified qubits in the output state of TTCircuit.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : tt-tensor, input state to be evolved by unitary</span>
+<span class="sd">        kept_inds : list of ints, indices of the qubits to be kept in the partial trace</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tensor in matrix form, partial trace of the circuit&#39;s output state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_circuit</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contraction_eq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="n">kept_inds</span><span class="o">=</span><span class="n">kept_inds</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contract_expression</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation&#39;</span><span class="p">],</span> <span class="o">*</span><span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">circuit</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction&#39;</span><span class="p">](</span><span class="o">*</span><span class="n">circuit</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TTCircuit.state_inner_product"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.state_inner_product">[docs]</a>    <span class="k">def</span> <span class="nf">state_inner_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">compare_state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inner product of input state evolved in unitary with a comparison state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : tt-tensor, input state to be evolved by unitary</span>
+<span class="sd">        compare_state : tt-tensor, input state to be compared with evolved state</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float, inner product of evolved state with compared state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">eq</span> <span class="o">=</span> <span class="n">contraction_eq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">)</span>
+        <span class="n">built_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_layer</span><span class="p">()</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="n">compare_state</span> <span class="o">+</span> <span class="n">built_layer</span> <span class="o">+</span> <span class="n">state</span>
+        <span class="k">return</span> <span class="n">contract</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="o">*</span><span class="n">circuit</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_build_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="sd">&quot;&quot;&quot;Prepares the circuit gates and operators for forward pass of the tensor network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        state : tt-tensor, input state to be evolved by unitary</span>
+<span class="sd">        operators : tt-tensor, operator for which to calculate the expectation value, used by the</span>
+<span class="sd">                    forward_expectation_value method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of tt-tensors, unitaries and operators of the TTCircuit, ready for contraction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">built_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_layer</span><span class="p">()</span>
+        <span class="n">built_layer_dagger</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt_transpose</span><span class="p">(</span><span class="n">built_layer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">state</span> <span class="o">+</span> <span class="n">built_layer</span> <span class="o">+</span> <span class="n">operator</span> <span class="o">+</span> <span class="n">built_layer_dagger</span> <span class="o">+</span> <span class="n">state</span>
+
+
+    <span class="k">def</span> <span class="nf">_build_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepares the ket unitary gates gates for forward pass of the tensor network.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of tt-tensors, unitaries of the TTCircuit, ready for contraction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">built_layer</span> <span class="o">=</span> <span class="p">[</span><span class="n">unitary</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">for</span> <span class="n">unitary</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unitaries</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlayers</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_rep</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">built_layer</span> <span class="o">=</span> <span class="n">built_layer</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">nlayers</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">layers_contract</span><span class="p">(</span><span class="n">built_layer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontral</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_generate_partial_trace_contraction_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shapes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Populates the partial trace equations and contractions attributes for each of the the single-qubit</span>
+<span class="sd">        measurements, as required by Multi-Basis Encoding.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shapes : list of shape tuples, the shapes of the tt-tensors to be contracted over</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">partial_trace_contraction_set</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation_set&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_generate_partial_trace_equation_set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">equation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation_set&#39;</span><span class="p">]:</span>
+            <span class="n">partial_trace_contraction_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contract_expression</span><span class="p">(</span><span class="n">equation</span><span class="p">,</span> <span class="o">*</span><span class="n">shapes</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contractions</span><span class="p">[</span><span class="s1">&#39;partial_trace_contraction_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">partial_trace_contraction_set</span>
+
+
+    <span class="k">def</span> <span class="nf">_generate_partial_trace_equation_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generates the partial trace equations for each of the the single-qubit measurements,</span>
+<span class="sd">        as required by Multi-Basis Encoding.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">partial_trace_equation_set</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">segments</span><span class="p">:</span>
+            <span class="n">equation</span> <span class="o">=</span> <span class="n">contraction_eq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="n">kept_inds</span><span class="o">=</span><span class="n">segment</span><span class="p">)</span>
+            <span class="n">partial_trace_equation_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">equation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">partial_trace_equation_set</span></div>
+
+
+<span class="k">def</span> <span class="nf">tt_transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transpose single-qubit matrices in tt-tensor format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tt : tt-tensor</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Transpose of tt</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+
+		
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

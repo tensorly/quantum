@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.CZL
+====================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: CZL
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

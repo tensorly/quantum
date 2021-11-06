@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tlquantum.tt_sum &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+ <script src="../../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../../index.html">
+            <img src="../../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="../../auto_examples/index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+
+        <div class="content main-content">
+          
+  <h1>Source code for tlquantum.tt_sum</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+
+
+<span class="c1"># Author: Jean Kossaifi &lt;jkossaifi@nvidia.com&gt;</span>
+<span class="c1"># Author: Taylor Lee Patti &lt;taylorpatti@g.harvard.edu&gt;</span>
+
+<span class="c1"># License: BSD 3 clause</span>
+
+
+<div class="viewcode-block" id="tt_sum"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_sum.tt_sum.html#tlquantum.tt_sum.tt_sum">[docs]</a><span class="k">def</span> <span class="nf">tt_sum</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sums two TT tensors in decomposed form</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t1 : tt-tensor</span>
+<span class="sd">    t2 : tt-tensor</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tt-tensor sum of t1 and t2</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The solution can be easily seen by writing the element-wise expression.</span>
+<span class="sd">    The sum of two third order cores A and B becomes a new core::</span>
+<span class="sd">       | A(i)  0  |</span>
+<span class="sd">       |  0   B(i)|</span>
+<span class="sd">    </span>
+<span class="sd">    In the code, we first form the two columns which we then concatenate::</span>
+<span class="sd">       | A(i) | |  0  |</span>
+<span class="sd">       |  0   | | B(i)|</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_tt</span><span class="p">,</span> <span class="n">n_cores</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">len</span><span class="p">(</span><span class="n">t1</span><span class="p">),</span> <span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># First core is (1, I_1, R_0)</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_cores</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span> <span class="c1"># Last core is (I_N, R_N, 1)</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># 3rd order cores (R_k, I_k, R_{k+1})</span>
+            <span class="n">padded_c1</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">core1</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">t2</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t1</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)),</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">padded_c2</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">t1</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t2</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">core2</span><span class="p">),</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">padded_c1</span><span class="p">,</span> <span class="n">padded_c2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">new_tt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">core</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_tensor</span><span class="o">.</span><span class="n">TTTensor</span><span class="p">(</span><span class="n">new_tt</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="tt_matrix_sum"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_sum.tt_matrix_sum.html#tlquantum.tt_sum.tt_matrix_sum">[docs]</a><span class="k">def</span> <span class="nf">tt_matrix_sum</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sums two TT matrices in decomposed form</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    t1 : tt-tensor matrix</span>
+<span class="sd">    t2 : tt-tensor matrix</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tt-tensor matrix sum of t1 and t2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">t1</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_matrix</span><span class="o">.</span><span class="n">TTMatrix</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t2</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_matrix</span><span class="o">.</span><span class="n">TTMatrix</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+    <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_matrix</span><span class="o">.</span><span class="n">TTMatrix</span><span class="p">(</span><span class="n">t1</span><span class="p">),</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_matrix</span><span class="o">.</span><span class="n">TTMatrix</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+    <span class="n">new_tt</span><span class="p">,</span> <span class="n">n_cores</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">len</span><span class="p">(</span><span class="n">t1</span><span class="p">),</span> <span class="n">t1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_cores</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">core1</span><span class="p">,</span> <span class="n">core2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">padded_c1</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">core1</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">t2</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">t1</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)),</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">padded_c2</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">t1</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">core1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">t2</span><span class="o">.</span><span class="n">rank</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">core2</span><span class="p">),</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">padded_c1</span><span class="p">,</span> <span class="n">padded_c2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">new_tt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">core</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tt_matrix</span><span class="o">.</span><span class="n">TTMatrix</span><span class="p">(</span><span class="n">new_tt</span><span class="p">)</span></div>
+</pre></div>
+
+        </div>
+
+		
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Variational Quantum Eigensolver &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+ <script src="../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About Us" href="../about.html" />
+    <link rel="prev" title="Multi-Basis Encoding" href="plot_mbe_maxcut.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../index.html">
+            <img src="../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+      <div class="column is-10-mobile is-one-third-tablet is-3-desktop is-hidden-mobile" id="sidebar">
+    <!-- Side menu  -->
+    <aside class="sticky-nav sidebar-menu">
+<div class="sidebar-search">
+  <form class="field" id="searchbox" role="search" action="../search.html" method="get">
+    <!-- <label class="label" id="searchlabel">Quick search</label> -->
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel">
+      </div>
+      <div class="control">
+        <input class="button is-info" type="submit" value="Go" />
+      </div>
+    </div>
+  </form>
+  <script>$('#searchbox').show(0);</script>
+  <script>
+  $(document).ready(function() {
+    Document.highlightSearchWords = function() {
+      var params = $.getQueryParameters();
+      var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
+      if (terms.length) {
+        var body = $('div.body');
+        if (!body.length) {
+          body = $('body');
+        }
+        window.setTimeout(function() {
+          $.each(terms, function() {
+            body.highlightText(this.toLowerCase(), 'highlighted');
+          });
+        }, 10);
+        $('<p class="highlight-link"><a href="javascript:Documentation.' +
+          'hideSearchWords()">' + _('Hide All')
+          + '<span class="tag is-delete"></span>'
+          + '</a></p>')
+            .appendTo($('#searchbox'));
+      }
+    };
+  });
+  </script>
+</div>
+      
+      <div class="sidebar-menu-toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#general-examples">General examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+ 
+      </div>
+    </aside>
+  </div>
+  
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+        <div class="side-menu-toggle">
+          <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
+            <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+            <span>menu</span> 
+          </button>
+        </div>
+        
+
+        <div class="content main-content">
+          
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-vqe-transverse-field-ising-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="variational-quantum-eigensolver">
+<span id="sphx-glr-auto-examples-plot-vqe-transverse-field-ising-py"></span><h1>Variational Quantum Eigensolver<a class="headerlink" href="#variational-quantum-eigensolver" title="Permalink to this headline"></a></h1>
+<p>Variational Quantum Eigensolver [1] (VQE) with Transverse Field Ising Model Hamiltonian using TensorLy-Quantum.
+TensorLy-Quantum provides a TT-tensor network circuit simulator for large-scale simulation of variational quantum circuits
+in a Pythonic/PyTorchian interface with full Autograd support similar to traditional PyTorch Neural Networks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
+<span class="kn">from</span> <span class="nn">tensorly.tt_matrix</span> <span class="kn">import</span> <span class="n">TTMatrix</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">arange</span>
+<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39; # Use GPU</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span> <span class="c1"># Use CPU</span>
+
+<span class="n">nepochs</span> <span class="o">=</span> <span class="mi">80</span> <span class="c1">#number of training epochs</span>
+
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">#number of qubits</span>
+<span class="n">ncontraq</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#2 #number of qubits to pre-contract into single core</span>
+<span class="n">ncontral</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#2 #number of layers to pre-contract into a single core</span>
+<span class="n">nterms</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>two-qubit terms</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qubits1</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated first qubits of each two-qubit term</span>
+<span class="n">qubits2</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="p">(</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated second qubits of each two-qubit term</span>
+<span class="n">qubits2</span><span class="p">[</span><span class="n">qubits2</span><span class="o">==</span><span class="n">qubits1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># because qubits in this Hamiltonian randomly generated, eliminate self-interacting terms</span>
+<span class="n">qubits2</span><span class="p">[</span><span class="n">qubits2</span> <span class="o">&gt;=</span> <span class="n">nqubits</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">rand</span><span class="p">((</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated coefficients of each two-qubit interaction in Hamiltonian</span>
+<span class="n">binary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">binary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_z</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1"># build the spin-spin Hamiltonian H</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qubits</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># specify that each qubit will have a transverse field term</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">rand</span><span class="p">((</span><span class="n">nqubits</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated coefficients for the transverse field felt by each qubit</span>
+<span class="n">unary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">unary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_x</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1">#build the transverse field Hamiltonian</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ising_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">tt_matrix_sum</span><span class="p">(</span><span class="n">binary_H</span><span class="p">,</span> <span class="n">unary_H</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_U</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">Unitary</span><span class="p">([</span><span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="p">),</span> <span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="p">)],</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RotY</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># one Y-axis rotation gate applied to each qubit of the circuit</span>
+<span class="n">parity</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">CZ0</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one controlled-z gate for each pair of qubits using even parity (even qubits control)</span>
+<span class="n">parity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SO4_01</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one SO4 rotation about two-qubit states |2&gt; and |3&gt; with odd parity</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unitaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">RotY</span><span class="p">,</span> <span class="n">SO4_01</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">CZ0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repeat_block</span><span class="p">,</span> <span class="n">unitaries_automatic</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat_block</span><span class="p">):</span>
+    <span class="n">unitaries_automatic</span> <span class="o">+=</span> <span class="n">unitaries</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">TTCircuit</span><span class="p">(</span><span class="n">unitaries</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">ncontral</span><span class="p">)</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">amsgrad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># define PyTorch optimizer</span>
+<span class="n">energy_vec</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nepochs</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nepochs</span><span class="p">):</span>
+    <span class="c1"># TTCircuit forward pass computes expectation value of Ising_H</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">forward_expectation_value</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">Ising_H</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Energy (loss) at epoch &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">energy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">+</span> <span class="s1">&#39;. </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># PyTorch Autograd attends to backwards pass and parameter update</span>
+    <span class="n">energy</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+    <span class="n">energy_vec</span><span class="p">[</span><span class="n">epoch</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy</span>
+
+
+<span class="n">Ising_H</span> <span class="o">=</span> <span class="n">TTMatrix</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
+<span class="n">true_energies</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span>
+<span class="n">ground_state_energy</span> <span class="o">=</span> <span class="n">true_energies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">energy_vec</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ground_state_energy</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nepochs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epochs&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Variational Solution&#39;</span><span class="p">,</span> <span class="s1">&#39;Ground Truth&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" srcset="../_images/sphx_glr_plot_vqe_transverse_field_Ising_001.png" alt="plot vqe transverse field Ising" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is 1.3870817422866821.
+
+Energy (loss) at epoch 1 is 0.25226911902427673.
+
+Energy (loss) at epoch 2 is 0.2505115866661072.
+
+Energy (loss) at epoch 3 is -0.48984140157699585.
+
+Energy (loss) at epoch 4 is -1.4349086284637451.
+
+Energy (loss) at epoch 5 is -2.225308418273926.
+
+Energy (loss) at epoch 6 is -2.671506643295288.
+
+Energy (loss) at epoch 7 is -2.9844253063201904.
+
+Energy (loss) at epoch 8 is -3.786001205444336.
+
+Energy (loss) at epoch 9 is -4.507091045379639.
+
+Energy (loss) at epoch 10 is -4.780369758605957.
+
+Energy (loss) at epoch 11 is -4.630244255065918.
+
+Energy (loss) at epoch 12 is -4.350880146026611.
+
+Energy (loss) at epoch 13 is -4.168337821960449.
+
+Energy (loss) at epoch 14 is -4.178856372833252.
+
+Energy (loss) at epoch 15 is -4.323515892028809.
+
+Energy (loss) at epoch 16 is -4.464426040649414.
+
+Energy (loss) at epoch 17 is -4.597195625305176.
+
+Energy (loss) at epoch 18 is -4.791545391082764.
+
+Energy (loss) at epoch 19 is -4.992600917816162.
+
+Energy (loss) at epoch 20 is -5.040241241455078.
+
+Energy (loss) at epoch 21 is -4.940978050231934.
+
+Energy (loss) at epoch 22 is -4.83993673324585.
+
+Energy (loss) at epoch 23 is -4.781282424926758.
+
+Energy (loss) at epoch 24 is -4.764399528503418.
+
+Energy (loss) at epoch 25 is -4.8129119873046875.
+
+Energy (loss) at epoch 26 is -4.89941930770874.
+
+Energy (loss) at epoch 27 is -4.975061416625977.
+
+Energy (loss) at epoch 28 is -5.018291473388672.
+
+Energy (loss) at epoch 29 is -5.037726402282715.
+
+Energy (loss) at epoch 30 is -5.047263145446777.
+
+Energy (loss) at epoch 31 is -5.05147647857666.
+
+Energy (loss) at epoch 32 is -5.037568092346191.
+
+Energy (loss) at epoch 33 is -5.006039619445801.
+
+Energy (loss) at epoch 34 is -4.994319438934326.
+
+Energy (loss) at epoch 35 is -5.017548561096191.
+
+Energy (loss) at epoch 36 is -5.0392351150512695.
+
+Energy (loss) at epoch 37 is -5.039334297180176.
+
+Energy (loss) at epoch 38 is -5.047135353088379.
+
+Energy (loss) at epoch 39 is -5.067873954772949.
+
+Energy (loss) at epoch 40 is -5.07968807220459.
+
+Energy (loss) at epoch 41 is -5.081919193267822.
+
+Energy (loss) at epoch 42 is -5.0813093185424805.
+
+Energy (loss) at epoch 43 is -5.08251953125.
+
+Energy (loss) at epoch 44 is -5.088953018188477.
+
+Energy (loss) at epoch 45 is -5.092121124267578.
+
+Energy (loss) at epoch 46 is -5.085857391357422.
+
+Energy (loss) at epoch 47 is -5.085341453552246.
+
+Energy (loss) at epoch 48 is -5.093048095703125.
+
+Energy (loss) at epoch 49 is -5.093312740325928.
+
+Energy (loss) at epoch 50 is -5.087295055389404.
+
+Energy (loss) at epoch 51 is -5.088972568511963.
+
+Energy (loss) at epoch 52 is -5.093959331512451.
+
+Energy (loss) at epoch 53 is -5.0924458503723145.
+
+Energy (loss) at epoch 54 is -5.08867883682251.
+
+Energy (loss) at epoch 55 is -5.090641021728516.
+
+Energy (loss) at epoch 56 is -5.093991756439209.
+
+Energy (loss) at epoch 57 is -5.0917840003967285.
+
+Energy (loss) at epoch 58 is -5.089733600616455.
+
+Energy (loss) at epoch 59 is -5.09297513961792.
+
+Energy (loss) at epoch 60 is -5.094057083129883.
+
+Energy (loss) at epoch 61 is -5.091882705688477.
+
+Energy (loss) at epoch 62 is -5.0927557945251465.
+
+Energy (loss) at epoch 63 is -5.094701766967773.
+
+Energy (loss) at epoch 64 is -5.0941996574401855.
+
+Energy (loss) at epoch 65 is -5.094005107879639.
+
+Energy (loss) at epoch 66 is -5.09486198425293.
+
+Energy (loss) at epoch 67 is -5.095386505126953.
+
+Energy (loss) at epoch 68 is -5.095376014709473.
+
+Energy (loss) at epoch 69 is -5.095390319824219.
+
+Energy (loss) at epoch 70 is -5.095790863037109.
+
+Energy (loss) at epoch 71 is -5.096087455749512.
+
+Energy (loss) at epoch 72 is -5.09603214263916.
+
+Energy (loss) at epoch 73 is -5.096078872680664.
+
+Energy (loss) at epoch 74 is -5.0962629318237305.
+
+Energy (loss) at epoch 75 is -5.09645938873291.
+
+Energy (loss) at epoch 76 is -5.096410751342773.
+
+Energy (loss) at epoch 77 is -5.096309661865234.
+
+Energy (loss) at epoch 78 is -5.0966291427612305.
+
+Energy (loss) at epoch 79 is -5.096649169921875.
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.774 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vqe-transverse-field-ising-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/0b8fb627074c71f759271b00e548b574/plot_vqe_transverse_field_Ising.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vqe_transverse_field_Ising.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/386d036769133a8afa09a1205e057a6f/plot_vqe_transverse_field_Ising.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_vqe_transverse_field_Ising.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+        </div>
+
+		
+        <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a class="button is-medium pagination-previous" href="plot_mbe_maxcut.html" title="previous page" accesskey="p">
+        <span class="icon">
+            <i class="fa fa-arrow-circle-left"></i>
+        </span>
+        <span>Multi-Basis Encoding</span>
+    </a>
+    
+    
+    <a class="button is-medium pagination-next" href="../about.html" title="next page" accesskey="n">
+        <span>About Us </span>
+        <span class="icon">
+            <i class="fa fa-arrow-circle-right"></i>
+        </span>
+    </a>
+    
+</nav>
+
+        
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+    
+
+    
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

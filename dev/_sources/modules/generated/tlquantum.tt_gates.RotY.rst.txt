@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.RotY
+=====================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: RotY
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

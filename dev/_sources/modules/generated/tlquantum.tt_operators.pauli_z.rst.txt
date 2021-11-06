@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_operators`.pauli_z
+==================================================
+
+.. currentmodule:: tlquantum.tt_operators
+
+.. autofunction:: pauli_z
+
+.. raw:: html
+
+    <div class="clearer"></div>

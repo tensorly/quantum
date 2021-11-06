@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_precontraction`.layers_contract
+===============================================================
+
+.. currentmodule:: tlquantum.tt_precontraction
+
+.. autofunction:: layers_contract
+
+.. raw:: html
+
+    <div class="clearer"></div>

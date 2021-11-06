@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_contraction`.contraction_eq
+===========================================================
+
+.. currentmodule:: tlquantum.tt_contraction
+
+.. autofunction:: contraction_eq
+
+.. raw:: html
+
+    <div class="clearer"></div>

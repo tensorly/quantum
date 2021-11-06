@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.density_tensor`.DensityTensor
+====================================================
+
+.. currentmodule:: tlquantum.density_tensor
+
+.. autoclass:: DensityTensor
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>
