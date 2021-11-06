@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.CNOTR
+======================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: CNOTR
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

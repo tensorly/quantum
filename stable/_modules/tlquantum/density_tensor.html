@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tlquantum.density_tensor &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+ <script src="../../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../../index.html">
+            <img src="../../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="../../auto_examples/index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+
+        <div class="content main-content">
+          
+  <h1>Source code for tlquantum.density_tensor</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">._abs_density_tensor</span> <span class="kn">import</span> <span class="n">AbsDensityTensor</span>
+<span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">import</span> <span class="nn">tensorly.metrics</span> <span class="k">as</span> <span class="nn">tlm</span>
+
+
+<span class="c1"># Author: Taylor Lee Patti &lt;taylorpatti@g.harvard.edu&gt;</span>
+
+<span class="c1"># License: BSD 3 clause</span>
+
+
+<div class="viewcode-block" id="DensityTensor"><a class="viewcode-back" href="../../modules/generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor">[docs]</a><span class="k">class</span> <span class="nc">DensityTensor</span><span class="p">(</span><span class="n">AbsDensityTensor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A quantum state container for state and density matrix operations, including partial</span>
+<span class="sd">    traces and quantum information metric calculations.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : tt-tensor, state or density matrix</span>
+<span class="sd">    subsystems : list of ints, system sizes in correspondence of the size of tensor</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    DensityTensor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">subsystems</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span> <span class="o">=</span> <span class="n">tensor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_subsystems</span><span class="p">(</span><span class="n">subsystems</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span>
+
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span>
+
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;DensityTensor has no index </span><span class="si">{}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                             <span class="s1">&#39;DensityTensor is object of two indices: tensor and subsystems.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_subsystems</span><span class="p">(</span><span class="n">subsystems</span><span class="p">)</span> <span class="c1">#_validate_subsystems(value)</span>
+
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Operator type is determined by subsystems and can be updated by updating subsystems.&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;DensityTensor has no index </span><span class="si">{}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                             <span class="s1">&#39;DensityTensor is object of two indices: tensor and subsystems.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Operator type is determined by subsystems and can be updated by updating subsystems.&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;DensityTensor has no index </span><span class="si">{}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                             <span class="s1">&#39;DensityTensor is object of two indices: tensor and subsystems.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span>
+
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span>
+
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;DensityTensor in </span><span class="si">{}</span><span class="s1"> form of dimensions </span><span class="si">{}</span><span class="s1"> and subsystems </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">message</span>
+
+
+<div class="viewcode-block" id="DensityTensor.partial_trace_dm"><a class="viewcode-back" href="../../modules/generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor.partial_trace_dm">[docs]</a>    <span class="k">def</span> <span class="nf">partial_trace_dm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kept_indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Partial trace for density matrix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kept_indices : list of int, indices to not trace over and keep for ptrace</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DensityTensor, result of partial trace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_subsystems</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">traced_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kept_indices</span><span class="p">]</span>
+        <span class="n">new_subsystems</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">kept_indices</span><span class="p">]</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">_partial_trace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tensor</span><span class="p">,</span> <span class="n">traced_indices</span><span class="p">,</span> <span class="n">num_subsystems</span><span class="p">)</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">new_subsystems</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">DensityTensor</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="p">[</span><span class="n">new_subsystems</span><span class="p">,</span> <span class="n">new_subsystems</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="DensityTensor.partial_trace_state"><a class="viewcode-back" href="../../modules/generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor.partial_trace_state">[docs]</a>    <span class="k">def</span> <span class="nf">partial_trace_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kept_indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Partial trace for state vector.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kept_indices : list of int, indices to not trace over and keep for partial trace</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DensityTensor, result of partial trace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">traced_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kept_indices</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">temp_ket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span>
+        <span class="n">temp_subsystems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">==</span> <span class="s1">&#39;bra&#39;</span><span class="p">:</span>
+            <span class="n">temp_ket</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">))</span>
+            <span class="n">temp_subsystems</span> <span class="o">=</span> <span class="n">temp_subsystems</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">temp_ket</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">temp_subsystems</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#because we don&#39;t enforce that tensor shape match subsystems</span>
+        <span class="n">temp_ket</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">unfold</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">,</span> <span class="n">traced_index</span><span class="p">)</span>
+        <span class="n">temp_ket</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">),</span> <span class="n">tl</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">))</span> <span class="c1">#reduced_row, update to make DensityTensor of proper dimensions</span>
+        <span class="n">new_subsystems</span> <span class="o">=</span> <span class="p">[</span><span class="n">temp_subsystems</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">kept_indices</span><span class="p">]</span>
+        <span class="n">temp_ket</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">new_subsystems</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">DensityTensor</span><span class="p">(</span><span class="n">temp_ket</span><span class="p">,</span> <span class="p">[</span><span class="n">new_subsystems</span><span class="p">,</span> <span class="n">new_subsystems</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="DensityTensor.vonneumann_entropy"><a class="viewcode-back" href="../../modules/generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor.vonneumann_entropy">[docs]</a>    <span class="k">def</span> <span class="nf">vonneumann_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kept_indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Von Neumann entropy for the partial trace of the density tensor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kept_indices : list of int, indices to not trace over and keep for partial trace</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float, Von Neumann entropy of specified partial trace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">partial_trace</span><span class="p">(</span><span class="n">kept_indices</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">square_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">shape</span><span class="p">))))</span>
+        <span class="k">return</span> <span class="n">tlm</span><span class="o">.</span><span class="n">vonneumann_entropy</span><span class="p">(</span><span class="n">tl</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="p">(</span><span class="n">square_dim</span><span class="p">,</span> <span class="n">square_dim</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="DensityTensor.mutual_information"><a class="viewcode-back" href="../../modules/generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor.mutual_information">[docs]</a>    <span class="k">def</span> <span class="nf">mutual_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kept_indices1</span><span class="p">,</span> <span class="n">kept_indices2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mutual Information for the partial traces of the specified kept indices.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        kept_indices1 : list of int, indices to not trace over and keep for partial trace</span>
+<span class="sd">        kept_indices2 : list of int, indices to not trace over and keep for partial trace</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float, Mutual Information of specified partial traces</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vonneumann_entropy</span><span class="p">(</span><span class="n">kept_indices1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">vonneumann_entropy</span><span class="p">(</span><span class="n">kept_indices2</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">vonneumann_entropy</span><span class="p">(</span><span class="n">kept_indices1</span><span class="o">+</span><span class="n">kept_indices2</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_partial_trace</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">traced_dims</span><span class="p">,</span> <span class="n">num_subsystems</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Traces over density matrix of qubits producing density matrix of partial trace.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tensor : torch tensor of floats, density matrix to be partially traced over</span>
+<span class="sd">    traced_dims : list of ints, qubit indices to trace over</span>
+<span class="sd">    num_subsystems : int, number of subsystems in tensor</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch tensor of floats, partial trace of tensor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+    <span class="n">all_modes1</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)]</span>
+    <span class="n">all_modes2</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">num_subsystems</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">traced_dims</span><span class="p">:</span>
+            <span class="n">all_modes2</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_modes1</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span>
+    <span class="n">all_modes1</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_modes1</span><span class="p">)</span>
+    <span class="n">all_modes2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_modes2</span><span class="p">)</span>
+    <span class="n">inds_initial</span> <span class="o">=</span> <span class="n">all_modes1</span><span class="o">+</span><span class="n">all_modes2</span> 
+    <span class="n">inds_final</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_modes1</span><span class="p">[</span><span class="n">iii</span><span class="p">]</span> <span class="k">for</span> <span class="n">iii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)</span> <span class="k">if</span> <span class="n">iii</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">traced_dims</span><span class="p">]</span>
+    <span class="n">inds_final</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inds_final</span> <span class="o">+</span> <span class="p">[</span><span class="n">all_modes2</span><span class="p">[</span><span class="n">iii</span><span class="p">]</span> <span class="k">for</span> <span class="n">iii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subsystems</span><span class="p">)</span> <span class="k">if</span> <span class="n">iii</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">traced_dims</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">inds_initial</span> <span class="o">+</span> <span class="s1">&#39;-&gt;&#39;</span> <span class="o">+</span> <span class="n">inds_final</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+
+		
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

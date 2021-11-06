@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_precontraction`.qubits_contract
+===============================================================
+
+.. currentmodule:: tlquantum.tt_precontraction
+
+.. autofunction:: qubits_contract
+
+.. raw:: html
+
+    <div class="clearer"></div>

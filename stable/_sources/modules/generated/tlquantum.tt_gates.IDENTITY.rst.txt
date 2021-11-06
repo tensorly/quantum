@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.IDENTITY
+=========================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: IDENTITY
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

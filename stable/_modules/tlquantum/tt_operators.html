@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tlquantum.tt_operators &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+<link rel="stylesheet" href="../../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+ <script src="../../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        <!-- Always displayed, last item has to be navbar-burger -->
+
+          <a class="navbar-item" href="../../index.html">
+            <img src="../../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+
+          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
+            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+          </a> -->
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        <!-- only on larger displays (> 1024px) -->
+
+          <div class="navbar-start">
+          <!-- RIGHT -->
+            <a class="navbar-item" href="../../install.html">
+              Install
+            </a>
+            <a class="navbar-item" href="../../user_guide/index.html">
+              User Guide
+            </a>
+            <a class="navbar-item" href="../../modules/api.html">
+              API
+            </a>
+            <a class="navbar-item" href="../../auto_examples/index.html">
+              Examples
+            </a>
+            <a class="navbar-item" href="../../about.html">
+              About Us
+            </a>
+            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
+              TensorLy
+            </a>
+
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            <!-- LEFT -->
+
+            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa fa-home"></i>
+                </span>
+                <span>Home</span>
+              </span>
+              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+            </a> -->
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
+            </a>
+
+            </div> <!-- navbar item -->
+          </div> <!-- navbar end -->
+        </div> <!-- only large items -->
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+
+    <div class="column main-column">
+
+      <!-- Main content  -->
+      <section class="main-section">
+
+        <!-- Toggle menu button -->
+		
+
+        <div class="content main-content">
+          
+  <h1>Source code for tlquantum.tt_operators</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">tensorly.tt_matrix</span> <span class="kn">import</span> <span class="n">TTMatrix</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">minimum</span><span class="p">,</span> <span class="n">maximum</span>
+
+<span class="kn">from</span> <span class="nn">.tt_sum</span> <span class="kn">import</span> <span class="n">tt_matrix_sum</span>
+
+
+<span class="c1"># Author: Taylor Lee Patti &lt;taylorpatti@g.harvard.edu&gt;</span>
+
+<span class="c1"># License: BSD 3 clause</span>
+
+
+<div class="viewcode-block" id="binary_hamiltonian"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.binary_hamiltonian.html#tlquantum.tt_operators.binary_hamiltonian">[docs]</a><span class="k">def</span> <span class="nf">binary_hamiltonian</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates tt-tensor classical Ising model Hamiltonian (two-qubit interaction terms in a single basis).</span>
+<span class="sd">    Hamiltonian of the form:</span>
+<span class="sd">    </span>
+<span class="sd">    H = sum_i omega_i sigma_ind1(i) sigma_ind2(i)</span>
+
+<span class="sd">    where omega_i are the Hamiltonian weights, sigma is the operator specified by op, and ind1, ind2 are</span>
+<span class="sd">    the qubit numbers specified of index i.</span>
+
+<span class="sd">    spins and weight values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    op : tt-tensor, single-qubit operator to encode MaxCut graph</span>
+<span class="sd">    nqubits : int, number of qubits (vertices) to encode in MaxCut problem</span>
+<span class="sd">    qubits1 : List/tensor of ints, qubit indices</span>
+<span class="sd">    qubits2 : List/tensor of ints, qubit indices</span>
+<span class="sd">    weights : List/tensor of real floats, graph weights</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Hamiltonian encoding specified classical Ising model graph.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">H</span><span class="p">,</span> <span class="n">inds_min</span><span class="p">,</span> <span class="n">inds_max</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">minimum</span><span class="p">(</span><span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">),</span> <span class="n">maximum</span><span class="p">(</span><span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits1</span><span class="p">)):</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">tt_matrix_sum</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">_two_qubit_interaction</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">inds_min</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">inds_max</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nqubits</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">H</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="unary_hamiltonian"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.unary_hamiltonian.html#tlquantum.tt_operators.unary_hamiltonian">[docs]</a><span class="k">def</span> <span class="nf">unary_hamiltonian</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates tt-tensor unitary of one single-qubit operator per qubit.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    op : tt-tensor, single-qubit operator</span>
+<span class="sd">    nqubits : int, number of qubits (vertices) to encode in MaxCut problem</span>
+<span class="sd">    qubits : List/tensor of ints, qubit indices</span>
+<span class="sd">    weights : List/tensor of real floats, graph weights</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Unitary of one single-qubit operator per qubit in tt-tensor format</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#H = TTMatrix([weights[0]*op] + [IDENTITY for i in range(1, nqubits)])</span>
+    <span class="n">H</span><span class="p">,</span> <span class="n">iden</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">identity</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">:</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">tt_matrix_sum</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">TTMatrix</span><span class="p">([</span><span class="n">iden</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">q</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">weights</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="o">*</span><span class="n">op</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">iden</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]))</span>
+    <span class="k">return</span> <span class="n">H</span></div>
+
+
+<span class="k">def</span> <span class="nf">_two_qubit_interaction</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates tt-tensor Hamiltonian of two single-qubit operators with given weight.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    op1 : tt-tensor, single-qubit operator</span>
+<span class="sd">    op2 : tt-tensor, single-qubit operator</span>
+<span class="sd">    ind1 : int, index of first qubit</span>
+<span class="sd">    ind2 : int, index of second qubit</span>
+<span class="sd">    weight : float, weight of two-qubit interaction</span>
+<span class="sd">    nqubits : int, number of qubits in the Hamiltonian</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Hamiltonian of n qubits with two interacions at ind1 and ind2 in tt-tensor form</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">iden</span> <span class="o">=</span> <span class="n">identity</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">op1</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TTMatrix</span><span class="p">([</span><span class="n">iden</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind1</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">weight</span><span class="o">*</span><span class="n">op1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">iden</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind2</span><span class="o">-</span><span class="n">ind1</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">op2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">iden</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+
+
+<div class="viewcode-block" id="identity"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.identity.html#tlquantum.tt_operators.identity">[docs]</a><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Single-qubit identity opertor in the tt-tensor format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Identity operator in tt-form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]]]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pauli_x"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.pauli_x.html#tlquantum.tt_operators.pauli_x">[docs]</a><span class="k">def</span> <span class="nf">pauli_x</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Single-qubit Pauli-X opertor in the tt-tensor format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Pauli-X operator in tt-form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pauli_z"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.pauli_z.html#tlquantum.tt_operators.pauli_z">[docs]</a><span class="k">def</span> <span class="nf">pauli_z</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Single-qubit Pauli-Z opertor in the tt-tensor format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Pauli-Z operator in tt-form.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]]],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span></div>
+</pre></div>
+
+        </div>
+
+		
+
+      </section>
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+	
+
+  </div>
+  </div>
+
+  <!-- Include here scripts that need to be added after the page is loaded -->
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

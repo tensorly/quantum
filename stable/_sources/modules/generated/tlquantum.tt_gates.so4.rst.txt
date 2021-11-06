@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_gates`.so4
+==========================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autofunction:: so4
+
+.. raw:: html
+
+    <div class="clearer"></div>

@@ -1,0 +1,10 @@
+﻿:mod:`tlquantum.tt_state`.spins_to_tt_state
+========================================================
+
+.. currentmodule:: tlquantum.tt_state
+
+.. autofunction:: spins_to_tt_state
+
+.. raw:: html
+
+    <div class="clearer"></div>
