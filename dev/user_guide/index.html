@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>User guide &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+    <title>User guide &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../_static/tensorly_style.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
@@ -42,7 +42,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Quickstart" href="quickstart.html" />
+    <link rel="next" title="API reference" href="../modules/api.html" />
     <link rel="prev" title="Installation" href="../install.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -180,8 +180,12 @@
       <div class="sidebar-menu-toc">
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">1. Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#variational-quantum-algorithms-with-tensorly-quantum">Variational Quantum Algorithms with TensorLy-Quantum</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#solving-the-transverse-field-ising-model">Solving the Transverse Field Ising Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-basis-encoding">Multi-Basis Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solving-maxcut">Solving MaxCut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
@@ -213,11 +217,40 @@
           
   <section id="user-guide">
 <span id="id1"></span><h1>User guide<a class="headerlink" href="#user-guide" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">1. Quickstart</a></li>
-</ul>
-</div>
+<p>TensorLy-Quantum builds on top of TensorLy and provides the tool to simulate circuits at scale by efficiently using tensor methods.
+In <a class="reference internal" href="../auto_examples/plot_vqe_transverse_field_Ising.html#sphx-glr-auto-examples-plot-vqe-transverse-field-ising-py"><span class="std std-ref">Variational Quantum Eigensolver</span></a>, we provide an example of
+traditional VQE for quantum Ising model Hamiltonian via
+PyTorch Autograd supported TT-tensors with TensorLy-Quantum.</p>
+</section>
+<section id="variational-quantum-algorithms-with-tensorly-quantum">
+<h1>Variational Quantum Algorithms with TensorLy-Quantum<a class="headerlink" href="#variational-quantum-algorithms-with-tensorly-quantum" title="Permalink to this headline"></a></h1>
+<p>TensorLy-Quantum provides the tools to use quantum circuit simulation to solve hard problems with tensor-based simulation of variational quantum algorithms. For instance, TensorLy-Quantum users can both find the ground states of quantum Ising models and construct quantum algorithms for NP-hard classical problems, such as MaxCut. In addition to flexibile circuit ansatze and operator (Hamiltonian) building functions, we also provide the framework for novel quantum algorithms, such as Multi-Basis Encoding.</p>
+<section id="solving-the-transverse-field-ising-model">
+<h2>Solving the Transverse Field Ising Model<a class="headerlink" href="#solving-the-transverse-field-ising-model" title="Permalink to this headline"></a></h2>
+<p>Users can easily build quantum Hamiltonians of interest and solve them
+using the flexible circuit ansatze of TensorLy-Quantum.
+In <a class="reference internal" href="../auto_examples/plot_vqe_transverse_field_Ising.html#sphx-glr-auto-examples-plot-vqe-transverse-field-ising-py"><span class="std std-ref">Variational Quantum Eigensolver</span></a>,
+we provide an example how to execute such an algorithm.</p>
+</section>
+<section id="multi-basis-encoding">
+<h2>Multi-Basis Encoding<a class="headerlink" href="#multi-basis-encoding" title="Permalink to this headline"></a></h2>
+<p>To be able to scale to larger number of qubits, we developed a new technique called Multi-Basis Encoding <a class="footnote-reference brackets" href="#id3" id="id2">1</a> (MBE).
+In <a class="reference internal" href="../auto_examples/plot_mbe_maxcut.html#sphx-glr-auto-examples-plot-mbe-maxcut-py"><span class="std std-ref">Multi-Basis Encoding</span></a>, we provide an example of the MBE
+quantum optimization algorithm for MaxCut via PyTorch Autograd supported TT-tensors with TensorLy-Quantum.</p>
+</section>
+<section id="solving-maxcut">
+<h2>Solving MaxCut<a class="headerlink" href="#solving-maxcut" title="Permalink to this headline"></a></h2>
+<p>We provide all the tools to solve MaxCut problems at scale, <a class="reference internal" href="../modules/api.html#module-tlquantum.maxcut" title="tlquantum.maxcut"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.maxcut</span></code></a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin,
+“Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
+</dd>
+</dl>
+</section>
 </section>
 
 
@@ -234,8 +267,8 @@
     </a>
     
     
-    <a class="button is-medium pagination-next" href="quickstart.html" title="next page" accesskey="n">
-        <span><span class="section-number">1. </span>Quickstart </span>
+    <a class="button is-medium pagination-next" href="../modules/api.html" title="next page" accesskey="n">
+        <span>API reference </span>
         <span class="icon">
             <i class="fa fa-arrow-circle-right"></i>
         </span>
@@ -259,6 +292,25 @@
 
 	
     
+    <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
+
+    <aside class="sticky-nav localtoc">  
+        <div class="menu menu-list">
+        <p class="menu-label">On this page</p>
+        <ul>
+<li><a class="reference internal" href="#">User guide</a></li>
+<li><a class="reference internal" href="#variational-quantum-algorithms-with-tensorly-quantum">Variational Quantum Algorithms with TensorLy-Quantum</a><ul>
+<li><a class="reference internal" href="#solving-the-transverse-field-ising-model">Solving the Transverse Field Ising Model</a></li>
+<li><a class="reference internal" href="#multi-basis-encoding">Multi-Basis Encoding</a></li>
+<li><a class="reference internal" href="#solving-maxcut">Solving MaxCut</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+    </aside>
+    </div>
 
     
 

@@ -170,165 +170,165 @@ If y-axis included, we can encode three vertices per qubit.
 
  .. code-block:: none
 
-    Relaxation (raw) loss at epoch 0: 20.98332977294922. 
+    Relaxation (raw) loss at epoch 0: 33.283477783203125. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(66.0240). 
+    Rounded MaxCut value (algorithm's solution): tensor(37.1882). 
 
-    Relaxation (raw) loss at epoch 1: -0.05659818649291992. 
+    Relaxation (raw) loss at epoch 1: -0.6753642559051514. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(113.1840). 
+    Rounded MaxCut value (algorithm's solution): tensor(120.8616). 
 
-    Relaxation (raw) loss at epoch 2: -27.472774505615234. 
+    Relaxation (raw) loss at epoch 2: -29.890052795410156. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(132.0480). 
+    Rounded MaxCut value (algorithm's solution): tensor(148.7528). 
 
-    Relaxation (raw) loss at epoch 3: -36.09895706176758. 
+    Relaxation (raw) loss at epoch 3: -50.47904586791992. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(150.9120). 
+    Rounded MaxCut value (algorithm's solution): tensor(148.7528). 
 
-    Relaxation (raw) loss at epoch 4: -61.79791259765625. 
+    Relaxation (raw) loss at epoch 4: -59.666507720947266. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(160.3440). 
+    Rounded MaxCut value (algorithm's solution): tensor(158.0499). 
 
-    Relaxation (raw) loss at epoch 5: -68.2668228149414. 
+    Relaxation (raw) loss at epoch 5: -56.89854431152344. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(158.0499). 
 
-    Relaxation (raw) loss at epoch 6: -62.24341583251953. 
+    Relaxation (raw) loss at epoch 6: -57.76357650756836. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(169.7760). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 7: -60.51130676269531. 
+    Relaxation (raw) loss at epoch 7: -63.971649169921875. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(160.3440). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 8: -65.67301177978516. 
+    Relaxation (raw) loss at epoch 8: -67.9149169921875. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(169.7760). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 9: -71.81451416015625. 
+    Relaxation (raw) loss at epoch 9: -66.71498107910156. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 10: -73.05801391601562. 
+    Relaxation (raw) loss at epoch 10: -64.48005676269531. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(158.0498). 
 
-    Relaxation (raw) loss at epoch 11: -71.41339111328125. 
+    Relaxation (raw) loss at epoch 11: -64.87652587890625. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 12: -71.00557708740234. 
+    Relaxation (raw) loss at epoch 12: -67.75375366210938. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 13: -73.37994384765625. 
+    Relaxation (raw) loss at epoch 13: -71.06118774414062. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 14: -77.40971374511719. 
+    Relaxation (raw) loss at epoch 14: -72.47422790527344. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 15: -79.8113021850586. 
+    Relaxation (raw) loss at epoch 15: -75.69035339355469. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(167.3469). 
 
-    Relaxation (raw) loss at epoch 16: -79.5783920288086. 
+    Relaxation (raw) loss at epoch 16: -81.77838897705078. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 17: -78.10332489013672. 
+    Relaxation (raw) loss at epoch 17: -83.56637573242188. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 18: -77.33060455322266. 
+    Relaxation (raw) loss at epoch 18: -82.17750549316406. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 19: -78.91332244873047. 
+    Relaxation (raw) loss at epoch 19: -79.5967788696289. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 20: -81.01351928710938. 
+    Relaxation (raw) loss at epoch 20: -79.07015991210938. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 21: -81.10008239746094. 
+    Relaxation (raw) loss at epoch 21: -80.8803939819336. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 22: -80.19001007080078. 
+    Relaxation (raw) loss at epoch 22: -83.62653350830078. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 23: -80.32762145996094. 
+    Relaxation (raw) loss at epoch 23: -85.12737274169922. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 24: -81.52562713623047. 
+    Relaxation (raw) loss at epoch 24: -85.18087768554688. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 25: -82.78622436523438. 
+    Relaxation (raw) loss at epoch 25: -84.6307144165039. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 26: -83.07803344726562. 
+    Relaxation (raw) loss at epoch 26: -84.09310913085938. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 27: -82.3739242553711. 
+    Relaxation (raw) loss at epoch 27: -84.4149169921875. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 28: -82.17697143554688. 
+    Relaxation (raw) loss at epoch 28: -85.38436126708984. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 29: -82.74397277832031. 
+    Relaxation (raw) loss at epoch 29: -86.03125762939453. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 30: -82.89835357666016. 
+    Relaxation (raw) loss at epoch 30: -86.3289794921875. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 31: -82.81724548339844. 
+    Relaxation (raw) loss at epoch 31: -86.50044250488281. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 32: -83.06160736083984. 
+    Relaxation (raw) loss at epoch 32: -86.35504150390625. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 33: -83.2099609375. 
+    Relaxation (raw) loss at epoch 33: -86.00898742675781. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 34: -83.20975494384766. 
+    Relaxation (raw) loss at epoch 34: -85.93780517578125. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 35: -83.29438781738281. 
+    Relaxation (raw) loss at epoch 35: -86.34984588623047. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 36: -83.35071563720703. 
+    Relaxation (raw) loss at epoch 36: -86.78509521484375. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 37: -83.43405151367188. 
+    Relaxation (raw) loss at epoch 37: -86.91468048095703. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 38: -83.52605438232422. 
+    Relaxation (raw) loss at epoch 38: -86.97124481201172. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
-    Relaxation (raw) loss at epoch 39: -83.53134155273438. 
+    Relaxation (raw) loss at epoch 39: -87.10545349121094. 
 
-    Rounded MaxCut value (algorithm's solution): tensor(179.2080). 
+    Rounded MaxCut value (algorithm's solution): tensor(176.6440). 
 
 
 
@@ -370,7 +370,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.632 seconds)
+   **Total running time of the script:** ( 0 minutes  1.327 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_mbe_maxcut.py:

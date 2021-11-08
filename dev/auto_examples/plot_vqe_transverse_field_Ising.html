@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Variational Quantum Eigensolver &#8212; TensorLy-Quantum 0.1.0 documentation</title> 
+    <title>Variational Quantum Eigensolver &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../_static/tensorly_style.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
@@ -181,6 +181,7 @@
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html#variational-quantum-algorithms-with-tensorly-quantum">Variational Quantum Algorithms with TensorLy-Quantum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_mbe_maxcut.html">Multi-Basis Encoding</a></li>
@@ -304,165 +305,165 @@ two-qubit terms</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is 1.3209271430969238.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is -1.1995642185211182.
 
-Energy (loss) at epoch 1 is -3.4823319911956787.
+Energy (loss) at epoch 1 is -1.471590280532837.
 
-Energy (loss) at epoch 2 is -1.9635262489318848.
+Energy (loss) at epoch 2 is -3.0333518981933594.
 
-Energy (loss) at epoch 3 is -1.9699840545654297.
+Energy (loss) at epoch 3 is -2.301276683807373.
 
-Energy (loss) at epoch 4 is -3.029681921005249.
+Energy (loss) at epoch 4 is -2.2908430099487305.
 
-Energy (loss) at epoch 5 is -3.3073320388793945.
+Energy (loss) at epoch 5 is -2.3512942790985107.
 
-Energy (loss) at epoch 6 is -3.20658540725708.
+Energy (loss) at epoch 6 is -2.718966245651245.
 
-Energy (loss) at epoch 7 is -3.6378366947174072.
+Energy (loss) at epoch 7 is -3.2184247970581055.
 
-Energy (loss) at epoch 8 is -3.8700942993164062.
+Energy (loss) at epoch 8 is -3.322808027267456.
 
-Energy (loss) at epoch 9 is -3.5563697814941406.
+Energy (loss) at epoch 9 is -2.9401299953460693.
 
-Energy (loss) at epoch 10 is -3.365018844604492.
+Energy (loss) at epoch 10 is -2.785468578338623.
 
-Energy (loss) at epoch 11 is -3.62693190574646.
+Energy (loss) at epoch 11 is -2.949887275695801.
 
-Energy (loss) at epoch 12 is -4.031023025512695.
+Energy (loss) at epoch 12 is -3.160315990447998.
 
-Energy (loss) at epoch 13 is -4.150241851806641.
+Energy (loss) at epoch 13 is -3.318488121032715.
 
-Energy (loss) at epoch 14 is -4.007824420928955.
+Energy (loss) at epoch 14 is -3.3633739948272705.
 
-Energy (loss) at epoch 15 is -3.891023635864258.
+Energy (loss) at epoch 15 is -3.2427618503570557.
 
-Energy (loss) at epoch 16 is -3.940056800842285.
+Energy (loss) at epoch 16 is -3.133254051208496.
 
-Energy (loss) at epoch 17 is -4.020768165588379.
+Energy (loss) at epoch 17 is -3.162856340408325.
 
-Energy (loss) at epoch 18 is -4.095212459564209.
+Energy (loss) at epoch 18 is -3.250765800476074.
 
-Energy (loss) at epoch 19 is -4.190061569213867.
+Energy (loss) at epoch 19 is -3.3312911987304688.
 
-Energy (loss) at epoch 20 is -4.230947971343994.
+Energy (loss) at epoch 20 is -3.3931591510772705.
 
-Energy (loss) at epoch 21 is -4.163781642913818.
+Energy (loss) at epoch 21 is -3.3826141357421875.
 
-Energy (loss) at epoch 22 is -4.0752973556518555.
+Energy (loss) at epoch 22 is -3.3077080249786377.
 
-Energy (loss) at epoch 23 is -4.10330057144165.
+Energy (loss) at epoch 23 is -3.280749797821045.
 
-Energy (loss) at epoch 24 is -4.234581470489502.
+Energy (loss) at epoch 24 is -3.3136887550354004.
 
-Energy (loss) at epoch 25 is -4.32243013381958.
+Energy (loss) at epoch 25 is -3.3568973541259766.
 
-Energy (loss) at epoch 26 is -4.275753974914551.
+Energy (loss) at epoch 26 is -3.3996801376342773.
 
-Energy (loss) at epoch 27 is -4.184958457946777.
+Energy (loss) at epoch 27 is -3.4102091789245605.
 
-Energy (loss) at epoch 28 is -4.183734893798828.
+Energy (loss) at epoch 28 is -3.381669521331787.
 
-Energy (loss) at epoch 29 is -4.265824317932129.
+Energy (loss) at epoch 29 is -3.3663454055786133.
 
-Energy (loss) at epoch 30 is -4.320791721343994.
+Energy (loss) at epoch 30 is -3.3673086166381836.
 
-Energy (loss) at epoch 31 is -4.297362804412842.
+Energy (loss) at epoch 31 is -3.37384033203125.
 
-Energy (loss) at epoch 32 is -4.259843826293945.
+Energy (loss) at epoch 32 is -3.398615598678589.
 
-Energy (loss) at epoch 33 is -4.267322540283203.
+Energy (loss) at epoch 33 is -3.4184646606445312.
 
-Energy (loss) at epoch 34 is -4.297151565551758.
+Energy (loss) at epoch 34 is -3.413381576538086.
 
-Energy (loss) at epoch 35 is -4.305692195892334.
+Energy (loss) at epoch 35 is -3.403524875640869.
 
-Energy (loss) at epoch 36 is -4.2995147705078125.
+Energy (loss) at epoch 36 is -3.3957061767578125.
 
-Energy (loss) at epoch 37 is -4.305512428283691.
+Energy (loss) at epoch 37 is -3.39630389213562.
 
-Energy (loss) at epoch 38 is -4.317110538482666.
+Energy (loss) at epoch 38 is -3.4091012477874756.
 
-Energy (loss) at epoch 39 is -4.3144426345825195.
+Energy (loss) at epoch 39 is -3.417402744293213.
 
-Energy (loss) at epoch 40 is -4.305558204650879.
+Energy (loss) at epoch 40 is -3.421114921569824.
 
-Energy (loss) at epoch 41 is -4.311672210693359.
+Energy (loss) at epoch 41 is -3.420868158340454.
 
-Energy (loss) at epoch 42 is -4.328125476837158.
+Energy (loss) at epoch 42 is -3.4125466346740723.
 
-Energy (loss) at epoch 43 is -4.3322858810424805.
+Energy (loss) at epoch 43 is -3.410649299621582.
 
-Energy (loss) at epoch 44 is -4.321769714355469.
+Energy (loss) at epoch 44 is -3.415853500366211.
 
-Energy (loss) at epoch 45 is -4.3171162605285645.
+Energy (loss) at epoch 45 is -3.4211537837982178.
 
-Energy (loss) at epoch 46 is -4.326621055603027.
+Energy (loss) at epoch 46 is -3.4251151084899902.
 
-Energy (loss) at epoch 47 is -4.335444927215576.
+Energy (loss) at epoch 47 is -3.4230732917785645.
 
-Energy (loss) at epoch 48 is -4.333610534667969.
+Energy (loss) at epoch 48 is -3.420961618423462.
 
-Energy (loss) at epoch 49 is -4.3295392990112305.
+Energy (loss) at epoch 49 is -3.420910596847534.
 
-Energy (loss) at epoch 50 is -4.330837249755859.
+Energy (loss) at epoch 50 is -3.420926094055176.
 
-Energy (loss) at epoch 51 is -4.333626747131348.
+Energy (loss) at epoch 51 is -3.424203395843506.
 
-Energy (loss) at epoch 52 is -4.334721088409424.
+Energy (loss) at epoch 52 is -3.4257071018218994.
 
-Energy (loss) at epoch 53 is -4.336551189422607.
+Energy (loss) at epoch 53 is -3.4251558780670166.
 
-Energy (loss) at epoch 54 is -4.338290691375732.
+Energy (loss) at epoch 54 is -3.42510986328125.
 
-Energy (loss) at epoch 55 is -4.336589336395264.
+Energy (loss) at epoch 55 is -3.4247026443481445.
 
-Energy (loss) at epoch 56 is -4.334427356719971.
+Energy (loss) at epoch 56 is -3.425546407699585.
 
-Energy (loss) at epoch 57 is -4.33706521987915.
+Energy (loss) at epoch 57 is -3.4255588054656982.
 
-Energy (loss) at epoch 58 is -4.34149169921875.
+Energy (loss) at epoch 58 is -3.4259064197540283.
 
-Energy (loss) at epoch 59 is -4.340872287750244.
+Energy (loss) at epoch 59 is -3.426995277404785.
 
-Energy (loss) at epoch 60 is -4.337055683135986.
+Energy (loss) at epoch 60 is -3.4268343448638916.
 
-Energy (loss) at epoch 61 is -4.337375640869141.
+Energy (loss) at epoch 61 is -3.427072763442993.
 
-Energy (loss) at epoch 62 is -4.34136438369751.
+Energy (loss) at epoch 62 is -3.4268462657928467.
 
-Energy (loss) at epoch 63 is -4.342435836791992.
+Energy (loss) at epoch 63 is -3.426736354827881.
 
-Energy (loss) at epoch 64 is -4.340033054351807.
+Energy (loss) at epoch 64 is -3.42704701423645.
 
-Energy (loss) at epoch 65 is -4.339165210723877.
+Energy (loss) at epoch 65 is -3.4274044036865234.
 
-Energy (loss) at epoch 66 is -4.340935230255127.
+Energy (loss) at epoch 66 is -3.428107261657715.
 
-Energy (loss) at epoch 67 is -4.342172622680664.
+Energy (loss) at epoch 67 is -3.427821159362793.
 
-Energy (loss) at epoch 68 is -4.341723918914795.
+Energy (loss) at epoch 68 is -3.427600860595703.
 
-Energy (loss) at epoch 69 is -4.341162204742432.
+Energy (loss) at epoch 69 is -3.4275050163269043.
 
-Energy (loss) at epoch 70 is -4.341281414031982.
+Energy (loss) at epoch 70 is -3.4276251792907715.
 
-Energy (loss) at epoch 71 is -4.341710567474365.
+Energy (loss) at epoch 71 is -3.4281117916107178.
 
-Energy (loss) at epoch 72 is -4.342228412628174.
+Energy (loss) at epoch 72 is -3.428297281265259.
 
-Energy (loss) at epoch 73 is -4.342400074005127.
+Energy (loss) at epoch 73 is -3.428323745727539.
 
-Energy (loss) at epoch 74 is -4.341933250427246.
+Energy (loss) at epoch 74 is -3.427931547164917.
 
-Energy (loss) at epoch 75 is -4.34171724319458.
+Energy (loss) at epoch 75 is -3.427931785583496.
 
-Energy (loss) at epoch 76 is -4.34237003326416.
+Energy (loss) at epoch 76 is -3.428152561187744.
 
-Energy (loss) at epoch 77 is -4.342832088470459.
+Energy (loss) at epoch 77 is -3.428378105163574.
 
-Energy (loss) at epoch 78 is -4.3423919677734375.
+Energy (loss) at epoch 78 is -3.4284985065460205.
 
-Energy (loss) at epoch 79 is -4.342080593109131.
+Energy (loss) at epoch 79 is -3.428347110748291.
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ising_H</span> <span class="o">=</span> <span class="n">TTMatrix</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
@@ -487,7 +488,7 @@ Energy (loss) at epoch 79 is -4.342080593109131.
 <dd><p>Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014).</p>
 </dd>
 </dl>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.637 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.544 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vqe-transverse-field-ising-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0b8fb627074c71f759271b00e548b574/plot_vqe_transverse_field_Ising.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vqe_transverse_field_Ising.py</span></code></a></p>
