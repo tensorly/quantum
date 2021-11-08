@@ -1,13 +1,15 @@
 Variational Quantum Algorithms with TensorLy-Quantum
-==============
+====================================================
 
 TensorLy-Quantum provides the tools to use quantum circuit simulation to solve hard problems with tensor-based simulation of variational quantum algorithms. For instance, TensorLy-Quantum users can both find the ground states of quantum Ising models and construct quantum algorithms for NP-hard classical problems, such as MaxCut. In addition to flexibile circuit ansatze and operator (Hamiltonian) building functions, we also provide the framework for novel quantum algorithms, such as Multi-Basis Encoding.
 
 Solving the Transverse Field Ising Model
 ----------------------------------------
 
-Users can easily build quantum Hamiltonians of interest and solve them using the flexible circuit ansatze of TensorLy-Quantum. In :ref::ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py`, we
-provide an example how to execute such an algorithm.
+Users can easily build quantum Hamiltonians of interest and solve them
+using the flexible circuit ansatze of TensorLy-Quantum. 
+In :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py`, 
+we provide an example how to execute such an algorithm.
 
 Multi-Basis Encoding
 --------------------

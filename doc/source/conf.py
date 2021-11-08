@@ -24,8 +24,8 @@ copyright = f'{year}, TensorLy-Quantum developers'
 author = 'TensorLy-Quantum developers'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
-
+import tlquantum
+release = tlquantum.__version__
 
 # -- General configuration ---------------------------------------------------
 
@@ -82,22 +82,18 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
-
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
-html_theme = 'alabaster'
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
-
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'tensorly_sphinx_theme'
 html_show_sphinx = False
 html_logo = '_static/logos/tensorly-quantum-logo.png'
+
+# "<project> v<release> documentation" by default.
+html_title = 'Tensor-Based Quantum Machine Learning'
+
+# A shorter title for the navigation bar.  Default is the same as html_title.
+html_short_title = 'TensorLy-Quantum'
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
