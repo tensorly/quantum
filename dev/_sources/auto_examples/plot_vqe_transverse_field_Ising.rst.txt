@@ -232,165 +232,165 @@ two-qubit terms
 
  .. code-block:: none
 
-    Energy (loss) at epoch 0 is -1.1995642185211182. 
+    Energy (loss) at epoch 0 is 0.5374482870101929. 
 
-    Energy (loss) at epoch 1 is -1.471590280532837. 
+    Energy (loss) at epoch 1 is -2.4039807319641113. 
 
-    Energy (loss) at epoch 2 is -3.0333518981933594. 
+    Energy (loss) at epoch 2 is -3.6426239013671875. 
 
-    Energy (loss) at epoch 3 is -2.301276683807373. 
+    Energy (loss) at epoch 3 is -2.7791576385498047. 
 
-    Energy (loss) at epoch 4 is -2.2908430099487305. 
+    Energy (loss) at epoch 4 is -2.606666326522827. 
 
-    Energy (loss) at epoch 5 is -2.3512942790985107. 
+    Energy (loss) at epoch 5 is -3.2850406169891357. 
 
-    Energy (loss) at epoch 6 is -2.718966245651245. 
+    Energy (loss) at epoch 6 is -3.8662338256835938. 
 
-    Energy (loss) at epoch 7 is -3.2184247970581055. 
+    Energy (loss) at epoch 7 is -3.8451218605041504. 
 
-    Energy (loss) at epoch 8 is -3.322808027267456. 
+    Energy (loss) at epoch 8 is -3.653169870376587. 
 
-    Energy (loss) at epoch 9 is -2.9401299953460693. 
+    Energy (loss) at epoch 9 is -3.6231331825256348. 
 
-    Energy (loss) at epoch 10 is -2.785468578338623. 
+    Energy (loss) at epoch 10 is -3.783242702484131. 
 
-    Energy (loss) at epoch 11 is -2.949887275695801. 
+    Energy (loss) at epoch 11 is -3.9197592735290527. 
 
-    Energy (loss) at epoch 12 is -3.160315990447998. 
+    Energy (loss) at epoch 12 is -3.9526736736297607. 
 
-    Energy (loss) at epoch 13 is -3.318488121032715. 
+    Energy (loss) at epoch 13 is -3.989762306213379. 
 
-    Energy (loss) at epoch 14 is -3.3633739948272705. 
+    Energy (loss) at epoch 14 is -4.017828464508057. 
 
-    Energy (loss) at epoch 15 is -3.2427618503570557. 
+    Energy (loss) at epoch 15 is -3.9877779483795166. 
 
-    Energy (loss) at epoch 16 is -3.133254051208496. 
+    Energy (loss) at epoch 16 is -3.9723615646362305. 
 
-    Energy (loss) at epoch 17 is -3.162856340408325. 
+    Energy (loss) at epoch 17 is -4.0557146072387695. 
 
-    Energy (loss) at epoch 18 is -3.250765800476074. 
+    Energy (loss) at epoch 18 is -4.175225257873535. 
 
-    Energy (loss) at epoch 19 is -3.3312911987304688. 
+    Energy (loss) at epoch 19 is -4.19966983795166. 
 
-    Energy (loss) at epoch 20 is -3.3931591510772705. 
+    Energy (loss) at epoch 20 is -4.118118762969971. 
 
-    Energy (loss) at epoch 21 is -3.3826141357421875. 
+    Energy (loss) at epoch 21 is -4.061659812927246. 
 
-    Energy (loss) at epoch 22 is -3.3077080249786377. 
+    Energy (loss) at epoch 22 is -4.115201950073242. 
 
-    Energy (loss) at epoch 23 is -3.280749797821045. 
+    Energy (loss) at epoch 23 is -4.204984664916992. 
 
-    Energy (loss) at epoch 24 is -3.3136887550354004. 
+    Energy (loss) at epoch 24 is -4.22140645980835. 
 
-    Energy (loss) at epoch 25 is -3.3568973541259766. 
+    Energy (loss) at epoch 25 is -4.179964065551758. 
 
-    Energy (loss) at epoch 26 is -3.3996801376342773. 
+    Energy (loss) at epoch 26 is -4.1680521965026855. 
 
-    Energy (loss) at epoch 27 is -3.4102091789245605. 
+    Energy (loss) at epoch 27 is -4.196432590484619. 
 
-    Energy (loss) at epoch 28 is -3.381669521331787. 
+    Energy (loss) at epoch 28 is -4.21524715423584. 
 
-    Energy (loss) at epoch 29 is -3.3663454055786133. 
+    Energy (loss) at epoch 29 is -4.211082935333252. 
 
-    Energy (loss) at epoch 30 is -3.3673086166381836. 
+    Energy (loss) at epoch 30 is -4.213283061981201. 
 
-    Energy (loss) at epoch 31 is -3.37384033203125. 
+    Energy (loss) at epoch 31 is -4.231138229370117. 
 
-    Energy (loss) at epoch 32 is -3.398615598678589. 
+    Energy (loss) at epoch 32 is -4.23883581161499. 
 
-    Energy (loss) at epoch 33 is -3.4184646606445312. 
+    Energy (loss) at epoch 33 is -4.224576473236084. 
 
-    Energy (loss) at epoch 34 is -3.413381576538086. 
+    Energy (loss) at epoch 34 is -4.214554309844971. 
 
-    Energy (loss) at epoch 35 is -3.403524875640869. 
+    Energy (loss) at epoch 35 is -4.22995138168335. 
 
-    Energy (loss) at epoch 36 is -3.3957061767578125. 
+    Energy (loss) at epoch 36 is -4.251569747924805. 
 
-    Energy (loss) at epoch 37 is -3.39630389213562. 
+    Energy (loss) at epoch 37 is -4.252186298370361. 
 
-    Energy (loss) at epoch 38 is -3.4091012477874756. 
+    Energy (loss) at epoch 38 is -4.238656997680664. 
 
-    Energy (loss) at epoch 39 is -3.417402744293213. 
+    Energy (loss) at epoch 39 is -4.236049175262451. 
 
-    Energy (loss) at epoch 40 is -3.421114921569824. 
+    Energy (loss) at epoch 40 is -4.247898578643799. 
 
-    Energy (loss) at epoch 41 is -3.420868158340454. 
+    Energy (loss) at epoch 41 is -4.256948471069336. 
 
-    Energy (loss) at epoch 42 is -3.4125466346740723. 
+    Energy (loss) at epoch 42 is -4.256220817565918. 
 
-    Energy (loss) at epoch 43 is -3.410649299621582. 
+    Energy (loss) at epoch 43 is -4.254147529602051. 
 
-    Energy (loss) at epoch 44 is -3.415853500366211. 
+    Energy (loss) at epoch 44 is -4.254457473754883. 
 
-    Energy (loss) at epoch 45 is -3.4211537837982178. 
+    Energy (loss) at epoch 45 is -4.254384994506836. 
 
-    Energy (loss) at epoch 46 is -3.4251151084899902. 
+    Energy (loss) at epoch 46 is -4.2560038566589355. 
 
-    Energy (loss) at epoch 47 is -3.4230732917785645. 
+    Energy (loss) at epoch 47 is -4.261053085327148. 
 
-    Energy (loss) at epoch 48 is -3.420961618423462. 
+    Energy (loss) at epoch 48 is -4.263215065002441. 
 
-    Energy (loss) at epoch 49 is -3.420910596847534. 
+    Energy (loss) at epoch 49 is -4.259208679199219. 
 
-    Energy (loss) at epoch 50 is -3.420926094055176. 
+    Energy (loss) at epoch 50 is -4.256494522094727. 
 
-    Energy (loss) at epoch 51 is -3.424203395843506. 
+    Energy (loss) at epoch 51 is -4.26050329208374. 
 
-    Energy (loss) at epoch 52 is -3.4257071018218994. 
+    Energy (loss) at epoch 52 is -4.265348434448242. 
 
-    Energy (loss) at epoch 53 is -3.4251558780670166. 
+    Energy (loss) at epoch 53 is -4.264549255371094. 
 
-    Energy (loss) at epoch 54 is -3.42510986328125. 
+    Energy (loss) at epoch 54 is -4.261542797088623. 
 
-    Energy (loss) at epoch 55 is -3.4247026443481445. 
+    Energy (loss) at epoch 55 is -4.262165546417236. 
 
-    Energy (loss) at epoch 56 is -3.425546407699585. 
+    Energy (loss) at epoch 56 is -4.2649054527282715. 
 
-    Energy (loss) at epoch 57 is -3.4255588054656982. 
+    Energy (loss) at epoch 57 is -4.265796661376953. 
 
-    Energy (loss) at epoch 58 is -3.4259064197540283. 
+    Energy (loss) at epoch 58 is -4.265275001525879. 
 
-    Energy (loss) at epoch 59 is -3.426995277404785. 
+    Energy (loss) at epoch 59 is -4.265047073364258. 
 
-    Energy (loss) at epoch 60 is -3.4268343448638916. 
+    Energy (loss) at epoch 60 is -4.265117645263672. 
 
-    Energy (loss) at epoch 61 is -3.427072763442993. 
+    Energy (loss) at epoch 61 is -4.265564918518066. 
 
-    Energy (loss) at epoch 62 is -3.4268462657928467. 
+    Energy (loss) at epoch 62 is -4.2664289474487305. 
 
-    Energy (loss) at epoch 63 is -3.426736354827881. 
+    Energy (loss) at epoch 63 is -4.266657829284668. 
 
-    Energy (loss) at epoch 64 is -3.42704701423645. 
+    Energy (loss) at epoch 64 is -4.26600456237793. 
 
-    Energy (loss) at epoch 65 is -3.4274044036865234. 
+    Energy (loss) at epoch 65 is -4.265954971313477. 
 
-    Energy (loss) at epoch 66 is -3.428107261657715. 
+    Energy (loss) at epoch 66 is -4.266839027404785. 
 
-    Energy (loss) at epoch 67 is -3.427821159362793. 
+    Energy (loss) at epoch 67 is -4.267184257507324. 
 
-    Energy (loss) at epoch 68 is -3.427600860595703. 
+    Energy (loss) at epoch 68 is -4.266798973083496. 
 
-    Energy (loss) at epoch 69 is -3.4275050163269043. 
+    Energy (loss) at epoch 69 is -4.266857147216797. 
 
-    Energy (loss) at epoch 70 is -3.4276251792907715. 
+    Energy (loss) at epoch 70 is -4.267310619354248. 
 
-    Energy (loss) at epoch 71 is -3.4281117916107178. 
+    Energy (loss) at epoch 71 is -4.267339706420898. 
 
-    Energy (loss) at epoch 72 is -3.428297281265259. 
+    Energy (loss) at epoch 72 is -4.2672343254089355. 
 
-    Energy (loss) at epoch 73 is -3.428323745727539. 
+    Energy (loss) at epoch 73 is -4.267478942871094. 
 
-    Energy (loss) at epoch 74 is -3.427931547164917. 
+    Energy (loss) at epoch 74 is -4.267614364624023. 
 
-    Energy (loss) at epoch 75 is -3.427931785583496. 
+    Energy (loss) at epoch 75 is -4.267457008361816. 
 
-    Energy (loss) at epoch 76 is -3.428152561187744. 
+    Energy (loss) at epoch 76 is -4.267504692077637. 
 
-    Energy (loss) at epoch 77 is -3.428378105163574. 
+    Energy (loss) at epoch 77 is -4.2677130699157715. 
 
-    Energy (loss) at epoch 78 is -3.4284985065460205. 
+    Energy (loss) at epoch 78 is -4.267710208892822. 
 
-    Energy (loss) at epoch 79 is -3.428347110748291. 
+    Energy (loss) at epoch 79 is -4.267664432525635. 
 
 
 
@@ -404,8 +404,8 @@ two-qubit terms
     true_energies, _ = tl.eigh(Ising_H)
     ground_state_energy = true_energies[0]
     plt.figure()
-    plt.plot(energy_vec.detach().numpy(), color='r')
-    plt.hlines(ground_state_energy, 0, nepochs, color='k', linestyle='--')
+    plt.plot(energy_vec.detach().cpu().numpy(), color='r')
+    plt.hlines(ground_state_energy.detach().cpu().numpy(), 0, nepochs, color='k', linestyle='--')
     plt.xlabel('Epochs')
     plt.ylabel('Energy')
     plt.xticks()
@@ -434,7 +434,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.544 seconds)
+   **Total running time of the script:** ( 0 minutes  0.474 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vqe_transverse_field_Ising.py:

@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:01.871** total execution time for **auto_examples** files:
+**00:01.616** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py` (``plot_mbe_maxcut.py``)                                 | 00:01.327 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py` (``plot_mbe_maxcut.py``)                                 | 00:01.142 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py` (``plot_vqe_transverse_field_Ising.py``) | 00:00.544 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py` (``plot_vqe_transverse_field_Ising.py``) | 00:00.474 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
