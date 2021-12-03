@@ -1,3 +1,14 @@
+
+.. image:: https://badge.fury.io/py/tensorly-quantum.svg
+    :target: https://badge.fury.io/py/tensorly-quantum
+
+.. image:: https://github.com/tensorly/quantum/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/tensorly/quantum/actions/workflows/test.yml
+
+.. image:: https://codecov.io/gh/tensorly/quantum/branch/main/graph/badge.svg?token=5P8GZ8YLO7
+    :target: https://codecov.io/gh/tensorly/quantum
+    
+
 ================
 TensorLy_Quantum
 ================
