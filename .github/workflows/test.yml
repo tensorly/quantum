@@ -32,6 +32,11 @@ jobs:
     - name: Install package
       run: |
         python -m pip install -e .
-    - name: Test with pytest
+    - name: Test with pytest + coverage
       run: |
-        pytest -vvv tlquantum
+        pytest -vvv --cov tlquantum --cov-report xml tlquantum
+    - name: Check Tensorly-Quantum coverage with CodeCov
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml
+        verbose: true
