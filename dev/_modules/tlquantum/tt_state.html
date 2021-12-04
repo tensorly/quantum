@@ -177,10 +177,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="c1">#Single spin 1 core in tt-tensor format at final position</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">+</span> <span class="p">[</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]]])]</span>
-    <span class="k">if</span> <span class="n">device</span><span class="o">==</span><span class="s1">&#39;cpu&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">state</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">state</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">state</span><span class="p">]</span></div>
 
 
 <span class="k">def</span> <span class="nf">_spin_to_qubit</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>

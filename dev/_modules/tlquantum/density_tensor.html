@@ -193,7 +193,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">tensor</span> <span class="o">=</span> <span class="n">value</span>
 
         <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_subsystems</span><span class="p">(</span><span class="n">subsystems</span><span class="p">)</span> <span class="c1">#_validate_subsystems(value)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subsystems</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_subsystems</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;Operator type is determined by subsystems and can be updated by updating subsystems.&#39;</span><span class="p">)</span>
