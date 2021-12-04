@@ -31,10 +31,7 @@ def spins_to_tt_state(spins, device='cpu'):
     else:
         #Single spin 1 core in tt-tensor format at final position
         state = state + [tl.tensor([[[0.], [1.]], [[0.], [0.]]])]
-    if device=='cpu':
-        return state
-    else:
-        return [core.to(device) for core in state]
+    return [core.to(device) for core in state]
 
 
 def _spin_to_qubit(spin):

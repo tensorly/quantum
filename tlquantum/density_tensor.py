@@ -47,7 +47,7 @@ class DensityTensor(AbsDensityTensor):
             self.tensor = value
 
         elif index == 1:
-            self.subsystems, self.op_type = self._validate_subsystems(subsystems) #_validate_subsystems(value)
+            self.subsystems, self.op_type = self._validate_subsystems(value)
 
         elif index == 2:
             raise IndexError('Operator type is determined by subsystems and can be updated by updating subsystems.')

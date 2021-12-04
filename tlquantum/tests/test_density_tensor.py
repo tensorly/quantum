@@ -2,6 +2,7 @@ import tensorly as tl
 from tensorly.testing import assert_array_almost_equal
 from numpy import array, matmul, transpose
 from numpy.linalg import norm
+from pytest import raises
 
 from ..density_tensor import DensityTensor
 
@@ -19,6 +20,12 @@ def test_validate_subsystems():
     assert DT._validate_subsystems(square_subsystems) == (square_subsystems, 'rho')
     assert DT._validate_subsystems(column_subsystems) == (column_subsystems, 'ket')
     assert DT._validate_subsystems(row_subsystems) == (row_subsystems, 'bra')
+    with raises(Exception):
+        DT[3]
+    with raises(Exception):
+        DT[2] = 'ket'
+    with raises(Exception):
+        DT[3] = 0
 
 def test_partial_trace_state():
     # For GHZ state
@@ -34,17 +41,24 @@ def test_partial_trace_state():
     assert ket.partial_trace([0,2])[1] == [[2, 2], [2, 2]]
     assert_array_almost_equal(ket.partial_trace([1,2])[0], ptrace, decimal=err_tol)
     assert ket.partial_trace([0,1])[1] == [[2, 2], [2, 2]]
+    assert ket[2] == 'ket'
 
     # For product state
-    ket = tl.zeros((8, 1))
-    ket[0] = 1
-    ket = DensityTensor(ket, [[2, 2, 2], [1, 1, 1]])
+    ket0 = tl.zeros((8, 1))
+    ket0[0] = 1
+    ket[0] = ket0
+    ket[1] = [[2, 2, 2], [1, 1, 1]]
     ptrace = tl.zeros((4, 4))
     ptrace[0, 0] = 1
     ptrace = tl.reshape(ptrace, (2,2,2,2))
     assert_array_almost_equal(ket.partial_trace([0,1])[0], ptrace, decimal=err_tol)
     assert_array_almost_equal(ket.partial_trace([0,2])[0], ptrace, decimal=err_tol)
     assert_array_almost_equal(ket.partial_trace([1,2])[0], ptrace, decimal=err_tol)
+
+    # For bra state
+    ket[0] = tl.transpose(ket0)
+    ket[1] = [[1, 1, 1], [2, 2, 2]]
+    assert_array_almost_equal(ket.partial_trace([0,1])[0], ptrace, decimal=err_tol)
 
     # For random state
     ket = array([-1.83550206, -1.02964279, -0.680801,    1.14528818,  0.01097224, -1.46404358,
