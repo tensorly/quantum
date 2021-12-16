@@ -2,6 +2,12 @@
 :no-localtoc:
 :no-pagination:
 
+.. only:: latex
+
+   TensorLy-Quantum
+   ================
+
+
 .. TensorLy-Quantum documentation
 
 .. only:: html
