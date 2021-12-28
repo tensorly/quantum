@@ -230,7 +230,7 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.<
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
 <span class="kn">from</span> <span class="nn">tensorly.tt_matrix</span> <span class="kn">import</span> <span class="n">TTMatrix</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">arange</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">complex64</span>
 <span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">Adam</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -238,6 +238,8 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.<
 <p>Uncomment the line below to use the GPU</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#device = &#39;cuda&#39;</span>
 <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span>
+
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">complex64</span>
 
 <span class="n">nepochs</span> <span class="o">=</span> <span class="mi">80</span> <span class="c1">#number of training epochs</span>
 
@@ -248,7 +250,7 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.<
 <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.5</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># generate generic zero state |00000&gt;</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -259,28 +261,30 @@ two-qubit terms</p>
 <span class="n">qubits2</span><span class="p">[</span><span class="n">qubits2</span><span class="o">==</span><span class="n">qubits1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># because qubits in this Hamiltonian randomly generated, eliminate self-interacting terms</span>
 <span class="n">qubits2</span><span class="p">[</span><span class="n">qubits2</span> <span class="o">&gt;=</span> <span class="n">nqubits</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">rand</span><span class="p">((</span><span class="n">nterms</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated coefficients of each two-qubit interaction in Hamiltonian</span>
-<span class="n">binary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">binary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_z</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1"># build the spin-spin Hamiltonian H</span>
+<span class="n">binary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">binary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_z</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1"># build the spin-spin Hamiltonian H</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qubits</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># specify that each qubit will have a transverse field term</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">rand</span><span class="p">((</span><span class="n">nqubits</span><span class="p">,),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># randomly generated coefficients for the transverse field felt by each qubit</span>
-<span class="n">unary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">unary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_x</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1">#build the transverse field Hamiltonian</span>
+<span class="n">unary_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">unary_hamiltonian</span><span class="p">(</span><span class="n">tlq</span><span class="o">.</span><span class="n">pauli_x</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="c1">#build the transverse field Hamiltonian</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ising_H</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">tt_matrix_sum</span><span class="p">(</span><span class="n">binary_H</span><span class="p">,</span> <span class="n">unary_H</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_U</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">Unitary</span><span class="p">([</span><span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="p">),</span> <span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="p">)],</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_U</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">Unitary</span><span class="p">([</span><span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">tlq</span><span class="o">.</span><span class="n">RotY</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="o">*</span><span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)],</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RotY</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># one Y-axis rotation gate applied to each qubit of the circuit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RotY</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># one Y-axis rotation gate applied to each qubit of the circuit</span>
+<span class="n">RotY2</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">RotX</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 <span class="n">parity</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">CZ0</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one controlled-z gate for each pair of qubits using even parity (even qubits control)</span>
+<span class="n">CZ0</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one controlled-z gate for each pair of qubits using even parity (even qubits control)</span>
 <span class="n">parity</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">SO4_01</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one SO4 rotation about two-qubit states |2&gt; and |3&gt; with odd parity</span>
+<span class="n">SO4_01</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">so4</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">parity</span><span class="p">)</span> <span class="c1"># one SO4 rotation about two-qubit states |2&gt; and |3&gt; with odd parity</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unitaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">RotY</span><span class="p">,</span> <span class="n">SO4_01</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">CZ0</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unitaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">RotY</span><span class="p">,</span> <span class="n">SO4_01</span><span class="p">,</span> <span class="n">RotY</span><span class="p">,</span> <span class="n">CZ0</span><span class="p">,</span> <span class="n">RotX</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repeat_block</span><span class="p">,</span> <span class="n">unitaries_automatic</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[]</span>
@@ -305,165 +309,167 @@ two-qubit terms</p>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is 0.7217162847518921.
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Energy (loss) at epoch 0 is (-1.2876085042953491-2.9802322387695312e-08j).
 
-Energy (loss) at epoch 1 is -1.3394489288330078.
+/home/runner/work/quantum/quantum/doc/source/examples/plot_vqe_transverse_field_Ising.py:103: UserWarning: Casting complex values to real discards the imaginary part (Triggered internally at  ../aten/src/ATen/native/Copy.cpp:244.)
+  energy_vec[epoch] = energy
+Energy (loss) at epoch 1 is (-0.3031981587409973+0j).
 
-Energy (loss) at epoch 2 is -3.9421868324279785.
+Energy (loss) at epoch 2 is (-0.8654189109802246+5.960464477539063e-08j).
 
-Energy (loss) at epoch 3 is -4.935118198394775.
+Energy (loss) at epoch 3 is (-1.9143587350845337-5.960464477539063e-08j).
 
-Energy (loss) at epoch 4 is -3.9847564697265625.
+Energy (loss) at epoch 4 is (-2.3456833362579346-1.4901161193847656e-08j).
 
-Energy (loss) at epoch 5 is -4.134034156799316.
+Energy (loss) at epoch 5 is (-1.9465969800949097-1.862645149230957e-08j).
 
-Energy (loss) at epoch 6 is -4.878056049346924.
+Energy (loss) at epoch 6 is (-1.997255802154541-1.4156103134155273e-07j).
 
-Energy (loss) at epoch 7 is -5.291390895843506.
+Energy (loss) at epoch 7 is (-2.146103858947754+4.0978193283081055e-08j).
 
-Energy (loss) at epoch 8 is -5.766751766204834.
+Energy (loss) at epoch 8 is (-2.124742269515991+1.4901161193847656e-08j).
 
-Energy (loss) at epoch 9 is -5.916896343231201.
+Energy (loss) at epoch 9 is (-2.122229814529419+6.705522537231445e-08j).
 
-Energy (loss) at epoch 10 is -5.650482177734375.
+Energy (loss) at epoch 10 is (-2.255734443664551-1.862645149230957e-08j).
 
-Energy (loss) at epoch 11 is -5.332702159881592.
+Energy (loss) at epoch 11 is (-2.4853110313415527+1.4156103134155273e-07j).
 
-Energy (loss) at epoch 12 is -5.349195957183838.
+Energy (loss) at epoch 12 is (-2.6941909790039062+5.960464477539063e-08j).
 
-Energy (loss) at epoch 13 is -5.808708190917969.
+Energy (loss) at epoch 13 is (-2.8416335582733154+5.960464477539063e-08j).
 
-Energy (loss) at epoch 14 is -6.268026828765869.
+Energy (loss) at epoch 14 is (-2.9693875312805176-2.9802322387695312e-08j).
 
-Energy (loss) at epoch 15 is -6.143253326416016.
+Energy (loss) at epoch 15 is (-3.3034210205078125-1.1920928955078125e-07j).
 
-Energy (loss) at epoch 16 is -5.823406219482422.
+Energy (loss) at epoch 16 is (-3.446815013885498+5.960464477539063e-08j).
 
-Energy (loss) at epoch 17 is -5.790902614593506.
+Energy (loss) at epoch 17 is (-3.3809075355529785+5.960464477539063e-08j).
 
-Energy (loss) at epoch 18 is -6.113593578338623.
+Energy (loss) at epoch 18 is (-3.3837790489196777-5.960464477539063e-08j).
 
-Energy (loss) at epoch 19 is -6.314311981201172.
+Energy (loss) at epoch 19 is (-3.540764331817627-1.7881393432617188e-07j).
 
-Energy (loss) at epoch 20 is -6.275076389312744.
+Energy (loss) at epoch 20 is (-3.857135772705078+5.960464477539063e-08j).
 
-Energy (loss) at epoch 21 is -6.110128402709961.
+Energy (loss) at epoch 21 is (-4.097165107727051-1.1920928955078125e-07j).
 
-Energy (loss) at epoch 22 is -6.042354583740234.
+Energy (loss) at epoch 22 is (-4.252635955810547+1.4901161193847656e-08j).
 
-Energy (loss) at epoch 23 is -6.123685836791992.
+Energy (loss) at epoch 23 is (-4.351184844970703+1.862645149230957e-08j).
 
-Energy (loss) at epoch 24 is -6.274021148681641.
+Energy (loss) at epoch 24 is (-4.2801971435546875+7.450580596923828e-08j).
 
-Energy (loss) at epoch 25 is -6.348948955535889.
+Energy (loss) at epoch 25 is (-4.188409805297852-2.9802322387695312e-08j).
 
-Energy (loss) at epoch 26 is -6.301469802856445.
+Energy (loss) at epoch 26 is (-4.119165420532227-5.960464477539063e-08j).
 
-Energy (loss) at epoch 27 is -6.267777442932129.
+Energy (loss) at epoch 27 is (-4.103198528289795+0j).
 
-Energy (loss) at epoch 28 is -6.276913166046143.
+Energy (loss) at epoch 28 is (-4.175414085388184-5.960464477539063e-08j).
 
-Energy (loss) at epoch 29 is -6.306661605834961.
+Energy (loss) at epoch 29 is (-4.278557777404785+2.9802322387695312e-08j).
 
-Energy (loss) at epoch 30 is -6.309715270996094.
+Energy (loss) at epoch 30 is (-4.430064678192139+0j).
 
-Energy (loss) at epoch 31 is -6.336759567260742.
+Energy (loss) at epoch 31 is (-4.502717971801758-7.450580596923828e-09j).
 
-Energy (loss) at epoch 32 is -6.356476306915283.
+Energy (loss) at epoch 32 is (-4.438143730163574-2.2351741790771484e-08j).
 
-Energy (loss) at epoch 33 is -6.3516974449157715.
+Energy (loss) at epoch 33 is (-4.348961353302002-1.4901161193847656e-08j).
 
-Energy (loss) at epoch 34 is -6.324337005615234.
+Energy (loss) at epoch 34 is (-4.321211338043213-1.4901161193847656e-08j).
 
-Energy (loss) at epoch 35 is -6.3465118408203125.
+Energy (loss) at epoch 35 is (-4.38427209854126+2.9802322387695312e-08j).
 
-Energy (loss) at epoch 36 is -6.392992973327637.
+Energy (loss) at epoch 36 is (-4.424520492553711+0j).
 
-Energy (loss) at epoch 37 is -6.408647537231445.
+Energy (loss) at epoch 37 is (-4.425874710083008-2.9802322387695312e-08j).
 
-Energy (loss) at epoch 38 is -6.368748188018799.
+Energy (loss) at epoch 38 is (-4.437836647033691+1.4901161193847656e-08j).
 
-Energy (loss) at epoch 39 is -6.347745895385742.
+Energy (loss) at epoch 39 is (-4.465763568878174-7.450580596923828e-09j).
 
-Energy (loss) at epoch 40 is -6.368159770965576.
+Energy (loss) at epoch 40 is (-4.500010967254639+7.450580596923828e-09j).
 
-Energy (loss) at epoch 41 is -6.406813621520996.
+Energy (loss) at epoch 41 is (-4.487076759338379-5.21540641784668e-08j).
 
-Energy (loss) at epoch 42 is -6.412939071655273.
+Energy (loss) at epoch 42 is (-4.466000080108643+6.705522537231445e-08j).
 
-Energy (loss) at epoch 43 is -6.395811557769775.
+Energy (loss) at epoch 43 is (-4.462131977081299-3.725290298461914e-08j).
 
-Energy (loss) at epoch 44 is -6.381862163543701.
+Energy (loss) at epoch 44 is (-4.47714376449585-4.470348358154297e-08j).
 
-Energy (loss) at epoch 45 is -6.397186279296875.
+Energy (loss) at epoch 45 is (-4.492992401123047+0j).
 
-Energy (loss) at epoch 46 is -6.41293478012085.
+Energy (loss) at epoch 46 is (-4.497042655944824+0j).
 
-Energy (loss) at epoch 47 is -6.409515380859375.
+Energy (loss) at epoch 47 is (-4.517020225524902-2.2351741790771484e-08j).
 
-Energy (loss) at epoch 48 is -6.399285793304443.
+Energy (loss) at epoch 48 is (-4.526515007019043+3.725290298461914e-09j).
 
-Energy (loss) at epoch 49 is -6.403270721435547.
+Energy (loss) at epoch 49 is (-4.517021656036377+1.4901161193847656e-08j).
 
-Energy (loss) at epoch 50 is -6.411751747131348.
+Energy (loss) at epoch 50 is (-4.501471519470215+2.9802322387695312e-08j).
 
-Energy (loss) at epoch 51 is -6.413728713989258.
+Energy (loss) at epoch 51 is (-4.510765552520752-2.2351741790771484e-08j).
 
-Energy (loss) at epoch 52 is -6.415128707885742.
+Energy (loss) at epoch 52 is (-4.526830196380615+0j).
 
-Energy (loss) at epoch 53 is -6.414607048034668.
+Energy (loss) at epoch 53 is (-4.526324272155762+2.2351741790771484e-08j).
 
-Energy (loss) at epoch 54 is -6.4115729331970215.
+Energy (loss) at epoch 54 is (-4.521932125091553+7.450580596923828e-09j).
 
-Energy (loss) at epoch 55 is -6.410466194152832.
+Energy (loss) at epoch 55 is (-4.527667999267578-1.210719347000122e-08j).
 
-Energy (loss) at epoch 56 is -6.416463375091553.
+Energy (loss) at epoch 56 is (-4.540007591247559+1.30385160446167e-08j).
 
-Energy (loss) at epoch 57 is -6.420845031738281.
+Energy (loss) at epoch 57 is (-4.539548397064209+3.725290298461914e-09j).
 
-Energy (loss) at epoch 58 is -6.418539524078369.
+Energy (loss) at epoch 58 is (-4.532938003540039-1.1175870895385742e-08j).
 
-Energy (loss) at epoch 59 is -6.415378570556641.
+Energy (loss) at epoch 59 is (-4.529514312744141+0j).
 
-Energy (loss) at epoch 60 is -6.416654109954834.
+Energy (loss) at epoch 60 is (-4.536950588226318+1.4901161193847656e-08j).
 
-Energy (loss) at epoch 61 is -6.421313762664795.
+Energy (loss) at epoch 61 is (-4.542108535766602-3.725290298461914e-09j).
 
-Energy (loss) at epoch 62 is -6.421384811401367.
+Energy (loss) at epoch 62 is (-4.543961524963379+1.1175870895385742e-08j).
 
-Energy (loss) at epoch 63 is -6.417609214782715.
+Energy (loss) at epoch 63 is (-4.544973850250244+3.259629011154175e-09j).
 
-Energy (loss) at epoch 64 is -6.417891502380371.
+Energy (loss) at epoch 64 is (-4.546509265899658+0j).
 
-Energy (loss) at epoch 65 is -6.421824932098389.
+Energy (loss) at epoch 65 is (-4.544411659240723+7.450580596923828e-09j).
 
-Energy (loss) at epoch 66 is -6.422895908355713.
+Energy (loss) at epoch 66 is (-4.544755458831787-3.725290298461914e-09j).
 
-Energy (loss) at epoch 67 is -6.420700550079346.
+Energy (loss) at epoch 67 is (-4.547539234161377+1.1175870895385742e-08j).
 
-Energy (loss) at epoch 68 is -6.420214653015137.
+Energy (loss) at epoch 68 is (-4.549460411071777-3.725290298461914e-09j).
 
-Energy (loss) at epoch 69 is -6.421355247497559.
+Energy (loss) at epoch 69 is (-4.5495781898498535+3.725290298461914e-09j).
 
-Energy (loss) at epoch 70 is -6.421879291534424.
+Energy (loss) at epoch 70 is (-4.5511627197265625-8.149072527885437e-10j).
 
-Energy (loss) at epoch 71 is -6.422198295593262.
+Energy (loss) at epoch 71 is (-4.553030014038086+3.725290298461914e-09j).
 
-Energy (loss) at epoch 72 is -6.422181606292725.
+Energy (loss) at epoch 72 is (-4.553210258483887-1.862645149230957e-09j).
 
-Energy (loss) at epoch 73 is -6.421983242034912.
+Energy (loss) at epoch 73 is (-4.55173921585083-5.587935447692871e-09j).
 
-Energy (loss) at epoch 74 is -6.422268390655518.
+Energy (loss) at epoch 74 is (-4.552300930023193-3.725290298461914e-09j).
 
-Energy (loss) at epoch 75 is -6.422687530517578.
+Energy (loss) at epoch 75 is (-4.554781913757324+0j).
 
-Energy (loss) at epoch 76 is -6.422853469848633.
+Energy (loss) at epoch 76 is (-4.55612325668335-4.6566128730773926e-09j).
 
-Energy (loss) at epoch 77 is -6.422458171844482.
+Energy (loss) at epoch 77 is (-4.555900573730469-1.6298145055770874e-09j).
 
-Energy (loss) at epoch 78 is -6.422206878662109.
+Energy (loss) at epoch 78 is (-4.556407451629639+2.7939677238464355e-09j).
 
-Energy (loss) at epoch 79 is -6.423043727874756.
+Energy (loss) at epoch 79 is (-4.556812763214111+1.862645149230957e-09j).
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ising_H</span> <span class="o">=</span> <span class="n">TTMatrix</span><span class="p">(</span><span class="n">Ising_H</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
@@ -488,7 +494,7 @@ Energy (loss) at epoch 79 is -6.423043727874756.
 <dd><p>Peruzzo, A., McClean, J., Shadbolt, P. et al. A variational eigenvalue solver on a photonic quantum processor. Nat Commun 5, 4213 (2014).</p>
 </dd>
 </dl>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.535 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.699 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-vqe-transverse-field-ising-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/0b8fb627074c71f759271b00e548b574/plot_vqe_transverse_field_Ising.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_vqe_transverse_field_Ising.py</span></code></a></p>

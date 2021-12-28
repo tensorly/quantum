@@ -45,6 +45,8 @@ Gates in TT-form
    Unitary
    IDENTITY
    RotY
+   RotX
+   RotZ
    UnaryGatesUnitary
    BinaryGatesUnitary
    CZL
@@ -52,6 +54,7 @@ Gates in TT-form
    CNOTL
    CNOTR
    SO4LR
+   O4LR
 
 
 We also provide some convenience functions to facilitate creation of some of the gates:
@@ -82,6 +85,7 @@ Operators in TT-form
     binary_hamiltonian
     identity
     pauli_x
+    pauli_y
     pauli_z
 
 

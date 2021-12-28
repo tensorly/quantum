@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>tlquantum.tt_operators.pauli_x &#8212; Tensor-Based Quantum Machine Learning</title> 
+    <title>tlquantum.tt_gates.RotZ &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../_static/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon/favicon-32x32.png">
@@ -42,8 +42,6 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="tlquantum.tt_operators.pauli_y" href="tlquantum.tt_operators.pauli_y.html" />
-    <link rel="prev" title="tlquantum.tt_operators.identity" href="tlquantum.tt_operators.identity.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   </head>
@@ -178,16 +176,11 @@
 </div>
       
       <div class="sidebar-menu-toc">
-      <ul class="current">
+      <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html#variational-quantum-algorithms-with-tensorly-quantum">Variational Quantum Algorithms with TensorLy-Quantum</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-tlquantum.density_tensor">Density Tensors</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../api.html#tensor-trains">Tensor-Trains</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-tlquantum.maxcut">Solving MaxCut</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../auto_examples/index.html">Gallery of examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about.html">About Us</a></li>
 </ul>
@@ -214,12 +207,12 @@
 
         <div class="content main-content">
           
-  <section id="tlquantum-tt-operators-pauli-x">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_operators" title="tlquantum.tt_operators"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_operators</span></code></a>.pauli_x<a class="headerlink" href="#tlquantum-tt-operators-pauli-x" title="Permalink to this headline"></a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="tlquantum.tt_operators.pauli_x">
-<span class="sig-prename descclassname"><span class="pre">tlquantum.tt_operators.</span></span><span class="sig-name descname"><span class="pre">pauli_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.complex64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_operators.html#pauli_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_operators.pauli_x" title="Permalink to this definition"></a></dt>
-<dd><p>Single-qubit Pauli-X opertor in the tt-tensor format.</p>
+  <section id="tlquantum-tt-gates-rotz">
+<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_gates" title="tlquantum.tt_gates"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_gates</span></code></a>.RotZ<a class="headerlink" href="#tlquantum-tt-gates-rotz" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tlquantum.tt_gates.RotZ">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.tt_gates.</span></span><span class="sig-name descname"><span class="pre">RotZ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.complex64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_gates.html#RotZ"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_gates.RotZ" title="Permalink to this definition"></a></dt>
+<dd><p>Qubit rotations about the Z-axis with randomly initiated theta.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -228,10 +221,37 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>Pauli-X operator in tt-form.</dt><dd></dd>
+<dt>RotZ</dt><dd></dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tlquantum.tt_gates.RotZ.forward" title="tlquantum.tt_gates.RotZ.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>()</p></td>
+<td><p>Prepares the RotZ gate for forward contraction by calling the forward method and preparing the tt-factorized form of rotation matrix depending on theta (which is typically updated every epoch through backprop via PyTorch Autograd).</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="tlquantum.tt_gates.RotZ.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_gates.html#RotZ.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_gates.RotZ.forward" title="Permalink to this definition"></a></dt>
+<dd><p>Prepares the RotZ gate for forward contraction by calling the forward method
+and preparing the tt-factorized form of rotation matrix depending on theta (which is
+typically updated every epoch through backprop via PyTorch Autograd).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>Gate tensor for general forward pass.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <div class="clearer"></div></section>
@@ -242,20 +262,6 @@
 		
         <nav class="pagination" role="navigation" aria-label="pagination">
     
-    <a class="button is-medium pagination-previous" href="tlquantum.tt_operators.identity.html" title="previous page" accesskey="p">
-        <span class="icon">
-            <i class="fa fa-arrow-circle-left"></i>
-        </span>
-        <span><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_operators</span></code>.identity</span>
-    </a>
-    
-    
-    <a class="button is-medium pagination-next" href="tlquantum.tt_operators.pauli_y.html" title="next page" accesskey="n">
-        <span><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_operators</span></code>.pauli_y </span>
-        <span class="icon">
-            <i class="fa fa-arrow-circle-right"></i>
-        </span>
-    </a>
     
 </nav>
 

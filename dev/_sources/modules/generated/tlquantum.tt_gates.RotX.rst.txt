@@ -1,0 +1,11 @@
+﻿:mod:`tlquantum.tt_gates`.RotX
+=====================================
+
+.. currentmodule:: tlquantum.tt_gates
+
+.. autoclass:: RotX
+   :members:
+
+.. raw:: html
+
+    <div class="clearer"></div>

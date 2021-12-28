@@ -35,7 +35,7 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.
     import tensorly as tl
     import tlquantum as tlq
     from tensorly.tt_matrix import TTMatrix
-    from torch import randint, rand, arange
+    from torch import randint, rand, arange, complex64
     from torch.optim import Adam
     import matplotlib.pyplot as plt
 
@@ -51,13 +51,15 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.
 
 Uncomment the line below to use the GPU
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-35
+.. GENERATED FROM PYTHON SOURCE LINES 22-37
 
 .. code-block:: default
 
 
     #device = 'cuda' 
-    device = 'cpu' 
+    device = 'cpu'
+
+    dtype = complex64
 
     nepochs = 80 #number of training epochs
 
@@ -75,11 +77,11 @@ Uncomment the line below to use the GPU
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-40
+.. GENERATED FROM PYTHON SOURCE LINES 38-42
 
 .. code-block:: default
 
-    state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device) # generate generic zero state |00000>
+    state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device=device, dtype=dtype) # generate generic zero state |00000>
     state = tlq.qubits_contract(state, ncontraq)
 
 
@@ -90,12 +92,12 @@ Uncomment the line below to use the GPU
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-43
+.. GENERATED FROM PYTHON SOURCE LINES 43-45
 
 Here we build a random spin-spin and transverse field weights.
 two-qubit terms
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-50
+.. GENERATED FROM PYTHON SOURCE LINES 45-52
 
 .. code-block:: default
 
@@ -104,7 +106,7 @@ two-qubit terms
     qubits2[qubits2==qubits1] += 1 # because qubits in this Hamiltonian randomly generated, eliminate self-interacting terms
     qubits2[qubits2 >= nqubits] = 0
     weights = rand((nterms,), device=device) # randomly generated coefficients of each two-qubit interaction in Hamiltonian
-    binary_H = tlq.binary_hamiltonian(tlq.pauli_z(device), nqubits, qubits1, qubits2, weights) # build the spin-spin Hamiltonian H
+    binary_H = tlq.binary_hamiltonian(tlq.pauli_z(device=device, dtype=dtype), nqubits, qubits1, qubits2, weights) # build the spin-spin Hamiltonian H
 
 
 
@@ -113,13 +115,13 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 51-55
+.. GENERATED FROM PYTHON SOURCE LINES 53-57
 
 .. code-block:: default
 
     qubits = arange(nqubits, device=device) # specify that each qubit will have a transverse field term
     weights = rand((nqubits,), device=device) # randomly generated coefficients for the transverse field felt by each qubit
-    unary_H = tlq.unary_hamiltonian(tlq.pauli_x(device), nqubits, qubits, weights) #build the transverse field Hamiltonian
+    unary_H = tlq.unary_hamiltonian(tlq.pauli_x(device=device, dtype=dtype), nqubits, qubits, weights) #build the transverse field Hamiltonian
 
 
 
@@ -128,7 +130,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-59
+.. GENERATED FROM PYTHON SOURCE LINES 58-61
 
 .. code-block:: default
 
@@ -142,11 +144,11 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 62-64
+.. GENERATED FROM PYTHON SOURCE LINES 64-66
 
 .. code-block:: default
 
-    custom_U = tlq.Unitary([tlq.RotY(device), *tlq.so4(0,1, device), tlq.RotY(device), *tlq.so4(2, 3, device)], nqubits, ncontraq)
+    custom_U = tlq.Unitary([tlq.RotY(device=device, dtype=dtype), *tlq.so4(0,1, device=device, dtype=dtype), tlq.RotY(device=device, dtype=dtype), *tlq.so4(2, 3, device=device, dtype=dtype)], nqubits, ncontraq)
 
 
 
@@ -155,15 +157,17 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-72
+.. GENERATED FROM PYTHON SOURCE LINES 67-76
 
 .. code-block:: default
 
-    RotY = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device) # one Y-axis rotation gate applied to each qubit of the circuit
+    RotY = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='y', device=device, dtype=dtype) # one Y-axis rotation gate applied to each qubit of the circuit
+    RotY2 = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='y', device=device, dtype=dtype)
+    RotX = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='x', device=device, dtype=dtype)
     parity = 0
-    CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device), parity) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
+    CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device, dtype=dtype), parity) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
     parity = 1
-    SO4_01 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.so4(2,3, device=device), parity) # one SO4 rotation about two-qubit states |2> and |3> with odd parity
+    SO4_01 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.so4(2,3, device=device, dtype=dtype), parity) # one SO4 rotation about two-qubit states |2> and |3> with odd parity
 
 
 
@@ -173,11 +177,11 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-77
+.. GENERATED FROM PYTHON SOURCE LINES 79-81
 
 .. code-block:: default
 
-    unitaries = [RotY, SO4_01, tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device), CZ0]
+    unitaries = [RotY, SO4_01, RotY, CZ0, RotX]
 
 
 
@@ -186,7 +190,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 78-83
+.. GENERATED FROM PYTHON SOURCE LINES 82-87
 
 .. code-block:: default
 
@@ -202,7 +206,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 86-102
+.. GENERATED FROM PYTHON SOURCE LINES 90-106
 
 .. code-block:: default
 
@@ -232,171 +236,173 @@ two-qubit terms
 
  .. code-block:: none
 
-    Energy (loss) at epoch 0 is 0.7217162847518921. 
+    Energy (loss) at epoch 0 is (-1.2876085042953491-2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 1 is -1.3394489288330078. 
+    /home/runner/work/quantum/quantum/doc/source/examples/plot_vqe_transverse_field_Ising.py:103: UserWarning: Casting complex values to real discards the imaginary part (Triggered internally at  ../aten/src/ATen/native/Copy.cpp:244.)
+      energy_vec[epoch] = energy
+    Energy (loss) at epoch 1 is (-0.3031981587409973+0j). 
 
-    Energy (loss) at epoch 2 is -3.9421868324279785. 
+    Energy (loss) at epoch 2 is (-0.8654189109802246+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 3 is -4.935118198394775. 
+    Energy (loss) at epoch 3 is (-1.9143587350845337-5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 4 is -3.9847564697265625. 
+    Energy (loss) at epoch 4 is (-2.3456833362579346-1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 5 is -4.134034156799316. 
+    Energy (loss) at epoch 5 is (-1.9465969800949097-1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 6 is -4.878056049346924. 
+    Energy (loss) at epoch 6 is (-1.997255802154541-1.4156103134155273e-07j). 
 
-    Energy (loss) at epoch 7 is -5.291390895843506. 
+    Energy (loss) at epoch 7 is (-2.146103858947754+4.0978193283081055e-08j). 
 
-    Energy (loss) at epoch 8 is -5.766751766204834. 
+    Energy (loss) at epoch 8 is (-2.124742269515991+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 9 is -5.916896343231201. 
+    Energy (loss) at epoch 9 is (-2.122229814529419+6.705522537231445e-08j). 
 
-    Energy (loss) at epoch 10 is -5.650482177734375. 
+    Energy (loss) at epoch 10 is (-2.255734443664551-1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 11 is -5.332702159881592. 
+    Energy (loss) at epoch 11 is (-2.4853110313415527+1.4156103134155273e-07j). 
 
-    Energy (loss) at epoch 12 is -5.349195957183838. 
+    Energy (loss) at epoch 12 is (-2.6941909790039062+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 13 is -5.808708190917969. 
+    Energy (loss) at epoch 13 is (-2.8416335582733154+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 14 is -6.268026828765869. 
+    Energy (loss) at epoch 14 is (-2.9693875312805176-2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 15 is -6.143253326416016. 
+    Energy (loss) at epoch 15 is (-3.3034210205078125-1.1920928955078125e-07j). 
 
-    Energy (loss) at epoch 16 is -5.823406219482422. 
+    Energy (loss) at epoch 16 is (-3.446815013885498+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 17 is -5.790902614593506. 
+    Energy (loss) at epoch 17 is (-3.3809075355529785+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 18 is -6.113593578338623. 
+    Energy (loss) at epoch 18 is (-3.3837790489196777-5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 19 is -6.314311981201172. 
+    Energy (loss) at epoch 19 is (-3.540764331817627-1.7881393432617188e-07j). 
 
-    Energy (loss) at epoch 20 is -6.275076389312744. 
+    Energy (loss) at epoch 20 is (-3.857135772705078+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 21 is -6.110128402709961. 
+    Energy (loss) at epoch 21 is (-4.097165107727051-1.1920928955078125e-07j). 
 
-    Energy (loss) at epoch 22 is -6.042354583740234. 
+    Energy (loss) at epoch 22 is (-4.252635955810547+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 23 is -6.123685836791992. 
+    Energy (loss) at epoch 23 is (-4.351184844970703+1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 24 is -6.274021148681641. 
+    Energy (loss) at epoch 24 is (-4.2801971435546875+7.450580596923828e-08j). 
 
-    Energy (loss) at epoch 25 is -6.348948955535889. 
+    Energy (loss) at epoch 25 is (-4.188409805297852-2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 26 is -6.301469802856445. 
+    Energy (loss) at epoch 26 is (-4.119165420532227-5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 27 is -6.267777442932129. 
+    Energy (loss) at epoch 27 is (-4.103198528289795+0j). 
 
-    Energy (loss) at epoch 28 is -6.276913166046143. 
+    Energy (loss) at epoch 28 is (-4.175414085388184-5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 29 is -6.306661605834961. 
+    Energy (loss) at epoch 29 is (-4.278557777404785+2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 30 is -6.309715270996094. 
+    Energy (loss) at epoch 30 is (-4.430064678192139+0j). 
 
-    Energy (loss) at epoch 31 is -6.336759567260742. 
+    Energy (loss) at epoch 31 is (-4.502717971801758-7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 32 is -6.356476306915283. 
+    Energy (loss) at epoch 32 is (-4.438143730163574-2.2351741790771484e-08j). 
 
-    Energy (loss) at epoch 33 is -6.3516974449157715. 
+    Energy (loss) at epoch 33 is (-4.348961353302002-1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 34 is -6.324337005615234. 
+    Energy (loss) at epoch 34 is (-4.321211338043213-1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 35 is -6.3465118408203125. 
+    Energy (loss) at epoch 35 is (-4.38427209854126+2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 36 is -6.392992973327637. 
+    Energy (loss) at epoch 36 is (-4.424520492553711+0j). 
 
-    Energy (loss) at epoch 37 is -6.408647537231445. 
+    Energy (loss) at epoch 37 is (-4.425874710083008-2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 38 is -6.368748188018799. 
+    Energy (loss) at epoch 38 is (-4.437836647033691+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 39 is -6.347745895385742. 
+    Energy (loss) at epoch 39 is (-4.465763568878174-7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 40 is -6.368159770965576. 
+    Energy (loss) at epoch 40 is (-4.500010967254639+7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 41 is -6.406813621520996. 
+    Energy (loss) at epoch 41 is (-4.487076759338379-5.21540641784668e-08j). 
 
-    Energy (loss) at epoch 42 is -6.412939071655273. 
+    Energy (loss) at epoch 42 is (-4.466000080108643+6.705522537231445e-08j). 
 
-    Energy (loss) at epoch 43 is -6.395811557769775. 
+    Energy (loss) at epoch 43 is (-4.462131977081299-3.725290298461914e-08j). 
 
-    Energy (loss) at epoch 44 is -6.381862163543701. 
+    Energy (loss) at epoch 44 is (-4.47714376449585-4.470348358154297e-08j). 
 
-    Energy (loss) at epoch 45 is -6.397186279296875. 
+    Energy (loss) at epoch 45 is (-4.492992401123047+0j). 
 
-    Energy (loss) at epoch 46 is -6.41293478012085. 
+    Energy (loss) at epoch 46 is (-4.497042655944824+0j). 
 
-    Energy (loss) at epoch 47 is -6.409515380859375. 
+    Energy (loss) at epoch 47 is (-4.517020225524902-2.2351741790771484e-08j). 
 
-    Energy (loss) at epoch 48 is -6.399285793304443. 
+    Energy (loss) at epoch 48 is (-4.526515007019043+3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 49 is -6.403270721435547. 
+    Energy (loss) at epoch 49 is (-4.517021656036377+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 50 is -6.411751747131348. 
+    Energy (loss) at epoch 50 is (-4.501471519470215+2.9802322387695312e-08j). 
 
-    Energy (loss) at epoch 51 is -6.413728713989258. 
+    Energy (loss) at epoch 51 is (-4.510765552520752-2.2351741790771484e-08j). 
 
-    Energy (loss) at epoch 52 is -6.415128707885742. 
+    Energy (loss) at epoch 52 is (-4.526830196380615+0j). 
 
-    Energy (loss) at epoch 53 is -6.414607048034668. 
+    Energy (loss) at epoch 53 is (-4.526324272155762+2.2351741790771484e-08j). 
 
-    Energy (loss) at epoch 54 is -6.4115729331970215. 
+    Energy (loss) at epoch 54 is (-4.521932125091553+7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 55 is -6.410466194152832. 
+    Energy (loss) at epoch 55 is (-4.527667999267578-1.210719347000122e-08j). 
 
-    Energy (loss) at epoch 56 is -6.416463375091553. 
+    Energy (loss) at epoch 56 is (-4.540007591247559+1.30385160446167e-08j). 
 
-    Energy (loss) at epoch 57 is -6.420845031738281. 
+    Energy (loss) at epoch 57 is (-4.539548397064209+3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 58 is -6.418539524078369. 
+    Energy (loss) at epoch 58 is (-4.532938003540039-1.1175870895385742e-08j). 
 
-    Energy (loss) at epoch 59 is -6.415378570556641. 
+    Energy (loss) at epoch 59 is (-4.529514312744141+0j). 
 
-    Energy (loss) at epoch 60 is -6.416654109954834. 
+    Energy (loss) at epoch 60 is (-4.536950588226318+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 61 is -6.421313762664795. 
+    Energy (loss) at epoch 61 is (-4.542108535766602-3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 62 is -6.421384811401367. 
+    Energy (loss) at epoch 62 is (-4.543961524963379+1.1175870895385742e-08j). 
 
-    Energy (loss) at epoch 63 is -6.417609214782715. 
+    Energy (loss) at epoch 63 is (-4.544973850250244+3.259629011154175e-09j). 
 
-    Energy (loss) at epoch 64 is -6.417891502380371. 
+    Energy (loss) at epoch 64 is (-4.546509265899658+0j). 
 
-    Energy (loss) at epoch 65 is -6.421824932098389. 
+    Energy (loss) at epoch 65 is (-4.544411659240723+7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 66 is -6.422895908355713. 
+    Energy (loss) at epoch 66 is (-4.544755458831787-3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 67 is -6.420700550079346. 
+    Energy (loss) at epoch 67 is (-4.547539234161377+1.1175870895385742e-08j). 
 
-    Energy (loss) at epoch 68 is -6.420214653015137. 
+    Energy (loss) at epoch 68 is (-4.549460411071777-3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 69 is -6.421355247497559. 
+    Energy (loss) at epoch 69 is (-4.5495781898498535+3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 70 is -6.421879291534424. 
+    Energy (loss) at epoch 70 is (-4.5511627197265625-8.149072527885437e-10j). 
 
-    Energy (loss) at epoch 71 is -6.422198295593262. 
+    Energy (loss) at epoch 71 is (-4.553030014038086+3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 72 is -6.422181606292725. 
+    Energy (loss) at epoch 72 is (-4.553210258483887-1.862645149230957e-09j). 
 
-    Energy (loss) at epoch 73 is -6.421983242034912. 
+    Energy (loss) at epoch 73 is (-4.55173921585083-5.587935447692871e-09j). 
 
-    Energy (loss) at epoch 74 is -6.422268390655518. 
+    Energy (loss) at epoch 74 is (-4.552300930023193-3.725290298461914e-09j). 
 
-    Energy (loss) at epoch 75 is -6.422687530517578. 
+    Energy (loss) at epoch 75 is (-4.554781913757324+0j). 
 
-    Energy (loss) at epoch 76 is -6.422853469848633. 
+    Energy (loss) at epoch 76 is (-4.55612325668335-4.6566128730773926e-09j). 
 
-    Energy (loss) at epoch 77 is -6.422458171844482. 
+    Energy (loss) at epoch 77 is (-4.555900573730469-1.6298145055770874e-09j). 
 
-    Energy (loss) at epoch 78 is -6.422206878662109. 
+    Energy (loss) at epoch 78 is (-4.556407451629639+2.7939677238464355e-09j). 
 
-    Energy (loss) at epoch 79 is -6.423043727874756. 
+    Energy (loss) at epoch 79 is (-4.556812763214111+1.862645149230957e-09j). 
 
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 103-116
+.. GENERATED FROM PYTHON SOURCE LINES 107-120
 
 .. code-block:: default
 
@@ -425,7 +431,7 @@ two-qubit terms
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 117-120
+.. GENERATED FROM PYTHON SOURCE LINES 121-124
 
 References
 ----------
@@ -434,7 +440,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.535 seconds)
+   **Total running time of the script:** ( 0 minutes  0.699 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vqe_transverse_field_Ising.py:

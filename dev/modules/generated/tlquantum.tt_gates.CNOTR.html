@@ -211,7 +211,7 @@
 <h1><a class="reference internal" href="../api.html#module-tlquantum.tt_gates" title="tlquantum.tt_gates"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_gates</span></code></a>.CNOTR<a class="headerlink" href="#tlquantum-tt-gates-cnotr" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tlquantum.tt_gates.CNOTR">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.tt_gates.</span></span><span class="sig-name descname"><span class="pre">CNOTR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_gates.html#CNOTR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_gates.CNOTR" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.tt_gates.</span></span><span class="sig-name descname"><span class="pre">CNOTR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.complex64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_gates.html#CNOTR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_gates.CNOTR" title="Permalink to this definition"></a></dt>
 <dd><p>Right (transformed qubit) core of a CNOT gate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -234,6 +234,17 @@
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tlquantum.tt_gates.CNOTR.forward" title="tlquantum.tt_gates.CNOTR.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>()</p></td>
 <td><p>Prepares the right qubit of the CNOT gate for forward contraction by calling the forward method and preparing the tt-factorized form of matrix representation.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 62%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>reinitialize</strong></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>

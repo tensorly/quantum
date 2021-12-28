@@ -12,7 +12,7 @@ with full Autograd support and an interface similar to PyTorch Neural Networks.
 import tensorly as tl
 import tlquantum as tlq
 from tensorly.tt_matrix import TTMatrix
-from torch import randint, rand, arange
+from torch import randint, rand, arange, complex64
 from torch.optim import Adam
 import matplotlib.pyplot as plt
 
@@ -21,7 +21,9 @@ import matplotlib.pyplot as plt
 # Uncomment the line below to use the GPU
 
 #device = 'cuda' 
-device = 'cpu' 
+device = 'cpu'
+
+dtype = complex64
 
 nepochs = 80 #number of training epochs
 
@@ -33,7 +35,7 @@ lr = 0.5
 
 
 # %% Generate an input state. For each qubit, 0 --> |0> and 1 --> |1>
-state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device) # generate generic zero state |00000>
+state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device=device, dtype=dtype) # generate generic zero state |00000>
 state = tlq.qubits_contract(state, ncontraq)
 
 
@@ -45,12 +47,12 @@ qubits2 = randint(nqubits, (nterms,), device=device) # randomly generated second
 qubits2[qubits2==qubits1] += 1 # because qubits in this Hamiltonian randomly generated, eliminate self-interacting terms
 qubits2[qubits2 >= nqubits] = 0
 weights = rand((nterms,), device=device) # randomly generated coefficients of each two-qubit interaction in Hamiltonian
-binary_H = tlq.binary_hamiltonian(tlq.pauli_z(device), nqubits, qubits1, qubits2, weights) # build the spin-spin Hamiltonian H
+binary_H = tlq.binary_hamiltonian(tlq.pauli_z(device=device, dtype=dtype), nqubits, qubits1, qubits2, weights) # build the spin-spin Hamiltonian H
 
 # %% transverse field (one-qubit) terms
 qubits = arange(nqubits, device=device) # specify that each qubit will have a transverse field term
 weights = rand((nqubits,), device=device) # randomly generated coefficients for the transverse field felt by each qubit
-unary_H = tlq.unary_hamiltonian(tlq.pauli_x(device), nqubits, qubits, weights) #build the transverse field Hamiltonian
+unary_H = tlq.unary_hamiltonian(tlq.pauli_x(device=device, dtype=dtype), nqubits, qubits, weights) #build the transverse field Hamiltonian
 
 # %% build the transverse field Ising model Hamiltonian
 Ising_H = tlq.tt_matrix_sum(binary_H, unary_H)
@@ -59,20 +61,22 @@ Ising_H = tlq.tt_matrix_sum(binary_H, unary_H)
 # %% Build unitary gates in TT tensor form
 
 # %% the gate of each qubit can be specified as a custom unitary
-custom_U = tlq.Unitary([tlq.RotY(device), *tlq.so4(0,1, device), tlq.RotY(device), *tlq.so4(2, 3, device)], nqubits, ncontraq)
+custom_U = tlq.Unitary([tlq.RotY(device=device, dtype=dtype), *tlq.so4(0,1, device=device, dtype=dtype), tlq.RotY(device=device, dtype=dtype), *tlq.so4(2, 3, device=device, dtype=dtype)], nqubits, ncontraq)
 
 # %% or entire layers of gates (one gate per each qubit) can be specified using Unary/BinaryGatesUnitary
-RotY = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device) # one Y-axis rotation gate applied to each qubit of the circuit
+RotY = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='y', device=device, dtype=dtype) # one Y-axis rotation gate applied to each qubit of the circuit
+RotY2 = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='y', device=device, dtype=dtype)
+RotX = tlq.UnaryGatesUnitary(nqubits, ncontraq, axis='x', device=device, dtype=dtype)
 parity = 0
-CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device), parity) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
+CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device, dtype=dtype), parity) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
 parity = 1
-SO4_01 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.so4(2,3, device=device), parity) # one SO4 rotation about two-qubit states |2> and |3> with odd parity
+SO4_01 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.so4(2,3, device=device, dtype=dtype), parity) # one SO4 rotation about two-qubit states |2> and |3> with odd parity
 
 
 # %% Combine layers of unitary gates for use in quantum circuit
 
 # %% specify circuit order unitary by unitary in circuit list
-unitaries = [RotY, SO4_01, tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device), CZ0]
+unitaries = [RotY, SO4_01, RotY, CZ0, RotX]
 
 # %% or build circuit block by block
 repeat_block, unitaries_automatic = 3, []

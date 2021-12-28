@@ -147,7 +147,7 @@
 <span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">ModuleList</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">transpose</span><span class="p">,</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">transpose</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">complex64</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 <span class="kn">from</span> <span class="nn">opt_einsum</span> <span class="kn">import</span> <span class="n">contract</span><span class="p">,</span> <span class="n">contract_expression</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ceil</span>
@@ -313,7 +313,7 @@
 <span class="sd">        list of tt-tensors, unitaries and operators of the TTCircuit, ready for contraction</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">built_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_layer</span><span class="p">()</span>
-        <span class="n">built_layer_dagger</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt_transpose</span><span class="p">(</span><span class="n">built_layer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">)]</span>
+        <span class="n">built_layer_dagger</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt_dagger</span><span class="p">(</span><span class="n">built_layer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlsystems</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">nqsystems</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">state</span> <span class="o">+</span> <span class="n">built_layer</span> <span class="o">+</span> <span class="n">operator</span> <span class="o">+</span> <span class="n">built_layer_dagger</span> <span class="o">+</span> <span class="n">state</span>
 
 
@@ -358,7 +358,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">equations</span><span class="p">[</span><span class="s1">&#39;partial_trace_equation_set&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">partial_trace_equation_set</span></div>
 
 
-<span class="k">def</span> <span class="nf">tt_transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">tt_dagger</span><span class="p">(</span><span class="n">tt</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transpose single-qubit matrices in tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
@@ -369,7 +369,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    Transpose of tt</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
         </div>

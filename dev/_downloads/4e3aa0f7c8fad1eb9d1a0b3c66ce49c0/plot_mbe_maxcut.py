@@ -12,7 +12,7 @@ with full Autograd support similar to traditional PyTorch Neural Networks.
 
 import tensorly as tl
 import tlquantum as tlq
-from torch import randint, rand, arange, cat, tanh, no_grad
+from torch import randint, rand, arange, cat, tanh, no_grad, float32
 from torch.optim import Adam
 import matplotlib.pyplot as plt
 
@@ -21,7 +21,9 @@ import matplotlib.pyplot as plt
 # Uncomment the line below to use the GPU
 
 #device = 'cuda' 
-device = 'cpu' 
+device = 'cpu'
+
+dtype = float32
 
 nepochs = 40 #number of training epochs
 
@@ -33,7 +35,7 @@ lr = 0.7
 
 
 # %% Generate an input state. For each qubit, 0 --> |0> and 1 --> |1>
-state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device) # generate generic zero state |00000>
+state = tlq.spins_to_tt_state([0 for i in range(nqubits)], device=device, dtype=dtype) # generate generic zero state |00000>
 state = tlq.qubits_contract(state, ncontraq)
 
 
@@ -49,16 +51,17 @@ weights = rand((nterms,), device=device) # randomly generated edge weights
 
 
 # %% Build unitary gates in TT tensor form
-RotY1 = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device) #single-qubit rotations about the Y-axis
-RotY2 = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device)
-CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device), 0) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
+RotY1 = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device, dtype=dtype) #single-qubit rotations about the Y-axis
+RotY2 = tlq.UnaryGatesUnitary(nqubits, ncontraq, device=device, dtype=dtype)
+CZ0 = tlq.BinaryGatesUnitary(nqubits, ncontraq, tlq.cz(device=device, dtype=dtype), 0) # one controlled-z gate for each pair of qubits using even parity (even qubits control)
 unitaries = [RotY1, CZ0, RotY2]
 
 
 # %% Multi-Basis Encoding (MBE) Simulation for MaxCut optimization
 
 circuit = tlq.TTCircuit(unitaries, ncontraq, ncontral) # build TTCircuit using specified unitaries
-opz, opx = tl.tensor([[1,0],[0,-1]], device=device), tl.tensor([[0,1],[1,0]], device=device) # measurement operators for MBE
+opz, opx = tl.tensor([[1,0],[0,-1]], device=device, dtype=dtype), tl.tensor([[0,1],[1,0]], device=device, dtype=dtype) # measurement operators for MBE
+print(opz)
 opt = Adam(circuit.parameters(), lr=lr, amsgrad=True) # define PyTorch optimizer
 loss_vec = tl.zeros(nepochs)
 cut_vec = tl.zeros(nepochs)

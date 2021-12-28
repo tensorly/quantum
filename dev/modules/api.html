@@ -247,32 +247,41 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.Unitary.html#tlquantum.tt_gates.Unitary" title="tlquantum.tt_gates.Unitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unitary</span></code></a>(gates, nqubits, ncontraq[, ...])</p></td>
 <td><p>A unitary for all qubits in a TTCircuit, using tensor ring tensors with PyTorch Autograd support.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.IDENTITY.html#tlquantum.tt_gates.IDENTITY" title="tlquantum.tt_gates.IDENTITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IDENTITY</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.IDENTITY.html#tlquantum.tt_gates.IDENTITY" title="tlquantum.tt_gates.IDENTITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IDENTITY</span></code></a>([dtype, device])</p></td>
 <td><p>Identity gate (does not change the state of the qubit on which it acts).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY" title="tlquantum.tt_gates.RotY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotY</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY" title="tlquantum.tt_gates.RotY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotY</span></code></a>([dtype, device])</p></td>
 <td><p>Qubit rotations about the Y-axis with randomly initiated theta.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.UnaryGatesUnitary.html#tlquantum.tt_gates.UnaryGatesUnitary" title="tlquantum.tt_gates.UnaryGatesUnitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnaryGatesUnitary</span></code></a>(nqubits, ncontraq[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.RotX.html#tlquantum.tt_gates.RotX" title="tlquantum.tt_gates.RotX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotX</span></code></a>([dtype, device])</p></td>
+<td><p>Qubit rotations about the X-axis with randomly initiated theta.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.RotZ.html#tlquantum.tt_gates.RotZ" title="tlquantum.tt_gates.RotZ"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotZ</span></code></a>([dtype, device])</p></td>
+<td><p>Qubit rotations about the Z-axis with randomly initiated theta.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.UnaryGatesUnitary.html#tlquantum.tt_gates.UnaryGatesUnitary" title="tlquantum.tt_gates.UnaryGatesUnitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnaryGatesUnitary</span></code></a>(nqubits, ncontraq[, axis, ...])</p></td>
 <td><p>A Unitary sub-class that generates a layer of unitary, single-qubit rotations.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.BinaryGatesUnitary.html#tlquantum.tt_gates.BinaryGatesUnitary" title="tlquantum.tt_gates.BinaryGatesUnitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryGatesUnitary</span></code></a>(nqubits, ncontraq, ...[, ...])</p></td>
 <td><p>A Unitary sub-class that generates a layer of a single two-qubit gates accross all qubits in a TTCircuit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZL.html#tlquantum.tt_gates.CZL" title="tlquantum.tt_gates.CZL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZL</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZL.html#tlquantum.tt_gates.CZL" title="tlquantum.tt_gates.CZL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZL</span></code></a>([dtype, device])</p></td>
 <td><p>Left (control-qubit) core of a CZ gate.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZR.html#tlquantum.tt_gates.CZR" title="tlquantum.tt_gates.CZR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZR</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CZR.html#tlquantum.tt_gates.CZR" title="tlquantum.tt_gates.CZR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CZR</span></code></a>([dtype, device])</p></td>
 <td><p>Right (transformed qubit) core of a CZ gate.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTL.html#tlquantum.tt_gates.CNOTL" title="tlquantum.tt_gates.CNOTL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTL</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTL.html#tlquantum.tt_gates.CNOTL" title="tlquantum.tt_gates.CNOTL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTL</span></code></a>([dtype, device])</p></td>
 <td><p>Left (control-qubit) core of a CNOT gate.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTR.html#tlquantum.tt_gates.CNOTR" title="tlquantum.tt_gates.CNOTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTR</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.CNOTR.html#tlquantum.tt_gates.CNOTR" title="tlquantum.tt_gates.CNOTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CNOTR</span></code></a>([dtype, device])</p></td>
 <td><p>Right (transformed qubit) core of a CNOT gate.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.SO4LR.html#tlquantum.tt_gates.SO4LR" title="tlquantum.tt_gates.SO4LR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SO4LR</span></code></a>(state1, state2, position[, theta, device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.SO4LR.html#tlquantum.tt_gates.SO4LR" title="tlquantum.tt_gates.SO4LR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SO4LR</span></code></a>(state1, state2, position[, theta, ...])</p></td>
 <td><p>Left or right core of the two-qubit SO4 rotations gate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.O4LR.html#tlquantum.tt_gates.O4LR" title="tlquantum.tt_gates.O4LR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">O4LR</span></code></a>(position[, phases, dtype, device])</p></td>
+<td><p>Left and right core of the two-qubit O4 phase gate.</p></td>
 </tr>
 </tbody>
 </table>
@@ -283,13 +292,13 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cz.html#tlquantum.tt_gates.cz" title="tlquantum.tt_gates.cz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cz</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cz.html#tlquantum.tt_gates.cz" title="tlquantum.tt_gates.cz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cz</span></code></a>([dtype, device])</p></td>
 <td><p>Pair of CZ class instances, one left (control) and one right (transformed).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cnot.html#tlquantum.tt_gates.cnot" title="tlquantum.tt_gates.cnot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cnot</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cnot.html#tlquantum.tt_gates.cnot" title="tlquantum.tt_gates.cnot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cnot</span></code></a>([dtype, device])</p></td>
 <td><p>Pair of CNOT class instances, one left (control) and one right (transformed).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.so4.html#tlquantum.tt_gates.so4" title="tlquantum.tt_gates.so4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">so4</span></code></a>(state1, state2[, device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.so4.html#tlquantum.tt_gates.so4" title="tlquantum.tt_gates.so4"><code class="xref py py-obj docutils literal notranslate"><span class="pre">so4</span></code></a>(state1, state2[, dtype, device])</p></td>
 <td><p>Pair of SO4 two-qubit rotation class instances, with rotations over different states.</p></td>
 </tr>
 </tbody>
@@ -309,13 +318,16 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 <tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.binary_hamiltonian.html#tlquantum.tt_operators.binary_hamiltonian" title="tlquantum.tt_operators.binary_hamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binary_hamiltonian</span></code></a>(op, nqubits, qubits1, ...)</p></td>
 <td><p>Generates tt-tensor classical Ising model Hamiltonian (two-qubit interaction terms in a single basis).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.identity.html#tlquantum.tt_operators.identity" title="tlquantum.tt_operators.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.identity.html#tlquantum.tt_operators.identity" title="tlquantum.tt_operators.identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code></a>([dtype, device])</p></td>
 <td><p>Single-qubit identity opertor in the tt-tensor format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_x.html#tlquantum.tt_operators.pauli_x" title="tlquantum.tt_operators.pauli_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_x</span></code></a>([device])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_x.html#tlquantum.tt_operators.pauli_x" title="tlquantum.tt_operators.pauli_x"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_x</span></code></a>([dtype, device])</p></td>
 <td><p>Single-qubit Pauli-X opertor in the tt-tensor format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_z.html#tlquantum.tt_operators.pauli_z" title="tlquantum.tt_operators.pauli_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_z</span></code></a>([device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_y.html#tlquantum.tt_operators.pauli_y" title="tlquantum.tt_operators.pauli_y"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_y</span></code></a>([dtype, device])</p></td>
+<td><p>Single-qubit Pauli-Y opertor in the tt-tensor format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.pauli_z.html#tlquantum.tt_operators.pauli_z" title="tlquantum.tt_operators.pauli_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pauli_z</span></code></a>([dtype, device])</p></td>
 <td><p>Single-qubit Pauli-Z opertor in the tt-tensor format.</p></td>
 </tr>
 </tbody>
@@ -329,7 +341,7 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state" title="tlquantum.tt_state.spins_to_tt_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spins_to_tt_state</span></code></a>(spins[, device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state" title="tlquantum.tt_state.spins_to_tt_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spins_to_tt_state</span></code></a>(spins[, device, dtype])</p></td>
 <td><p>Generates tt-tensor state of computational basis product space described by spins.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.tt_norm.html#tlquantum.tt_state.tt_norm" title="tlquantum.tt_state.tt_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tt_norm</span></code></a>(tensor)</p></td>

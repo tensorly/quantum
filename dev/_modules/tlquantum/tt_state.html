@@ -145,6 +145,7 @@
           
   <h1>Source code for tlquantum.tt_state</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">complex64</span>
 <span class="kn">from</span> <span class="nn">opt_einsum</span> <span class="kn">import</span> <span class="n">contract</span>
 
 
@@ -153,7 +154,7 @@
 <span class="c1"># License: BSD 3 clause</span>
 
 
-<div class="viewcode-block" id="spins_to_tt_state"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state">[docs]</a><span class="k">def</span> <span class="nf">spins_to_tt_state</span><span class="p">(</span><span class="n">spins</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="spins_to_tt_state"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state">[docs]</a><span class="k">def</span> <span class="nf">spins_to_tt_state</span><span class="p">(</span><span class="n">spins</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates tt-tensor state of computational basis product space described by spins.</span>
 
 <span class="sd">    Parameters</span>
@@ -177,7 +178,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="c1">#Single spin 1 core in tt-tensor format at final position</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">state</span> <span class="o">+</span> <span class="p">[</span><span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]]])]</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">state</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">core</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span> <span class="k">for</span> <span class="n">core</span> <span class="ow">in</span> <span class="n">state</span><span class="p">]</span></div>
 
 
 <span class="k">def</span> <span class="nf">_spin_to_qubit</span><span class="p">(</span><span class="n">spin</span><span class="p">):</span>
