@@ -14,6 +14,7 @@ from ..tt_operators import pauli_z, binary_hamiltonian
 from ..tt_gates import Unitary, IDENTITY
 from ..tt_precontraction import qubits_contract
 from ..tt_state import spins_to_tt_state
+from ..tt_sum import tt_sum
 
 
 # Author: Taylor Lee Patti <taylorpatti@g.harvard.edu>

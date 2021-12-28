@@ -1,7 +1,7 @@
 import tensorly as tl
 tl.set_backend('pytorch')
 from torch.nn import Module, ModuleList
-from torch import transpose, randint
+from torch import transpose, randint, complex64
 from itertools import chain
 from opt_einsum import contract, contract_expression
 from numpy import ceil
@@ -167,7 +167,7 @@ class TTCircuit(Module):
         list of tt-tensors, unitaries and operators of the TTCircuit, ready for contraction
         """
         built_layer = self._build_layer()
-        built_layer_dagger = [tt_transpose(built_layer[i]) for n in range(self.nlsystems, 0, -1) for i in range((n-1)*self.nqsystems, n*self.nqsystems)]
+        built_layer_dagger = [tt_dagger(built_layer[i]) for n in range(self.nlsystems, 0, -1) for i in range((n-1)*self.nqsystems, n*self.nqsystems)]
         return state + built_layer + operator + built_layer_dagger + state
 
 
@@ -212,7 +212,7 @@ class TTCircuit(Module):
         self.equations['partial_trace_equation_set'] = partial_trace_equation_set
 
 
-def tt_transpose(tt):
+def tt_dagger(tt):
     """Transpose single-qubit matrices in tt-tensor format.
 
     Parameters
@@ -223,4 +223,4 @@ def tt_transpose(tt):
     -------
     Transpose of tt
     """
-    return transpose(tt, 1, 2)
+    return tl.conj(transpose(tt, 1, 2))

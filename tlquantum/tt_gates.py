@@ -1,8 +1,9 @@
 import tensorly as tl
 tl.set_backend('pytorch')
-from torch import randn, cos, sin
+from torch import randn, cos, sin, float32, complex64, exp
 from torch.nn import Module, ModuleList, ParameterList, Parameter
 from tensorly.tt_matrix import TTMatrix
+from copy import deepcopy
 
 from .tt_operators import identity
 from .tt_precontraction import qubits_contract, _get_contrsets
@@ -36,11 +37,11 @@ class Unitary(Module):
     -------
     Unitary
     """
-    def __init__(self, gates, nqubits, ncontraq, contrsets=None, device=None):
+    def __init__(self, gates, nqubits, ncontraq, contrsets=None, dtype=complex64, device=None):
         super().__init__()
         if contrsets is None:
             contrsets = _get_contrsets(nqubits, ncontraq)
-        self.nqubits, self.ncontraq, self.contrsets, self.device = nqubits, ncontraq, contrsets, device
+        self.nqubits, self.ncontraq, self.contrsets, self.dtype, self.device = nqubits, ncontraq, contrsets, dtype, device
         self._set_gates(gates)
 
 
@@ -80,10 +81,10 @@ class BinaryGatesUnitary(Unitary):
     -------
     BinaryGatesUnitary
     """
-    def __init__(self, nqubits, ncontraq, q2gate, parity, contrsets=None):
-        device = q2gate[0].device
-        super().__init__([], nqubits, ncontraq, contrsets=contrsets, device=device)
-        self._set_gates(build_binary_gates_unitary(self.nqubits, q2gate, parity))
+    def __init__(self, nqubits, ncontraq, q2gate, parity, contrsets=None, random_initialization=True):
+        dtype, device = q2gate[0].dtype, q2gate[0].device
+        super().__init__([], nqubits, ncontraq, contrsets=contrsets, dtype=dtype, device=device)
+        self._set_gates(build_binary_gates_unitary(self.nqubits, q2gate, parity, dtype=dtype, random_initialization=random_initialization))
 
 
 class UnaryGatesUnitary(Unitary):
@@ -103,12 +104,20 @@ class UnaryGatesUnitary(Unitary):
     -------
     UnaryGatesUnitary
     """
-    def __init__(self, nqubits, ncontraq, contrsets=None, device=None):
-        super().__init__([], nqubits, ncontraq, contrsets=contrsets, device=device)
-        self._set_gates([RotY(device=device) for i in range(self.nqubits)])
+    def __init__(self, nqubits, ncontraq, axis='y', contrsets=None, dtype=complex64, device=None):
+        super().__init__([], nqubits, ncontraq, contrsets=contrsets, dtype=dtype, device=device)
+        if axis == 'y':
+            self._set_gates([RotY(dtype=dtype, device=device) for i in range(self.nqubits)])
+        elif axis == 'x':
+            self._set_gates([RotX(dtype=dtype, device=device) for i in range(self.nqubits)])
+        elif axis == 'z':
+            self._set_gates([RotZ(dtype=dtype, device=device) for i in range(self.nqubits)])
+        else:
+            raise IndexError('UnaryGatesUnitary has no rotation axis {}.\n'
+                             'UnaryGatesUnitary has 3 rotation axes: x, y, and z. The y-axis is default.'.format(index))
 
 
-def build_binary_gates_unitary(nqubits, q2gate, parity):
+def build_binary_gates_unitary(nqubits, q2gate, parity, random_initialization=True, dtype=complex64):
     """Generate a layer of two-qubit gates.
 
     Parameters
@@ -121,17 +130,25 @@ def build_binary_gates_unitary(nqubits, q2gate, parity):
     -------
     Layer of two-qubit gates as list of tt-tensors
     """
-    q2gate0, q2gate1 = q2gate
+    def clone_gates(gate0, gate1, random_initialization):
+        clone0, clone1 = deepcopy(gate0), deepcopy(gate1)
+        if random_initialization:
+            clone0.reinitialize(), clone1.reinitialize()
+        return [clone0, clone1]
+
+    q2gate0, q2gate1 = q2gate[0].type(dtype), q2gate[1].type(dtype)
     layer, device = [], q2gate0.device
     for i in range(nqubits//2 - 1):
-        layer += [q2gate0, q2gate1]
+        layer += clone_gates(q2gate0, q2gate1, random_initialization)
     if nqubits%2 == 0:
+        temp = clone_gates(q2gate0, q2gate1, random_initialization)
         if parity%2 == 0:
-            return layer+[q2gate0, q2gate1]
-        return [q2gate1]+layer+[q2gate0]
+            return layer+temp
+        return [temp[1]]+layer+[temp[0]]
+    temp = clone_gates(q2gate0, q2gate1, random_initialization)
     if parity%2 == 0:
-        return layer+[q2gate0, q2gate1, IDENTITY(device)]
-    return [IDENTITY(device)]+layer+[q2gate0, q2gate1]
+        return layer+temp+[IDENTITY(dtype=dtype, device=device)]
+    return [IDENTITY(dtype=dtype, device=device)]+layer+temp
 
 
 class RotY(Module):
@@ -145,10 +162,10 @@ class RotY(Module):
     -------
     RotY
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
         self.theta = Parameter(randn(1, device=device))
-        self.iden, self.epy = identity(self.theta.device), exp_pauli_y(self.theta.device)
+        self.iden, self.epy = identity(dtype=dtype, device=self.theta.device), exp_pauli_y(dtype=dtype, device=self.theta.device)
 
 
     def forward(self):
@@ -163,6 +180,63 @@ class RotY(Module):
         return self.iden*cos(self.theta/2)+self.epy*sin(self.theta/2)
 
 
+class RotX(Module):
+    """Qubit rotations about the X-axis with randomly initiated theta.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    RotX
+    """
+    def __init__(self, dtype=complex64, device=None):
+        super().__init__()
+        self.theta = Parameter(randn(1, device=device))
+        self.iden, self.epx = identity(dtype=dtype, device=self.theta.device), exp_pauli_x(dtype=dtype, device=self.theta.device)
+
+
+    def forward(self):
+        """Prepares the RotX gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of rotation matrix depending on theta (which is
+        typically updated every epoch through backprop via PyTorch Autograd).
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        return self.iden*cos(self.theta/2)+self.epx*sin(self.theta/2)
+
+
+class RotZ(Module):
+    """Qubit rotations about the Z-axis with randomly initiated theta.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    RotZ
+    """
+    def __init__(self, dtype=complex64, device=None):
+        super().__init__()
+        self.theta, self.dtype, self.device = Parameter(randn(1, device=device)), dtype, device
+
+
+    def forward(self):
+        """Prepares the RotZ gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of rotation matrix depending on theta (which is
+        typically updated every epoch through backprop via PyTorch Autograd).
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        return tl.tensor([[[[exp(-1j*self.theta/2)],[0]],[[0],[exp(1j*self.theta/2)]]]], dtype=self.dtype, device=self.device)
+
+
 class IDENTITY(Module):
     """Identity gate (does not change the state of the qubit on which it acts).
 
@@ -174,9 +248,9 @@ class IDENTITY(Module):
     -------
     IDENTITY
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
-        self.core, self.device = identity(device=device), device
+        self.core, self.dtype, self.device = identity(dtype=dtype, device=device), dtype, device
 
 
     def forward(self):
@@ -190,7 +264,7 @@ class IDENTITY(Module):
         return self.core
 
 
-def cnot(device=None):
+def cnot(dtype=complex64, device=None):
     """Pair of CNOT class instances, one left (control) and one right (transformed).
 
     Parameters
@@ -201,7 +275,7 @@ def cnot(device=None):
     -------
     (CNOTL, CNOTR)
     """
-    return CNOTL(device=device), CNOTR(device=device)
+    return CNOTL(dtype=dtype, device=device), CNOTR(dtype=dtype, device=device)
 
 
 class CNOTL(Module):
@@ -215,9 +289,9 @@ class CNOTL(Module):
     -------
     Left core of CNOT gate.
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
-        core, self.device = tl.zeros((1,2,2,2), device=device), device
+        core, self.dtype, self.device = tl.zeros((1,2,2,2), dtype=dtype, device=device), dtype, device
         core[0,0,0,0] = core[0,1,1,1] = 1.
         self.core = core
 
@@ -233,6 +307,10 @@ class CNOTL(Module):
         return self.core
 
 
+    def reinitialize(self):
+        pass
+
+
 class CNOTR(Module):
     """Right (transformed qubit) core of a CNOT gate.
 
@@ -244,9 +322,9 @@ class CNOTR(Module):
     -------
     Right core of CNOT gate.
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
-        core, self.device = tl.zeros((2,2,2,1), device=device), device
+        core, self.dtype, self.device = tl.zeros((2,2,2,1), dtype=dtype, device=device), dtype, device
         core[0,0,0,0] = core[0,1,1,0] = 1.
         core[1,0,1,0] = core[1,1,0,0] = 1.
         self.core =  core
@@ -263,7 +341,11 @@ class CNOTR(Module):
         return self.core
 
 
-def cz(device=None):
+    def reinitialize(self):
+        pass
+
+
+def cz(dtype=complex64, device=None):
     """Pair of CZ class instances, one left (control) and one right (transformed).
 
     Parameters
@@ -274,7 +356,7 @@ def cz(device=None):
     -------
     (CZL, CZR)
     """
-    return CZL(device=device), CZR(device=device)
+    return CZL(dtype=dtype, device=device), CZR(dtype=dtype, device=device)
 
 
 class CZL(Module):
@@ -288,9 +370,9 @@ class CZL(Module):
     -------
     Left core of CZ gate.
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
-        core, self.device = tl.zeros((1,2,2,2), device=device), device
+        core, self.dtype, self.device = tl.zeros((1,2,2,2), dtype=dtype, device=device), dtype, device
         core[0,0,0,0] = core[0,1,1,1] = 1.
         self.core = core
 
@@ -306,6 +388,10 @@ class CZL(Module):
         return self.core
 
 
+    def reinitialize(self):
+        pass
+
+
 class CZR(Module):
     """Right (transformed qubit) core of a CZ gate.
 
@@ -317,9 +403,9 @@ class CZR(Module):
     -------
     Right core of CZ gate.
     """
-    def __init__(self, device=None):
+    def __init__(self, dtype=complex64, device=None):
         super().__init__()
-        core, self.device = tl.zeros((2,2,2,1), device=device), device
+        core, self.dtype, self.device = tl.zeros((2,2,2,1), dtype=dtype, device=device), dtype, device
         core[0,0,0,0] = core[0,1,1,0] = core[1,0,0,0]  = 1.
         core[1,1,1,0] = -1.
         self.core = core
@@ -335,7 +421,11 @@ class CZR(Module):
         return self.core
 
 
-def so4(state1, state2, device=None):
+    def reinitialize(self):
+        pass
+
+
+def so4(state1, state2, dtype=complex64, device=None):
     """Pair of SO4 two-qubit rotation class instances, with rotations over
     different states.
 
@@ -349,8 +439,8 @@ def so4(state1, state2, device=None):
     -------
     (SO4L, SO4R)
     """        
-    R = SO4LR(state1, state2, 0, device=device)
-    return R, SO4LR(state1, state2, 1, theta=R.theta, device=device)
+    R = SO4LR(state1, state2, 0, dtype=dtype, device=device)
+    return R, SO4LR(state1, state2, 1, theta=R.theta, dtype=dtype, device=device)
 
 
 class SO4LR(Module):
@@ -368,9 +458,9 @@ class SO4LR(Module):
     if position == 0 --> SO4L
     if position == 1 --> SO4R
     """
-    def __init__(self, state1, state2, position, theta=None, device=None):
+    def __init__(self, state1, state2, position, theta=None, dtype=complex64, device=None):
         super().__init__()
-        self.theta, self.position, self.device = Parameter(randn(1, device=device)), position, device
+        self.theta, self.position, self.dtype, self.device = Parameter(randn(1, device=device)), position, dtype, device
         if theta is not None:
             self.theta.data = theta.data
         ind1, ind2 = min(state1, state2), max(state1, state2)
@@ -394,10 +484,14 @@ class SO4LR(Module):
         -------
         Gate tensor for general forward pass.
         """
-        return self.core_generator(self.theta, device=self.device)[self.position]
+        return self.core_generator(self.theta, dtype=self.dtype, device=self.device)[self.position]
 
 
-def _so4_01(theta, device=None):
+    def reinitialize(self):
+        self.theta.data = randn(1, device=self.device)
+
+
+def _so4_01(theta, dtype=complex64, device=None):
     """Two-qubit SO4 gates in tt-tensor form with rotations along zeroth and first
     qubit states.
 
@@ -410,20 +504,20 @@ def _so4_01(theta, device=None):
     -------
     (SO4_01_L, SO4_01_R)
     """
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,0,0,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
     T01I = [core1, core2]
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,1,1,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
     T23I = [core1*cos(theta), core2]
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,1,1,0] = core2[0,1,0,0] = 1
     core2[0,0,1,0] = -1
     R23I = [core1*sin(theta), core2]
     return [*tt_matrix_sum(TTMatrix(T01I), tt_matrix_sum(TTMatrix(T23I), TTMatrix(R23I)))]
 
 
-def _so4_12(theta, device=None):
+def _so4_12(theta, dtype=complex64, device=None):
     """Two-qubit SO4 gates in tt-tensor form with rotations along first and second
     qubit states.
 
@@ -436,20 +530,20 @@ def _so4_12(theta, device=None):
     -------
     (SO4_12_L, SO4_12_R)
     """
-    core1, core2 = tl.zeros((1,2,2,2), device=device), tl.zeros((2,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,2), dtype=dtype, device=device), tl.zeros((2,2,2,1), dtype=dtype, device=device)
     core1[0,0,0,0] = core1[0,1,1,1] = core2[0,0,0,0] = core2[1,1,1,0] = 1
     T03I = [core1, core2]
-    core1, core2 = tl.zeros((1,2,2,2), device=device), tl.zeros((2,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,2), dtype=dtype, device=device), tl.zeros((2,2,2,1), dtype=dtype, device=device)
     core1[0,1,1,0] = core1[0,0,0,1] = core2[0,0,0,0] = core2[1,1,1,0] = 1
     T12I = [core1*cos(theta), core2]
-    core1, core2 = tl.zeros((1,2,2,2), device=device), tl.zeros((2,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,2), dtype=dtype, device=device), tl.zeros((2,2,2,1), dtype=dtype, device=device)
     core1[0,1,0,0] = core1[0,0,1,1] = core2[0,0,1,0] = 1
     core2[1,1,0,0] = -1
     R12I = [core1*sin(theta), core2]
     return [*tt_matrix_sum(TTMatrix(T03I), tt_matrix_sum(TTMatrix(T12I), TTMatrix(R12I)))]
 
 
-def _so4_23(theta, device=None):
+def _so4_23(theta, dtype=complex64, device=None):
     """Two-qubit SO4 gates in tt-tensor form with rotations along second and third
     qubit states.
 
@@ -462,20 +556,85 @@ def _so4_23(theta, device=None):
     -------
     (SO4_23_L, SO4_23_R)
     """
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,1,1,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
     T23I = [core1, core2]
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,0,0,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
     T01I = [core1*cos(theta), core2]
-    core1, core2 = tl.zeros((1,2,2,1), device=device), tl.zeros((1,2,2,1), device=device)
+    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
     core1[0,0,0,0] = core2[0,1,0,0] = 1
     core2[0,0,1,0] = -1
     R01I = [core1*sin(theta), core2]
     return [*tt_matrix_sum(TTMatrix(T23I), tt_matrix_sum(TTMatrix(T01I), TTMatrix(R01I)))]
 
 
-def exp_pauli_y(device=None):
+def o4_phases(phases=None, dtype=complex64, device=None):
+    """Pair of O4 phase rotations class instances. Each of four phases
+    is imparted to each of the 4 states of O4.
+
+    Parameters
+    ----------
+    phases : list of floats, the four phases to be imparted to the quantum states
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    (O4L, O4R)
+    """
+    L = O4LR(0, phases=phases, dtype=dtype, device=device)
+    phases = L.phases
+    return [L, O4LR(1, phases=phases, dtype=dtype, device=device)]
+
+
+class O4LR(Module):
+    """Left and right core of the two-qubit O4 phase gate.
+
+    Parameters
+    ----------
+    phases : list of floats, the four phases to be imparted to the quantum states
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    Two-qubit unitary with general phase rotations for O4.
+    """
+    def __init__(self, position, phases=None, dtype=complex64, device=None):
+        super().__init__()
+        self.phases = [Parameter(randn(1, device=device)), Parameter(randn(1, device=device)), Parameter(randn(1, device=device)), Parameter(randn(1, device=device))]
+        self.position, self.dtype, self.device = position, dtype, device
+        if phases is not None:
+            self.phases = [phases[0], phases[1], phases[2], phases[3]]
+
+
+    def forward(self):
+        """Prepares the left or right qubit of the SO4 two-qubit rotation gate for forward contraction
+        by calling the forward method and preparing the tt-factorized form of matrix representation.
+        Update is based on theta (which is typically updated every epoch through backprop via Pytorch Autograd).
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        core1, core2 = tl.zeros((1,2,2,1), dtype=self.dtype, device=self.device), tl.zeros((1,2,2,1), dtype=self.dtype, device=self.device)
+        core1[0,0,0,0] = 1
+        core2[0,0,0,0] = exp(1j*self.phases[0])
+        core2[0,1,1,0] = exp(1j*self.phases[1])
+        d0 = [core1, core2]
+        core1, core2 = tl.zeros((1,2,2,1), dtype=self.dtype, device=self.device), tl.zeros((1,2,2,1), dtype=self.dtype, device=self.device)
+        core1[0,1,1,0] = 1
+        core2[0,0,0,0] = exp(1j*self.phases[2])
+        core2[0,1,1,0] = exp(1j*self.phases[3])
+        d1 = [core1, core2]
+        return tt_matrix_sum(d0, d1)[self.position]
+
+
+    def reinitialize(self):
+        for phase in self.phases:
+            phase.data = randn(1, device=self.device)
+
+
+def exp_pauli_y(dtype=complex64, device=None):
     """Matrix for sin(theta) component of Y-axis rotation in tt-tensor form.
 
     Parameters
@@ -486,4 +645,18 @@ def exp_pauli_y(device=None):
     -------
     tt-tensor core, sin(theta) Y-rotation component.
     """
-    return tl.tensor([[[[0],[-1]],[[1],[0]]]], device=device)
+    return tl.tensor([[[[0],[-1]],[[1],[0]]]], dtype=dtype, device=device)
+
+
+def exp_pauli_x(dtype=complex64, device=None):
+    """Matrix for sin(theta) component of X-axis rotation in tt-tensor form.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    tt-tensor core, sin(theta) X-rotation component.
+    """
+    return tl.tensor([[[[0],[-1j]],[[-1j],[0]]]], dtype=dtype, device=device)

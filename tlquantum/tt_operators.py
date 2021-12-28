@@ -1,7 +1,7 @@
 import tensorly as tl
 tl.set_backend('pytorch')
 from tensorly.tt_matrix import TTMatrix
-from torch import minimum, maximum
+from torch import minimum, maximum, complex64
 
 from .tt_sum import tt_matrix_sum
 
@@ -54,8 +54,8 @@ def unary_hamiltonian(op, nqubits, qubits, weights):
     -------
     Unitary of one single-qubit operator per qubit in tt-tensor format
     """
-    #H = TTMatrix([weights[0]*op] + [IDENTITY for i in range(1, nqubits)])
-    H, iden = [], identity(device=op.device)
+    dtype = op.dtype
+    H, iden = [], identity(dtype=dtype, device=op.device)
     for q in qubits:
         H = tt_matrix_sum(H, TTMatrix([iden for i in range(q)] + [weights[q]*op] + [iden for i in range(q+1, nqubits)]))
     return H
@@ -78,11 +78,11 @@ def _two_qubit_interaction(op1, op2, ind1, ind2, weight, nqubits):
     -------
     Hamiltonian of n qubits with two interacions at ind1 and ind2 in tt-tensor form
     """
-    iden = identity(device=op1.device)
+    iden = identity(device=op1.device).type(op1.dtype)
     return TTMatrix([iden for k in range(ind1)] + [weight*op1] + [iden for k in range(ind2-ind1-1)] + [op2] + [iden for k in range(ind2+1, nqubits, 1)])
 
 
-def identity(device=None):
+def identity(dtype=complex64, device=None):
     """Single-qubit identity opertor in the tt-tensor format.
 
     Parameters
@@ -93,10 +93,10 @@ def identity(device=None):
     -------
     Identity operator in tt-form.
     """
-    return tl.tensor([[[[1],[0]],[[0],[1]]]], device=device)
+    return tl.tensor([[[[1],[0]],[[0],[1]]]], dtype=dtype, device=device)
 
 
-def pauli_x(device=None):
+def pauli_x(dtype=complex64, device=None):
     """Single-qubit Pauli-X opertor in the tt-tensor format.
 
     Parameters
@@ -107,10 +107,24 @@ def pauli_x(device=None):
     -------
     Pauli-X operator in tt-form.
     """
-    return tl.tensor([[[[0],[1]],[[1],[0]]]], device=device)
+    return tl.tensor([[[[0],[1]],[[1],[0]]]], dtype=dtype, device=device)
 
 
-def pauli_z(device=None):
+def pauli_y(dtype=complex64, device=None):
+    """Single-qubit Pauli-Y opertor in the tt-tensor format.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    Pauli-Y operator in tt-form.
+    """
+    return tl.tensor([[[[0],[-1j]],[[1j],[0]]]], dtype=dtype, device=device)
+
+
+def pauli_z(dtype=complex64, device=None):
     """Single-qubit Pauli-Z opertor in the tt-tensor format.
 
     Parameters
@@ -121,4 +135,4 @@ def pauli_z(device=None):
     -------
     Pauli-Z operator in tt-form.
     """
-    return tl.tensor([[[[1],[0]],[[0],[-1]]]], device=device)
+    return tl.tensor([[[[1],[0]],[[0],[-1]]]], dtype=dtype, device=device)

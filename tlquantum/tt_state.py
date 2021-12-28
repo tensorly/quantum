@@ -1,4 +1,5 @@
 import tensorly as tl
+from torch import complex64
 from opt_einsum import contract
 
 
@@ -7,7 +8,7 @@ from opt_einsum import contract
 # License: BSD 3 clause
 
 
-def spins_to_tt_state(spins, device='cpu'):
+def spins_to_tt_state(spins, device='cpu', dtype=complex64):
     """Generates tt-tensor state of computational basis product space described by spins.
 
     Parameters
@@ -31,7 +32,7 @@ def spins_to_tt_state(spins, device='cpu'):
     else:
         #Single spin 1 core in tt-tensor format at final position
         state = state + [tl.tensor([[[0.], [1.]], [[0.], [0.]]])]
-    return [core.to(device) for core in state]
+    return [core.to(device).type(dtype) for core in state]
 
 
 def _spin_to_qubit(spin):

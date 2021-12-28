@@ -122,7 +122,7 @@ class DensityTensor(AbsDensityTensor):
         temp_ket = self.tensor
         temp_subsystems = self.subsystems
         if self.op_type == 'bra':
-            temp_ket = tl.transpose(tl.transpose(temp_ket))
+            #temp_ket = tl.transpose(tl.transpose(temp_ket))
             temp_subsystems = temp_subsystems[::-1]
         temp_ket = tl.reshape(temp_ket, tuple(temp_subsystems[0])) #because we don't enforce that tensor shape match subsystems
         temp_ket = tl.unfold(temp_ket, traced_index)

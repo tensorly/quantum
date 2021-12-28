@@ -2,6 +2,7 @@ import tensorly as tl
 from tensorly.random import random_tt
 from tensorly.tt_matrix import TTMatrix
 from tensorly.testing import assert_array_almost_equal
+from torch import complex64
 from opt_einsum import contract
 
 from ..tt_contraction import contraction_eq
@@ -16,11 +17,10 @@ from ..tt_operators import identity
 
 
 def test_contraction_eq():
-    nqubits = 4
-    nlayers = 1
+    nqubits, nlayers, dtype = 4, 1, complex64
     dims = tuple([2 for i in range(nqubits)])
     rank = [1] + [2 for i in range(nqubits-1)] + [1]
-    state = random_tt(dims, rank=rank)
+    state = random_tt(dims, rank=rank, dtype=dtype)
     state[0] = state[0]/tl.sqrt(tt_norm(state))
 
     rotY1, rotY2 = RotY(), RotY()
