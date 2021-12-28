@@ -20,8 +20,8 @@ import matplotlib.pyplot as plt
 # %% Set up simulation parameters
 # Uncomment the line below to use the GPU
 
-device = 'cuda' 
-#device = 'cpu'
+#device = 'cuda' 
+device = 'cpu'
 
 dtype = float32
 
