@@ -27,7 +27,7 @@ def calculate_cut(spins, spins1, spins2, weights, get_cut=False):
     -------
     The energy/MaxCut metric for the state of spins of the graph described by spins1, spins2, and weights.
     """
-    spins1, spins2, weights = spins1.reshape((-1,)), spins2.reshape((-1,)), weights.reshape((-1,1))
+    spins, spins1, spins2, weights = spins.reshape((-1,1)), spins1.reshape((-1,)), spins2.reshape((-1,)), weights.reshape((-1,1))
     if get_cut:
         energy = tl.sum(weights*(1-spins[spins1]*spins[spins2]))/2.
     else:
