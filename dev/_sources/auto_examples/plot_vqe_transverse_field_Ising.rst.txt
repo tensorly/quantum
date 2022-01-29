@@ -236,167 +236,167 @@ two-qubit terms
 
  .. code-block:: none
 
-    Energy (loss) at epoch 0 is (-1.2876085042953491-2.9802322387695312e-08j). 
+    Energy (loss) at epoch 0 is (-1.429581880569458+2.1420419216156006e-08j). 
 
     /home/runner/work/quantum/quantum/doc/source/examples/plot_vqe_transverse_field_Ising.py:103: UserWarning: Casting complex values to real discards the imaginary part (Triggered internally at  ../aten/src/ATen/native/Copy.cpp:244.)
       energy_vec[epoch] = energy
-    Energy (loss) at epoch 1 is (-0.3031981587409973+0j). 
+    Energy (loss) at epoch 1 is (-1.8923441171646118+8.940696716308594e-08j). 
 
-    Energy (loss) at epoch 2 is (-0.8654189109802246+5.960464477539063e-08j). 
+    Energy (loss) at epoch 2 is (-2.460258722305298+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 3 is (-1.9143587350845337-5.960464477539063e-08j). 
+    Energy (loss) at epoch 3 is (-3.133864402770996+5.960464477539063e-08j). 
 
-    Energy (loss) at epoch 4 is (-2.3456833362579346-1.4901161193847656e-08j). 
+    Energy (loss) at epoch 4 is (-2.6091301441192627+8.568167686462402e-08j). 
 
-    Energy (loss) at epoch 5 is (-1.9465969800949097-1.862645149230957e-08j). 
+    Energy (loss) at epoch 5 is (-2.7654640674591064+1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 6 is (-1.997255802154541-1.4156103134155273e-07j). 
+    Energy (loss) at epoch 6 is (-3.2702977657318115-3.2782554626464844e-07j). 
 
-    Energy (loss) at epoch 7 is (-2.146103858947754+4.0978193283081055e-08j). 
+    Energy (loss) at epoch 7 is (-3.2589566707611084+2.384185791015625e-07j). 
 
-    Energy (loss) at epoch 8 is (-2.124742269515991+1.4901161193847656e-08j). 
+    Energy (loss) at epoch 8 is (-2.9753293991088867-9.313225746154785e-09j). 
 
-    Energy (loss) at epoch 9 is (-2.122229814529419+6.705522537231445e-08j). 
+    Energy (loss) at epoch 9 is (-3.0455362796783447-2.2351741790771484e-08j). 
 
-    Energy (loss) at epoch 10 is (-2.255734443664551-1.862645149230957e-08j). 
+    Energy (loss) at epoch 10 is (-3.3753082752227783-3.203749656677246e-07j). 
 
-    Energy (loss) at epoch 11 is (-2.4853110313415527+1.4156103134155273e-07j). 
+    Energy (loss) at epoch 11 is (-3.486581563949585-6.82193785905838e-08j). 
 
-    Energy (loss) at epoch 12 is (-2.6941909790039062+5.960464477539063e-08j). 
+    Energy (loss) at epoch 12 is (-3.3422353267669678+8.940696716308594e-08j). 
 
-    Energy (loss) at epoch 13 is (-2.8416335582733154+5.960464477539063e-08j). 
+    Energy (loss) at epoch 13 is (-3.2809205055236816+0j). 
 
-    Energy (loss) at epoch 14 is (-2.9693875312805176-2.9802322387695312e-08j). 
+    Energy (loss) at epoch 14 is (-3.3376829624176025+1.2479722499847412e-07j). 
 
-    Energy (loss) at epoch 15 is (-3.3034210205078125-1.1920928955078125e-07j). 
+    Energy (loss) at epoch 15 is (-3.360626697540283+1.9371509552001953e-07j). 
 
-    Energy (loss) at epoch 16 is (-3.446815013885498+5.960464477539063e-08j). 
+    Energy (loss) at epoch 16 is (-3.381815195083618+1.1920928955078125e-07j). 
 
-    Energy (loss) at epoch 17 is (-3.3809075355529785+5.960464477539063e-08j). 
+    Energy (loss) at epoch 17 is (-3.476452350616455+2.086162567138672e-07j). 
 
-    Energy (loss) at epoch 18 is (-3.3837790489196777-5.960464477539063e-08j). 
+    Energy (loss) at epoch 18 is (-3.545548677444458-6.705522537231445e-08j). 
 
-    Energy (loss) at epoch 19 is (-3.540764331817627-1.7881393432617188e-07j). 
+    Energy (loss) at epoch 19 is (-3.486259698867798-3.818422555923462e-08j). 
 
-    Energy (loss) at epoch 20 is (-3.857135772705078+5.960464477539063e-08j). 
+    Energy (loss) at epoch 20 is (-3.4111509323120117+1.2293457984924316e-07j). 
 
-    Energy (loss) at epoch 21 is (-4.097165107727051-1.1920928955078125e-07j). 
+    Energy (loss) at epoch 21 is (-3.4533016681671143-7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 22 is (-4.252635955810547+1.4901161193847656e-08j). 
+    Energy (loss) at epoch 22 is (-3.5350921154022217-2.7194619178771973e-07j). 
 
-    Energy (loss) at epoch 23 is (-4.351184844970703+1.862645149230957e-08j). 
+    Energy (loss) at epoch 23 is (-3.5307118892669678-9.685754776000977e-08j). 
 
-    Energy (loss) at epoch 24 is (-4.2801971435546875+7.450580596923828e-08j). 
+    Energy (loss) at epoch 24 is (-3.487234115600586+1.1175870895385742e-07j). 
 
-    Energy (loss) at epoch 25 is (-4.188409805297852-2.9802322387695312e-08j). 
+    Energy (loss) at epoch 25 is (-3.504114866256714+1.4901161193847656e-08j). 
 
-    Energy (loss) at epoch 26 is (-4.119165420532227-5.960464477539063e-08j). 
+    Energy (loss) at epoch 26 is (-3.55582594871521-1.3783574104309082e-07j). 
 
-    Energy (loss) at epoch 27 is (-4.103198528289795+0j). 
+    Energy (loss) at epoch 27 is (-3.559901237487793+7.764901965856552e-08j). 
 
-    Energy (loss) at epoch 28 is (-4.175414085388184-5.960464477539063e-08j). 
+    Energy (loss) at epoch 28 is (-3.529531955718994+2.5331974029541016e-07j). 
 
-    Energy (loss) at epoch 29 is (-4.278557777404785+2.9802322387695312e-08j). 
+    Energy (loss) at epoch 29 is (-3.5292341709136963+1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 30 is (-4.430064678192139+0j). 
+    Energy (loss) at epoch 30 is (-3.549808979034424+7.450580596923828e-09j). 
 
-    Energy (loss) at epoch 31 is (-4.502717971801758-7.450580596923828e-09j). 
+    Energy (loss) at epoch 31 is (-3.553311586380005+2.207234501838684e-07j). 
 
-    Energy (loss) at epoch 32 is (-4.438143730163574-2.2351741790771484e-08j). 
+    Energy (loss) at epoch 32 is (-3.5543038845062256-1.862645149230957e-08j). 
 
-    Energy (loss) at epoch 33 is (-4.348961353302002-1.4901161193847656e-08j). 
+    Energy (loss) at epoch 33 is (-3.5715460777282715-1.9185245037078857e-07j). 
 
-    Energy (loss) at epoch 34 is (-4.321211338043213-1.4901161193847656e-08j). 
+    Energy (loss) at epoch 34 is (-3.5777242183685303+1.3504177331924438e-07j). 
 
-    Energy (loss) at epoch 35 is (-4.38427209854126+2.9802322387695312e-08j). 
+    Energy (loss) at epoch 35 is (-3.560260057449341-6.51925802230835e-09j). 
 
-    Energy (loss) at epoch 36 is (-4.424520492553711+0j). 
+    Energy (loss) at epoch 36 is (-3.555589437484741-6.51925802230835e-08j). 
 
-    Energy (loss) at epoch 37 is (-4.425874710083008-2.9802322387695312e-08j). 
+    Energy (loss) at epoch 37 is (-3.573580741882324+6.891787052154541e-08j). 
 
-    Energy (loss) at epoch 38 is (-4.437836647033691+1.4901161193847656e-08j). 
+    Energy (loss) at epoch 38 is (-3.5802226066589355+7.543712854385376e-08j). 
 
-    Energy (loss) at epoch 39 is (-4.465763568878174-7.450580596923828e-09j). 
+    Energy (loss) at epoch 39 is (-3.571946382522583+2.1979212760925293e-07j). 
 
-    Energy (loss) at epoch 40 is (-4.500010967254639+7.450580596923828e-09j). 
+    Energy (loss) at epoch 40 is (-3.5760066509246826-4.6566128730773926e-08j). 
 
-    Energy (loss) at epoch 41 is (-4.487076759338379-5.21540641784668e-08j). 
+    Energy (loss) at epoch 41 is (-3.585836172103882+3.364402800798416e-07j). 
 
-    Energy (loss) at epoch 42 is (-4.466000080108643+6.705522537231445e-08j). 
+    Energy (loss) at epoch 42 is (-3.5807077884674072-5.587935447692871e-09j). 
 
-    Energy (loss) at epoch 43 is (-4.462131977081299-3.725290298461914e-08j). 
+    Energy (loss) at epoch 43 is (-3.5736958980560303-5.587935447692871e-09j). 
 
-    Energy (loss) at epoch 44 is (-4.47714376449585-4.470348358154297e-08j). 
+    Energy (loss) at epoch 44 is (-3.5799849033355713+1.043081283569336e-07j). 
 
-    Energy (loss) at epoch 45 is (-4.492992401123047+0j). 
+    Energy (loss) at epoch 45 is (-3.5868237018585205-2.100132405757904e-07j). 
 
-    Energy (loss) at epoch 46 is (-4.497042655944824+0j). 
+    Energy (loss) at epoch 46 is (-3.58541202545166+9.12696123123169e-08j). 
 
-    Energy (loss) at epoch 47 is (-4.517020225524902-2.2351741790771484e-08j). 
+    Energy (loss) at epoch 47 is (-3.5845141410827637+7.264316082000732e-08j). 
 
-    Energy (loss) at epoch 48 is (-4.526515007019043+3.725290298461914e-09j). 
+    Energy (loss) at epoch 48 is (-3.586155414581299+1.648440957069397e-07j). 
 
-    Energy (loss) at epoch 49 is (-4.517021656036377+1.4901161193847656e-08j). 
+    Energy (loss) at epoch 49 is (-3.585850477218628-1.3504177331924438e-07j). 
 
-    Energy (loss) at epoch 50 is (-4.501471519470215+2.9802322387695312e-08j). 
+    Energy (loss) at epoch 50 is (-3.585873603820801-2.60770320892334e-08j). 
 
-    Energy (loss) at epoch 51 is (-4.510765552520752-2.2351741790771484e-08j). 
+    Energy (loss) at epoch 51 is (-3.5881147384643555+1.30385160446167e-08j). 
 
-    Energy (loss) at epoch 52 is (-4.526830196380615+0j). 
+    Energy (loss) at epoch 52 is (-3.58889102935791-5.3551048040390015e-09j). 
 
-    Energy (loss) at epoch 53 is (-4.526324272155762+2.2351741790771484e-08j). 
+    Energy (loss) at epoch 53 is (-3.5879721641540527-1.0244548320770264e-07j). 
 
-    Energy (loss) at epoch 54 is (-4.521932125091553+7.450580596923828e-09j). 
+    Energy (loss) at epoch 54 is (-3.589085340499878+1.7043203115463257e-07j). 
 
-    Energy (loss) at epoch 55 is (-4.527667999267578-1.210719347000122e-08j). 
+    Energy (loss) at epoch 55 is (-3.5907721519470215-6.245682016015053e-08j). 
 
-    Energy (loss) at epoch 56 is (-4.540007591247559+1.30385160446167e-08j). 
+    Energy (loss) at epoch 56 is (-3.5893917083740234-1.0058283805847168e-07j). 
 
-    Energy (loss) at epoch 57 is (-4.539548397064209+3.725290298461914e-09j). 
+    Energy (loss) at epoch 57 is (-3.588231086730957+3.972090780735016e-07j). 
 
-    Energy (loss) at epoch 58 is (-4.532938003540039-1.1175870895385742e-08j). 
+    Energy (loss) at epoch 58 is (-3.5905158519744873-1.0221265256404877e-07j). 
 
-    Energy (loss) at epoch 59 is (-4.529514312744141+0j). 
+    Energy (loss) at epoch 59 is (-3.592200517654419+2.60770320892334e-08j). 
 
-    Energy (loss) at epoch 60 is (-4.536950588226318+1.4901161193847656e-08j). 
+    Energy (loss) at epoch 60 is (-3.59108567237854+2.784654498100281e-07j). 
 
-    Energy (loss) at epoch 61 is (-4.542108535766602-3.725290298461914e-09j). 
+    Energy (loss) at epoch 61 is (-3.590388774871826+3.905734047293663e-08j). 
 
-    Energy (loss) at epoch 62 is (-4.543961524963379+1.1175870895385742e-08j). 
+    Energy (loss) at epoch 62 is (-3.5911056995391846+1.0151416063308716e-07j). 
 
-    Energy (loss) at epoch 63 is (-4.544973850250244+3.259629011154175e-09j). 
+    Energy (loss) at epoch 63 is (-3.591625452041626+9.313225746154785e-08j). 
 
-    Energy (loss) at epoch 64 is (-4.546509265899658+0j). 
+    Energy (loss) at epoch 64 is (-3.591928482055664+1.1245720088481903e-07j). 
 
-    Energy (loss) at epoch 65 is (-4.544411659240723+7.450580596923828e-09j). 
+    Energy (loss) at epoch 65 is (-3.5921759605407715-1.8207356333732605e-07j). 
 
-    Energy (loss) at epoch 66 is (-4.544755458831787-3.725290298461914e-09j). 
+    Energy (loss) at epoch 66 is (-3.5919196605682373-2.1792948246002197e-07j). 
 
-    Energy (loss) at epoch 67 is (-4.547539234161377+1.1175870895385742e-08j). 
+    Energy (loss) at epoch 67 is (-3.5919320583343506-1.541338860988617e-07j). 
 
-    Energy (loss) at epoch 68 is (-4.549460411071777-3.725290298461914e-09j). 
+    Energy (loss) at epoch 68 is (-3.592583179473877-8.591450750827789e-08j). 
 
-    Energy (loss) at epoch 69 is (-4.5495781898498535+3.725290298461914e-09j). 
+    Energy (loss) at epoch 69 is (-3.5925095081329346+7.776543498039246e-08j). 
 
-    Energy (loss) at epoch 70 is (-4.5511627197265625-8.149072527885437e-10j). 
+    Energy (loss) at epoch 70 is (-3.5921552181243896-3.632158041000366e-08j). 
 
-    Energy (loss) at epoch 71 is (-4.553030014038086+3.725290298461914e-09j). 
+    Energy (loss) at epoch 71 is (-3.592747211456299-1.8131686374545097e-07j). 
 
-    Energy (loss) at epoch 72 is (-4.553210258483887-1.862645149230957e-09j). 
+    Energy (loss) at epoch 72 is (-3.5930752754211426-3.3993273973464966e-08j). 
 
-    Energy (loss) at epoch 73 is (-4.55173921585083-5.587935447692871e-09j). 
+    Energy (loss) at epoch 73 is (-3.5926952362060547-7.427297532558441e-08j). 
 
-    Energy (loss) at epoch 74 is (-4.552300930023193-3.725290298461914e-09j). 
+    Energy (loss) at epoch 74 is (-3.592773675918579+2.8562499210238457e-07j). 
 
-    Energy (loss) at epoch 75 is (-4.554781913757324+0j). 
+    Energy (loss) at epoch 75 is (-3.5930707454681396+1.6530975699424744e-07j). 
 
-    Energy (loss) at epoch 76 is (-4.55612325668335-4.6566128730773926e-09j). 
+    Energy (loss) at epoch 76 is (-3.5931077003479004-6.170012056827545e-08j). 
 
-    Energy (loss) at epoch 77 is (-4.555900573730469-1.6298145055770874e-09j). 
+    Energy (loss) at epoch 77 is (-3.5931994915008545+1.7182901501655579e-07j). 
 
-    Energy (loss) at epoch 78 is (-4.556407451629639+2.7939677238464355e-09j). 
+    Energy (loss) at epoch 78 is (-3.5932748317718506+1.364387571811676e-07j). 
 
-    Energy (loss) at epoch 79 is (-4.556812763214111+1.862645149230957e-09j). 
+    Energy (loss) at epoch 79 is (-3.593214511871338-6.612390279769897e-08j). 
 
 
 
@@ -440,7 +440,7 @@ References
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.699 seconds)
+   **Total running time of the script:** ( 0 minutes  0.706 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vqe_transverse_field_Ising.py:

@@ -173,7 +173,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    The energy/MaxCut metric for the state of spins of the graph described by spins1, spins2, and weights.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">spins1</span><span class="p">,</span> <span class="n">spins2</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">spins1</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,)),</span> <span class="n">spins2</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,)),</span> <span class="n">weights</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">spins</span><span class="p">,</span> <span class="n">spins1</span><span class="p">,</span> <span class="n">spins2</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">spins</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">spins1</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,)),</span> <span class="n">spins2</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,)),</span> <span class="n">weights</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">get_cut</span><span class="p">:</span>
         <span class="n">energy</span> <span class="o">=</span> <span class="n">tl</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">spins</span><span class="p">[</span><span class="n">spins1</span><span class="p">]</span><span class="o">*</span><span class="n">spins</span><span class="p">[</span><span class="n">spins2</span><span class="p">]))</span><span class="o">/</span><span class="mf">2.</span>
     <span class="k">else</span><span class="p">:</span>
@@ -220,7 +220,7 @@
         <footer class="footer">
     <div class="content has-text-centered">
         <div class="block">
-          &copy; Copyright 2021, TensorLy-Quantum developers.<br/>
+          &copy; Copyright 2022, TensorLy-Quantum developers.<br/>
         </div>
     </div>
   </footer>
