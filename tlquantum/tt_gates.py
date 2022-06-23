@@ -4,6 +4,7 @@ from torch import randn, cos, sin, float32, complex64, exp
 from torch.nn import Module, ModuleList, ParameterList, Parameter
 from tensorly.tt_matrix import TTMatrix
 from copy import deepcopy
+from itertools import chain
 
 from .tt_operators import identity
 from .tt_precontraction import qubits_contract, _get_contrsets
@@ -60,7 +61,10 @@ class Unitary(Module):
         -------
         List of pre-contracted gate tensors for general forward pass.
         """
-        return qubits_contract([gate.forward() for gate in self.gates], self.ncontraq, contrsets=self.contrsets)
+        temp = [gate.forward() for gate in self.gates]
+        if isinstance(temp[0], list):
+            temp = temp[0]
+        return qubits_contract(temp, self.ncontraq, contrsets=self.contrsets)
 
 
 class BinaryGatesUnitary(Unitary):
@@ -89,7 +93,6 @@ class BinaryGatesUnitary(Unitary):
 
 class UnaryGatesUnitary(Unitary):
     """A Unitary sub-class that generates a layer of unitary, single-qubit rotations.
-    As simulation occurs in real-space, these rotations are about the Y-axis.
 
     Parameters
     ----------
@@ -115,6 +118,28 @@ class UnaryGatesUnitary(Unitary):
         else:
             raise IndexError('UnaryGatesUnitary has no rotation axis {}.\n'
                              'UnaryGatesUnitary has 3 rotation axes: x, y, and z. The y-axis is default.'.format(index))
+
+
+class InvolutoryGeneratorUnitary(Unitary):
+    """A Unitary sub-class that generates a unitary layer with a generator that is involutory (its own inverse).
+
+    Parameters
+    ----------
+    nqubits : int, number of qubits
+    ncontraq : int, number of qubits to do pre-contraction over
+               (simplifying contraciton path/using fewer indices)
+    involutory_generator : list of tensors, involutory operator to use as generator
+    contrsets : list of lists of ints, the indices of qubit cores to
+                merge in the pre-contraction path.
+
+    Returns
+    -------
+    UnaryGatesUnitary
+    """
+    def __init__(self, nqubits, ncontraq, involutory_generator, contrsets=None):
+        dtype, device = involutory_generator[0].dtype, involutory_generator[0].device
+        super().__init__([], nqubits, ncontraq, contrsets=contrsets, dtype=dtype, device=device)
+        self._set_gates([InvolutoryGenerator(involutory_generator, nqubits, dtype=dtype, device=device)])
 
 
 def build_binary_gates_unitary(nqubits, q2gate, parity, random_initialization=True, dtype=complex64):
@@ -149,6 +174,38 @@ def build_binary_gates_unitary(nqubits, q2gate, parity, random_initialization=Tr
     if parity%2 == 0:
         return layer+temp+[IDENTITY(dtype=dtype, device=device)]
     return [IDENTITY(dtype=dtype, device=device)]+layer+temp
+
+
+class InvolutoryGenerator(Module):
+    """Qubit rotations about the involutory generator.
+
+    Parameters
+    ----------
+    nqubits : int, number of qubits.
+    involutory_generator : list of tensors, involutory operator to use as generator.
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    InvolutoryGenerator
+    """
+    def __init__(self, involutory_generator, nqubits, dtype=complex64, device=None):
+        super().__init__()
+        self.theta = Parameter(randn(1, device=device))
+        self.iden, self.involutory_generator = [identity(dtype=dtype, device=self.theta.device) for i in range(nqubits)], involutory_generator
+
+
+    def forward(self):
+        """Prepares the RotY gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of rotation matrix depending on theta (which is
+        typically updated every epoch through backprop via PyTorch Autograd).
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        temp_iden, temp_involutory_generator = [self.iden[0]*cos(self.theta)] + self.iden[1::], [self.involutory_generator[0]*1j*sin(self.theta)] + self.involutory_generator[1::]
+        return tt_matrix_sum(temp_iden, temp_involutory_generator).factors
 
 
 class RotY(Module):

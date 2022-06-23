@@ -2,7 +2,7 @@ import tensorly as tl
 from tensorly.tt_tensor import TTTensor
 from tensorly.tt_matrix import TTMatrix
 from tensorly.testing import assert_array_almost_equal
-from torch import randint
+from torch import randint, complex64
 from torch import int as pt_int
 from numpy import argmin
 from numpy.random import permutation
@@ -48,6 +48,9 @@ def test_calculate_cut():
     spins1, spins2, weights = spins1[resort_inds], spins2[resort_inds], weights[resort_inds]
     new_energy = calculate_cut(spins, spins1, spins2, weights)
     assert_array_almost_equal(new_energy, true_energy, decimal=err_tol)
+    single_qubit, _ = circuit.forward_single_qubit(state, tl.tensor([[1,0],[0,-1]], dtype=complex64), tl.tensor([[0,1],[1,0]], dtype=complex64))
+    new_true_energy = calculate_cut(single_qubit, spins1, spins2, weights)
+    assert_array_almost_equal(new_true_energy, true_energy, decimal=err_tol)
 
 
 def test_brute_force_calculate_maxcut():

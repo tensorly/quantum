@@ -206,6 +206,80 @@ def test_state_inner_product():
     assert_array_almost_equal(out, true_out[0], decimal=err_tol)
 
 
+def test_to_ket():
+    nqubits, nlayers, ncontraq, ncontral, dtype = 4, 8, 2, 2, complex64
+    state = random_tt((2,2,2,2), rank=[1,4,8,4,1], dtype=dtype)
+    for core in state:
+        core *= 1j*core
+    state = tt_sum(state, random_tt((2,2,2,2), rank=[1,4,8,4,1]))
+    dense_state = state.to_tensor().reshape(-1,1)
+    state = qubits_contract(state, ncontraq)
+    CZ0 = BinaryGatesUnitary(nqubits, ncontraq, cz(), 0)
+    CZ1 = BinaryGatesUnitary(nqubits, ncontraq, cz(), 1)
+    unitaries = [UnaryGatesUnitary(nqubits, ncontraq), CZ0, UnaryGatesUnitary(nqubits, ncontraq), CZ1, UnaryGatesUnitary(nqubits, ncontraq), CZ0, UnaryGatesUnitary(nqubits, ncontraq), CZ1]
+    circuit = TTCircuit(unitaries, ncontraq, ncontral)
+    ket = circuit.to_ket(state)
+    thetas1, thetas2 = tl.tensor([entry.data for entry in circuit.unitaries[0].parameters()]), tl.tensor([entry.data for entry in circuit.unitaries[2].parameters()])
+    thetas3, thetas4 = tl.tensor([entry.data for entry in circuit.unitaries[4].parameters()]), tl.tensor([entry.data for entry in circuit.unitaries[6].parameters()])
+    RY1, RY2 = TTMatrix(manual_rotY_unitary(thetas1)).to_matrix(), TTMatrix(manual_rotY_unitary(thetas2)).to_matrix()
+    RY3, RY4 = TTMatrix(manual_rotY_unitary(thetas3)).to_matrix(), TTMatrix(manual_rotY_unitary(thetas4)).to_matrix()
+    dense_CZ = tl.tensor([[1.,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,-1]], dtype=dtype)
+    dense_layer = dense_CZ
+    for i in range(nqubits//2 - 2):
+        dense_layer = tl.kron(dense_layer, dense_CZ)
+    dense_layer1 = tl.kron(dense_layer, dense_CZ)
+    dense_layer2 = tl.kron(tl.kron(tl.tensor([[1,0],[0,1]]), dense_layer), tl.tensor([[1,0],[0,0]])) + tl.kron(tl.kron(tl.tensor([[1,0],[0,-1]]), dense_layer), tl.tensor([[0,0],[0,1]]))
+    mat1 = tl.dot(tl.dot(dense_layer2, RY2), tl.dot(dense_layer1, RY1))
+    mat2 = tl.dot(tl.dot(dense_layer2, RY4), tl.dot(dense_layer1, RY3))
+    dense_state = tl.dot(tl.dot(mat2, mat1), dense_state)
+    assert_array_almost_equal(ket, dense_state, decimal=5)
+
+    state = random_tt((2,2,2,2), rank=[1,4,8,4,1], dtype=dtype)
+    for core in state:
+        core *= 1j*core
+    state = tt_sum(state, random_tt((2,2,2,2), rank=[1,4,8,4,1]))
+    dense_state = state.to_tensor().reshape(-1,1)
+    state = qubits_contract(state, ncontraq)
+    unitaries = [UnaryGatesUnitary(nqubits, ncontraq)]
+    circuit = TTCircuit(unitaries, ncontraq, ncontral)
+    ket = circuit.to_ket(state)
+    thetas = tl.tensor([entry.data for entry in circuit.unitaries[0].parameters()])
+    RY1 = TTMatrix(manual_rotY_unitary(thetas)).to_matrix()
+    dense_state = tl.dot(RY1, dense_state)
+    assert_array_almost_equal(ket, dense_state, decimal=5)
+
+
+def test_to_operator():
+    nqubits, nlayers, ncontraq, ncontral, dtype = 4, 8, 2, 2, complex64
+    CZ0 = BinaryGatesUnitary(nqubits, ncontraq, cz(), 0)
+    CZ1 = BinaryGatesUnitary(nqubits, ncontraq, cz(), 1)
+    unitaries = [UnaryGatesUnitary(nqubits, ncontraq), CZ0, UnaryGatesUnitary(nqubits, ncontraq), CZ1, UnaryGatesUnitary(nqubits, ncontraq), CZ0, UnaryGatesUnitary(nqubits, ncontraq), CZ1]
+    circuit = TTCircuit(unitaries, ncontraq, ncontral)
+    true_mat = circuit.to_operator()
+    thetas1, thetas2 = tl.tensor([entry.data for entry in circuit.unitaries[0].parameters()]), tl.tensor([entry.data for entry in circuit.unitaries[2].parameters()])
+    thetas3, thetas4 = tl.tensor([entry.data for entry in circuit.unitaries[4].parameters()]), tl.tensor([entry.data for entry in circuit.unitaries[6].parameters()])
+    RY1, RY2 = TTMatrix(manual_rotY_unitary(thetas1)).to_matrix(), TTMatrix(manual_rotY_unitary(thetas2)).to_matrix()
+    RY3, RY4 = TTMatrix(manual_rotY_unitary(thetas3)).to_matrix(), TTMatrix(manual_rotY_unitary(thetas4)).to_matrix()
+    dense_CZ = tl.tensor([[1.,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,-1]], dtype=dtype)
+    dense_layer = dense_CZ
+    for i in range(nqubits//2 - 2):
+        dense_layer = tl.kron(dense_layer, dense_CZ)
+    dense_layer1 = tl.kron(dense_layer, dense_CZ)
+    dense_layer2 = tl.kron(tl.kron(tl.tensor([[1,0],[0,1]]), dense_layer), tl.tensor([[1,0],[0,0]])) + tl.kron(tl.kron(tl.tensor([[1,0],[0,-1]]), dense_layer), tl.tensor([[0,0],[0,1]]))
+    mat1 = tl.dot(tl.dot(dense_layer2, RY2), tl.dot(dense_layer1, RY1))
+    mat2 = tl.dot(tl.dot(dense_layer2, RY4), tl.dot(dense_layer1, RY3))
+    mat = tl.dot(mat2, mat1)
+    assert_array_almost_equal(mat, true_mat, decimal=5)
+
+    unitaries = [UnaryGatesUnitary(nqubits, ncontraq)]
+    circuit = TTCircuit(unitaries, ncontraq, ncontral)
+    true_mat = circuit.to_operator()
+    thetas1 = tl.tensor([entry.data for entry in circuit.unitaries[0].parameters()])
+    RY1 = TTMatrix(manual_rotY_unitary(thetas1)).to_matrix()
+    mat = RY1
+    assert_array_almost_equal(mat, true_mat, decimal=5)
+
+
 def test_tt_dagger():
     nqubits, nlayers, ncontraq, dtype = 8, 4, 1, complex64
     dims = tuple([2 for i in range(nqubits)])

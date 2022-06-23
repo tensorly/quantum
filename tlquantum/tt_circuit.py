@@ -153,6 +153,36 @@ class TTCircuit(Module):
         return contract(eq, *circuit)
 
 
+    def to_ket(self, state):
+        """State vector output of the quantum circuit.
+
+        Parameters
+        ----------
+        state : tt-tensor, input state to be evolved by unitary
+
+        Returns
+        -------
+        vector of floats, ket state vector output from quantum circuit
+        """
+        eq = contraction_eq(self.nqsystems, self.nlsystems, to_ket=True)
+        built_layer = self._build_layer()
+        circuit = built_layer + state
+        return contract(eq, *circuit).reshape(-1,1)
+
+
+    def to_operator(self):
+        """Matrix/operator representation of the quantum circuit
+
+        Returns
+        -------
+        matrix of floats, quantum operator resulting from the circuit
+        """
+        eq = contraction_eq(self.nqsystems, self.nlsystems, to_operator=True)
+        built_layer = self._build_layer()
+        circuit = built_layer
+        return contract(eq, *circuit).reshape(2**self.nqubits, 2**self.nqubits).T
+
+
     def _build_circuit(self, state, operator=[]):
         """Prepares the circuit gates and operators for forward pass of the tensor network.
 

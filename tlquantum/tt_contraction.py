@@ -8,7 +8,7 @@ from collections import Counter
 # License: BSD 3 clause
 
 
-def contraction_eq(nqubits, nlayers, kept_inds=None):
+def contraction_eq(nqubits, nlayers, kept_inds=None, to_ket=False, to_operator=False):
     """Generates einsum contraciton equation.
 
     Parameters
@@ -45,6 +45,21 @@ def contraction_eq(nqubits, nlayers, kept_inds=None):
             if (kept_inds is not None) and (tt == int(nlayers/2)) and (i in kept_inds):
                 idx[2] += max_ind
             factors_idx.append(''.join(get_symbol(j) for j in idx))
+
+    if to_ket:
+        out_idx = ''.join(tt_idx)+''.join(factors_idx)
+        counts = Counter(out_idx)
+        out_idx = ''.join(ind for ind, count in counts.items() if count == 1)
+        return ','.join(i for i in factors_idx) + ',' + ','.join(i for i in tt_idx) + '->' + out_idx
+
+    if to_operator:
+        out_idx = ''.join(factors_idx)
+        counts = Counter(out_idx)
+        out_idx = ''.join(ind for ind, count in counts.items() if count == 1)
+        if nlayers == 1:
+            out_idx = [out_idx[ind] for ind in range(1, len(out_idx), 2)] + [out_idx[ind] for ind in range(0, len(out_idx), 2)]
+            out_idx = ''.join(out_idx)
+        return ','.join(i for i in factors_idx) + '->' + out_idx
 
     start_phys = start2+1+2*(nlayers-1)*nqubits
     start_virt = start2+2*(nqubits-1)+1+2*(nlayers-1)*nqubits + 1

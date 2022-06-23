@@ -2,12 +2,13 @@ import tensorly as tl
 from tensorly.tt_matrix import TTMatrix
 from tensorly.random import random_tt
 from tensorly.testing import assert_array_almost_equal
-from torch import cos, sin, complex64, float32, exp
+from torch import cos, sin, complex64, float32, exp, randn, matrix_exp
 from opt_einsum import contract
 
-from ..tt_gates import exp_pauli_y, UnaryGatesUnitary, RotY, cnot, cz, so4, o4_phases, BinaryGatesUnitary
-from ..tt_operators import identity
+from ..tt_gates import exp_pauli_y, UnaryGatesUnitary, RotY, cnot, cz, so4, o4_phases, BinaryGatesUnitary, InvolutoryGeneratorUnitary
+from ..tt_operators import identity, pauli_y, pauli_x
 from ..tt_contraction import contraction_eq
+from ..tt_sum import tt_matrix_sum
 
 
 # Author: Taylor Lee Patti <taylorpatti@g.harvard.edu>
@@ -69,6 +70,48 @@ def test_RotYUnitary():
     for theta in thetas[1::]:
         dense_layer = tl.kron(dense_layer, tl.tensor([[1,0],[0,1]])*tl.cos(theta/2) + tl.tensor([[0, -1],[1, 0]])*tl.sin(theta/2))
     assert_array_almost_equal(layer, dense_layer)
+
+
+def test_InvolutoryGeneratorUnitary():
+    nqubits, ncontraq, dtype = 4, 2, complex64
+    iden, py = identity().reshape(2,2), pauli_y().reshape(2,2)
+    unitary = []
+    id_list = [0,2]
+    new_theta = randn(1)
+    for ind in range(nqubits):
+        if ind in id_list:
+            unitary.append(identity())
+        else:
+            unitary.append(pauli_y())
+    unitary = InvolutoryGeneratorUnitary(nqubits, ncontraq, unitary)
+    for param in unitary.parameters():
+        param.data = new_theta
+    layer = TTMatrix(unitary.forward()).to_matrix()
+    generator = tl.kron(tl.kron(iden, py), tl.kron(iden, py))
+    dense_layer = tl.eye(2**nqubits)*cos(new_theta) + 1j*generator*sin(new_theta)
+    assert_array_almost_equal(layer, dense_layer)
+
+    nqubits, ncontraq, dtype = 5, 2, complex64
+    iden, px = identity().reshape(2,2), pauli_x().reshape(2,2)
+    unitary = []
+    id_list = [0,1,4]
+    new_theta = randn(1)
+    for ind in range(nqubits):
+        if ind in id_list:
+            unitary.append(identity())
+        else:
+            unitary.append(pauli_x())
+    unitary = InvolutoryGeneratorUnitary(nqubits, ncontraq, unitary)
+    for param in unitary.parameters():
+        param.data = new_theta
+    layer = TTMatrix(unitary.forward()).to_matrix()
+    generator = tl.kron(tl.kron(tl.kron(iden, iden), tl.kron(px, px)), iden)
+    dense_layer = tl.eye(2**nqubits)*cos(new_theta) + 1j*generator*sin(new_theta)
+    assert_array_almost_equal(layer, dense_layer)
+
+    ### New for Grace. We exponentiate the matrix the old fashioned way
+    dense_layer = matrix_exp(1j*new_theta*generator) # ground truth using general matrix exponentiation
+    assert_array_almost_equal(layer, dense_layer, 4)
 
 
 def test_RotXUnitary():
