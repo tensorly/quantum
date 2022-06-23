@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>tlquantum.tt_precontraction.layers_contract &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -208,20 +209,20 @@
         <div class="content main-content">
           
   <section id="tlquantum-tt-precontraction-layers-contract">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_precontraction" title="tlquantum.tt_precontraction"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_precontraction</span></code></a>.layers_contract<a class="headerlink" href="#tlquantum-tt-precontraction-layers-contract" title="Permalink to this headline"></a></h1>
+<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_precontraction" title="tlquantum.tt_precontraction"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_precontraction</span></code></a>.layers_contract<a class="headerlink" href="#tlquantum-tt-precontraction-layers-contract" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tlquantum.tt_precontraction.layers_contract">
 <span class="sig-prename descclassname"><span class="pre">tlquantum.tt_precontraction.</span></span><span class="sig-name descname"><span class="pre">layers_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncontrl</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_precontraction.html#layers_contract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_precontraction.layers_contract" title="Permalink to this definition"></a></dt>
 <dd><p>Contracts sublists of a list of layers vertically (merging cores of multiple layers for a single qubit) up to
 some maximum contraction depth.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>layer_list</strong><span class="classifier">List of tt-tensor layers</span></dt><dd></dd>
 <dt><strong>ncontrl</strong><span class="classifier">Maximum number of layers to contract into each composite layer.</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>List of layers resulting from vertically contracting the layers of layer_list</dt><dd></dd>
 </dl>

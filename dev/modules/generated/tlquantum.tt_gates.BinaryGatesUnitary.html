@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>tlquantum.tt_gates.BinaryGatesUnitary &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -208,14 +209,14 @@
         <div class="content main-content">
           
   <section id="tlquantum-tt-gates-binarygatesunitary">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_gates" title="tlquantum.tt_gates"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_gates</span></code></a>.BinaryGatesUnitary<a class="headerlink" href="#tlquantum-tt-gates-binarygatesunitary" title="Permalink to this headline"></a></h1>
+<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_gates" title="tlquantum.tt_gates"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_gates</span></code></a>.BinaryGatesUnitary<a class="headerlink" href="#tlquantum-tt-gates-binarygatesunitary" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tlquantum.tt_gates.BinaryGatesUnitary">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.tt_gates.</span></span><span class="sig-name descname"><span class="pre">BinaryGatesUnitary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nqubits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncontraq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2gate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contrsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_initialization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_gates.html#BinaryGatesUnitary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_gates.BinaryGatesUnitary" title="Permalink to this definition"></a></dt>
 <dd><p>A Unitary sub-class that generates a layer of a single two-qubit gates accross
 all qubits in a TTCircuit.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>nqubits</strong><span class="classifier">int, number of qubits</span></dt><dd></dd>
 <dt><strong>ncontraq</strong><span class="classifier">int, number of qubits to do pre-contraction over</span></dt><dd><p>(simplifying contraciton path/using fewer indices)</p>
@@ -226,7 +227,7 @@ all qubits in a TTCircuit.</p>
 <dt><strong>device</strong><span class="classifier">string, device on which to run the computation.</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>BinaryGatesUnitary</dt><dd></dd>
 </dl>

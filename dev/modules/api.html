@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>API reference &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
  <script src="../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -215,16 +216,12 @@
         <div class="content main-content">
           
   <section id="api-reference">
-<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline"></a></h1>
+<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
 <p><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum</span></code>: Quantum ML</p>
 <section id="module-tlquantum.density_tensor">
-<span id="density-tensors"></span><h2>Density Tensors<a class="headerlink" href="#module-tlquantum.density_tensor" title="Permalink to this headline"></a></h2>
+<span id="density-tensors"></span><h2>Density Tensors<a class="headerlink" href="#module-tlquantum.density_tensor" title="Permalink to this heading"></a></h2>
 <p>TensorLy-Quantum provides a convenient class for representing and manipulating density tensors:</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.density_tensor.DensityTensor.html#tlquantum.density_tensor.DensityTensor" title="tlquantum.density_tensor.DensityTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DensityTensor</span></code></a>(tensor, subsystems)</p></td>
 <td><p>A quantum state container for state and density matrix operations, including partial traces and quantum information metric calculations.</p></td>
@@ -233,16 +230,12 @@
 </table>
 </section>
 <section id="tensor-trains">
-<h2>Tensor-Trains<a class="headerlink" href="#tensor-trains" title="Permalink to this headline"></a></h2>
+<h2>Tensor-Trains<a class="headerlink" href="#tensor-trains" title="Permalink to this heading"></a></h2>
 <p>Also known as MPO, MPS, tensor-train is an efficient way to represent state-vectors and operators in factorized form.
 In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT format.</p>
 <span class="target" id="module-tlquantum.tt_gates"></span><section id="gates-in-tt-form">
-<h3>Gates in TT-form<a class="headerlink" href="#gates-in-tt-form" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<h3>Gates in TT-form<a class="headerlink" href="#gates-in-tt-form" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.Unitary.html#tlquantum.tt_gates.Unitary" title="tlquantum.tt_gates.Unitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unitary</span></code></a>(gates, nqubits, ncontraq[, ...])</p></td>
 <td><p>A unitary for all qubits in a TTCircuit, using tensor ring tensors with PyTorch Autograd support.</p></td>
@@ -286,11 +279,7 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </tbody>
 </table>
 <p>We also provide some convenience functions to facilitate creation of some of the gates:</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_gates.cz.html#tlquantum.tt_gates.cz" title="tlquantum.tt_gates.cz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cz</span></code></a>([dtype, device])</p></td>
 <td><p>Pair of CZ class instances, one left (control) and one right (transformed).</p></td>
@@ -305,12 +294,8 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </table>
 </section>
 <section id="module-tlquantum.tt_operators">
-<span id="operators-in-tt-form"></span><h3>Operators in TT-form<a class="headerlink" href="#module-tlquantum.tt_operators" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="operators-in-tt-form"></span><h3>Operators in TT-form<a class="headerlink" href="#module-tlquantum.tt_operators" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_operators.unary_hamiltonian.html#tlquantum.tt_operators.unary_hamiltonian" title="tlquantum.tt_operators.unary_hamiltonian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unary_hamiltonian</span></code></a>(op, nqubits, qubits, weights)</p></td>
 <td><p>Generates tt-tensor unitary of one single-qubit operator per qubit.</p></td>
@@ -334,12 +319,8 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </table>
 </section>
 <section id="module-tlquantum.tt_state">
-<span id="states-in-tt-form"></span><h3>States in TT-form<a class="headerlink" href="#module-tlquantum.tt_state" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="states-in-tt-form"></span><h3>States in TT-form<a class="headerlink" href="#module-tlquantum.tt_state" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_state.spins_to_tt_state.html#tlquantum.tt_state.spins_to_tt_state" title="tlquantum.tt_state.spins_to_tt_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spins_to_tt_state</span></code></a>(spins[, device, dtype])</p></td>
 <td><p>Generates tt-tensor state of computational basis product space described by spins.</p></td>
@@ -351,12 +332,8 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </table>
 </section>
 <section id="module-tlquantum.tt_circuit">
-<span id="creating-circuits"></span><h3>Creating circuits<a class="headerlink" href="#module-tlquantum.tt_circuit" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="creating-circuits"></span><h3>Creating circuits<a class="headerlink" href="#module-tlquantum.tt_circuit" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit" title="tlquantum.tt_circuit.TTCircuit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TTCircuit</span></code></a>(unitaries, ncontraq, ncontral[, ...])</p></td>
 <td><p>A simulator for variational quantum circuits using tensor ring tensors with PyTorch Autograd support.</p></td>
@@ -365,12 +342,8 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </table>
 </section>
 <section id="module-tlquantum.tt_sum">
-<span id="adding-tt-mps-mpos"></span><h3>Adding TT/MPS/MPOs<a class="headerlink" href="#module-tlquantum.tt_sum" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="adding-tt-mps-mpos"></span><h3>Adding TT/MPS/MPOs<a class="headerlink" href="#module-tlquantum.tt_sum" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_sum.tt_sum.html#tlquantum.tt_sum.tt_sum" title="tlquantum.tt_sum.tt_sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tt_sum</span></code></a>(t1, t2)</p></td>
 <td><p>Sums two TT tensors in decomposed form</p></td>
@@ -382,26 +355,18 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </table>
 </section>
 <section id="module-tlquantum.tt_contraction">
-<span id="contracting-tensor-networks"></span><h3>Contracting Tensor Networks<a class="headerlink" href="#module-tlquantum.tt_contraction" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="contracting-tensor-networks"></span><h3>Contracting Tensor Networks<a class="headerlink" href="#module-tlquantum.tt_contraction" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_contraction.contraction_eq.html#tlquantum.tt_contraction.contraction_eq" title="tlquantum.tt_contraction.contraction_eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contraction_eq</span></code></a>(nqubits, nlayers[, kept_inds])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_contraction.contraction_eq.html#tlquantum.tt_contraction.contraction_eq" title="tlquantum.tt_contraction.contraction_eq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">contraction_eq</span></code></a>(nqubits, nlayers[, ...])</p></td>
 <td><p>Generates einsum contraciton equation.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="module-tlquantum.tt_precontraction">
-<span id="precontraction"></span><h3>Precontraction<a class="headerlink" href="#module-tlquantum.tt_precontraction" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="precontraction"></span><h3>Precontraction<a class="headerlink" href="#module-tlquantum.tt_precontraction" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.tt_precontraction.qubits_contract.html#tlquantum.tt_precontraction.qubits_contract" title="tlquantum.tt_precontraction.qubits_contract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qubits_contract</span></code></a>(layer, ncontraq[, contrsets])</p></td>
 <td><p>Contracts lists (layers) of tt-tensor cores horizontally (merging multiple cores in a single layer) up to some maximum number of qubits.</p></td>
@@ -414,12 +379,8 @@ In TensorLy-Quantum, we provide out-of-the-box layers and circuits in the TT for
 </section>
 </section>
 <section id="module-tlquantum.maxcut">
-<span id="solving-maxcut"></span><h2>Solving MaxCut<a class="headerlink" href="#module-tlquantum.maxcut" title="Permalink to this headline"></a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<span id="solving-maxcut"></span><h2>Solving MaxCut<a class="headerlink" href="#module-tlquantum.maxcut" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/tlquantum.maxcut.calculate_cut.html#tlquantum.maxcut.calculate_cut" title="tlquantum.maxcut.calculate_cut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calculate_cut</span></code></a>(spins, spins1, spins2, weights)</p></td>
 <td><p>Calculates the MaxCut value of a given state (set of spins) for a given graph (weights).</p></td>

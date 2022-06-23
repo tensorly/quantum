@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>tlquantum.tt_circuit.TTCircuit &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -215,7 +216,7 @@
         <div class="content main-content">
           
   <section id="tlquantum-tt-circuit-ttcircuit">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_circuit" title="tlquantum.tt_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_circuit</span></code></a>.TTCircuit<a class="headerlink" href="#tlquantum-tt-circuit-ttcircuit" title="Permalink to this headline"></a></h1>
+<h1><a class="reference internal" href="../api.html#module-tlquantum.tt_circuit" title="tlquantum.tt_circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.tt_circuit</span></code></a>.TTCircuit<a class="headerlink" href="#tlquantum-tt-circuit-ttcircuit" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tlquantum.tt_circuit.TTCircuit">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.tt_circuit.</span></span><span class="sig-name descname"><span class="pre">TTCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unitaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncontraq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncontral</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contractions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_partial_trace_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit" title="Permalink to this definition"></a></dt>
@@ -226,7 +227,7 @@ measurements of circuit’s qubits; specifically for Multi-Basis Encoding [1], a
 3) the partial trace of the circuit - all with Autograd support.
 [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>unitaries</strong><span class="classifier">list of TT Unitaries, circuit operations</span></dt><dd></dd>
 <dt><strong>ncontraq</strong><span class="classifier">int, number of qubits to do pre-contraction over</span></dt><dd><p>(simplifying contraciton path/using fewer indices)</p>
@@ -244,18 +245,14 @@ and partial traces.</p>
 <dt><strong>device</strong><span class="classifier">string, device on which to run the computation.</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>TTCircuit</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tlquantum.tt_circuit.TTCircuit.forward_expectation_value" title="tlquantum.tt_circuit.TTCircuit.forward_expectation_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_expectation_value</span></code></a>(state, operator[, ...])</p></td>
 <td><p>Full expectation value of self.measurement of the unitary evolved state.</p></td>
@@ -269,6 +266,12 @@ and partial traces.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#tlquantum.tt_circuit.TTCircuit.state_inner_product" title="tlquantum.tt_circuit.TTCircuit.state_inner_product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_inner_product</span></code></a>(state, compare_state)</p></td>
 <td><p>Inner product of input state evolved in unitary with a comparison state.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tlquantum.tt_circuit.TTCircuit.to_ket" title="tlquantum.tt_circuit.TTCircuit.to_ket"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_ket</span></code></a>(state)</p></td>
+<td><p>State vector output of the quantum circuit.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tlquantum.tt_circuit.TTCircuit.to_operator" title="tlquantum.tt_circuit.TTCircuit.to_operator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_operator</span></code></a>()</p></td>
+<td><p>Matrix/operator representation of the quantum circuit</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py method">
@@ -276,14 +279,14 @@ and partial traces.</p>
 <span class="sig-name descname"><span class="pre">forward_expectation_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precontract_operator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit.forward_expectation_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit.forward_expectation_value" title="Permalink to this definition"></a></dt>
 <dd><p>Full expectation value of self.measurement of the unitary evolved state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>state</strong><span class="classifier">tt-tensor, input state to be evolved by unitary</span></dt><dd></dd>
 <dt><strong>operator: tt-tensor, operator of which to get expectation value</strong></dt><dd></dd>
 <dt><strong>precontract_operator: bool, if true, the operator must be precontracted before main contraction pass</strong></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, expectation value of self.measurement with unitary evolved state</dt><dd></dd>
 </dl>
@@ -299,14 +302,14 @@ takes single-operator measurements of these qubits.
 Specifically useful for Multi-Basis Encoding [1] (MBE).
 [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>state</strong><span class="classifier">tt-tensor, input state to be evolved by unitary</span></dt><dd></dd>
 <dt><strong>op1</strong><span class="classifier">tt-tensor, first single-measurement operator</span></dt><dd></dd>
 <dt><strong>op2</strong><span class="classifier">tt-tensor, second single-measurement operator</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, expectation value of self.measurement with unitary evolved state</dt><dd></dd>
 </dl>
@@ -319,13 +322,13 @@ Specifically useful for Multi-Basis Encoding [1] (MBE).
 <span class="sig-name descname"><span class="pre">forward_partial_trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kept_inds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit.forward_partial_trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit.forward_partial_trace" title="Permalink to this definition"></a></dt>
 <dd><p>Partial trace for specified qubits in the output state of TTCircuit.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>state</strong><span class="classifier">tt-tensor, input state to be evolved by unitary</span></dt><dd></dd>
 <dt><strong>kept_inds</strong><span class="classifier">list of ints, indices of the qubits to be kept in the partial trace</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>tensor in matrix form, partial trace of the circuit’s output state</dt><dd></dd>
 </dl>
@@ -338,15 +341,46 @@ Specifically useful for Multi-Basis Encoding [1] (MBE).
 <span class="sig-name descname"><span class="pre">state_inner_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compare_state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit.state_inner_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit.state_inner_product" title="Permalink to this definition"></a></dt>
 <dd><p>Inner product of input state evolved in unitary with a comparison state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>state</strong><span class="classifier">tt-tensor, input state to be evolved by unitary</span></dt><dd></dd>
 <dt><strong>compare_state</strong><span class="classifier">tt-tensor, input state to be compared with evolved state</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, inner product of evolved state with compared state</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tlquantum.tt_circuit.TTCircuit.to_ket">
+<span class="sig-name descname"><span class="pre">to_ket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit.to_ket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit.to_ket" title="Permalink to this definition"></a></dt>
+<dd><p>State vector output of the quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>state</strong><span class="classifier">tt-tensor, input state to be evolved by unitary</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>vector of floats, ket state vector output from quantum circuit</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tlquantum.tt_circuit.TTCircuit.to_operator">
+<span class="sig-name descname"><span class="pre">to_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/tt_circuit.html#TTCircuit.to_operator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.tt_circuit.TTCircuit.to_operator" title="Permalink to this definition"></a></dt>
+<dd><p>Matrix/operator representation of the quantum circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>matrix of floats, quantum operator resulting from the circuit</dt><dd></dd>
 </dl>
 </dd>
 </dl>

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Variational Quantum Algorithms with TensorLy-Quantum &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
  <script src="../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -208,33 +209,32 @@
         <div class="content main-content">
           
   <section id="variational-quantum-algorithms-with-tensorly-quantum">
-<h1>Variational Quantum Algorithms with TensorLy-Quantum<a class="headerlink" href="#variational-quantum-algorithms-with-tensorly-quantum" title="Permalink to this headline"></a></h1>
+<h1>Variational Quantum Algorithms with TensorLy-Quantum<a class="headerlink" href="#variational-quantum-algorithms-with-tensorly-quantum" title="Permalink to this heading"></a></h1>
 <p>TensorLy-Quantum provides the tools to use quantum circuit simulation to solve hard problems with tensor-based simulation of variational quantum algorithms. For instance, TensorLy-Quantum users can both find the ground states of quantum Ising models and construct quantum algorithms for NP-hard classical problems, such as MaxCut. In addition to flexibile circuit ansatze and operator (Hamiltonian) building functions, we also provide the framework for novel quantum algorithms, such as Multi-Basis Encoding.</p>
 <section id="solving-the-transverse-field-ising-model">
-<h2>Solving the Transverse Field Ising Model<a class="headerlink" href="#solving-the-transverse-field-ising-model" title="Permalink to this headline"></a></h2>
+<h2>Solving the Transverse Field Ising Model<a class="headerlink" href="#solving-the-transverse-field-ising-model" title="Permalink to this heading"></a></h2>
 <p>Users can easily build quantum Hamiltonians of interest and solve them
 using the flexible circuit ansatze of TensorLy-Quantum.
 In <a class="reference internal" href="../auto_examples/plot_vqe_transverse_field_Ising.html#sphx-glr-auto-examples-plot-vqe-transverse-field-ising-py"><span class="std std-ref">Variational Quantum Eigensolver</span></a>,
 we provide an example how to execute such an algorithm.</p>
 </section>
 <section id="multi-basis-encoding">
-<h2>Multi-Basis Encoding<a class="headerlink" href="#multi-basis-encoding" title="Permalink to this headline"></a></h2>
-<p>To be able to scale to larger number of qubits, we developed a new technique called Multi-Basis Encoding <a class="footnote-reference brackets" href="#id2" id="id1">1</a> (MBE).
+<h2>Multi-Basis Encoding<a class="headerlink" href="#multi-basis-encoding" title="Permalink to this heading"></a></h2>
+<p>To be able to scale to larger number of qubits, we developed a new technique called Multi-Basis Encoding <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (MBE).
 In <a class="reference internal" href="../auto_examples/plot_mbe_maxcut.html#sphx-glr-auto-examples-plot-mbe-maxcut-py"><span class="std std-ref">Multi-Basis Encoding</span></a>, we provide an example of the MBE
 quantum optimization algorithm for MaxCut via PyTorch Autograd supported TT-tensors with TensorLy-Quantum.</p>
 </section>
 <section id="solving-maxcut">
-<h2>Solving MaxCut<a class="headerlink" href="#solving-maxcut" title="Permalink to this headline"></a></h2>
+<h2>Solving MaxCut<a class="headerlink" href="#solving-maxcut" title="Permalink to this heading"></a></h2>
 <p>We provide all the tools to solve MaxCut problems at scale, <a class="reference internal" href="../modules/api.html#module-tlquantum.maxcut" title="tlquantum.maxcut"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.maxcut</span></code></a></p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin,
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin,
 “Variational Quantum Optimization with Multi-Basis Encodings,” (2021), arXiv:2106.13304.</p>
-</dd>
-</dl>
+</aside>
 </section>
 </section>
 

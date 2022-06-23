@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>tlquantum.maxcut.calculate_cut &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -208,14 +209,14 @@
         <div class="content main-content">
           
   <section id="tlquantum-maxcut-calculate-cut">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.maxcut" title="tlquantum.maxcut"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.maxcut</span></code></a>.calculate_cut<a class="headerlink" href="#tlquantum-maxcut-calculate-cut" title="Permalink to this headline"></a></h1>
+<h1><a class="reference internal" href="../api.html#module-tlquantum.maxcut" title="tlquantum.maxcut"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.maxcut</span></code></a>.calculate_cut<a class="headerlink" href="#tlquantum-maxcut-calculate-cut" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="tlquantum.maxcut.calculate_cut">
-<span class="sig-prename descclassname"><span class="pre">tlquantum.maxcut.</span></span><span class="sig-name descname"><span class="pre">calculate_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/maxcut.html#calculate_cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.maxcut.calculate_cut" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">tlquantum.maxcut.</span></span><span class="sig-name descname"><span class="pre">calculate_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spins2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/maxcut.html#calculate_cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.maxcut.calculate_cut" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the MaxCut value of a given state (set of spins) for a given graph (weights). The weights
 can be given in an arbitrary order, which makes the indices of the spins for each weight necessary.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>spins</strong><span class="classifier">List/tensor of real floats, state spin values</span></dt><dd></dd>
 <dt><strong>wspins1</strong><span class="classifier">List/tensor of ints, spin indices</span></dt><dd></dd>
@@ -224,7 +225,7 @@ can be given in an arbitrary order, which makes the indices of the spins for eac
 <dt><strong>get_cut</strong><span class="classifier">Boolean, if False - return Ising energy definition, if True - return traditional MaxCut metric</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>The energy/MaxCut metric for the state of spins of the graph described by spins1, spins2, and weights.</dt><dd></dd>
 </dl>

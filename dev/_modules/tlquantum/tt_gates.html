@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,6 +26,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -150,6 +151,7 @@
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">ModuleList</span><span class="p">,</span> <span class="n">ParameterList</span><span class="p">,</span> <span class="n">Parameter</span>
 <span class="kn">from</span> <span class="nn">tensorly.tt_matrix</span> <span class="kn">import</span> <span class="n">TTMatrix</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 
 <span class="kn">from</span> <span class="nn">.tt_operators</span> <span class="kn">import</span> <span class="n">identity</span>
 <span class="kn">from</span> <span class="nn">.tt_precontraction</span> <span class="kn">import</span> <span class="n">qubits_contract</span><span class="p">,</span> <span class="n">_get_contrsets</span>
@@ -206,7 +208,10 @@
 <span class="sd">        -------</span>
 <span class="sd">        List of pre-contracted gate tensors for general forward pass.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">qubits_contract</span><span class="p">([</span><span class="n">gate</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">for</span> <span class="n">gate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gates</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">,</span> <span class="n">contrsets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">contrsets</span><span class="p">)</span></div></div>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="n">gate</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">for</span> <span class="n">gate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gates</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">qubits_contract</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ncontraq</span><span class="p">,</span> <span class="n">contrsets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">contrsets</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="BinaryGatesUnitary"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.BinaryGatesUnitary.html#tlquantum.tt_gates.BinaryGatesUnitary">[docs]</a><span class="k">class</span> <span class="nc">BinaryGatesUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
@@ -235,7 +240,6 @@
 
 <div class="viewcode-block" id="UnaryGatesUnitary"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.UnaryGatesUnitary.html#tlquantum.tt_gates.UnaryGatesUnitary">[docs]</a><span class="k">class</span> <span class="nc">UnaryGatesUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a layer of unitary, single-qubit rotations.</span>
-<span class="sd">    As simulation occurs in real-space, these rotations are about the Y-axis.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -261,6 +265,28 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;UnaryGatesUnitary has no rotation axis </span><span class="si">{}</span><span class="s1">.</span><span class="se">\n</span><span class="s1">&#39;</span>
                              <span class="s1">&#39;UnaryGatesUnitary has 3 rotation axes: x, y, and z. The y-axis is default.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span></div>
+
+
+<span class="k">class</span> <span class="nc">InvolutoryGeneratorUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a unitary layer with a generator that is involutory (its own inverse).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nqubits : int, number of qubits</span>
+<span class="sd">    ncontraq : int, number of qubits to do pre-contraction over</span>
+<span class="sd">               (simplifying contraciton path/using fewer indices)</span>
+<span class="sd">    involutory_generator : list of tensors, involutory operator to use as generator</span>
+<span class="sd">    contrsets : list of lists of ints, the indices of qubit cores to</span>
+<span class="sd">                merge in the pre-contraction path.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    UnaryGatesUnitary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">involutory_generator</span><span class="p">,</span> <span class="n">contrsets</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">dtype</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">involutory_generator</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">involutory_generator</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">device</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([],</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">contrsets</span><span class="o">=</span><span class="n">contrsets</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_gates</span><span class="p">([</span><span class="n">InvolutoryGenerator</span><span class="p">(</span><span class="n">involutory_generator</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)])</span>
 
 
 <span class="k">def</span> <span class="nf">build_binary_gates_unitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">q2gate</span><span class="p">,</span> <span class="n">parity</span><span class="p">,</span> <span class="n">random_initialization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">):</span>
@@ -295,6 +321,38 @@
     <span class="k">if</span> <span class="n">parity</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">layer</span><span class="o">+</span><span class="n">temp</span><span class="o">+</span><span class="p">[</span><span class="n">IDENTITY</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)]</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">IDENTITY</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)]</span><span class="o">+</span><span class="n">layer</span><span class="o">+</span><span class="n">temp</span>
+
+
+<span class="k">class</span> <span class="nc">InvolutoryGenerator</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Qubit rotations about the involutory generator.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nqubits : int, number of qubits.</span>
+<span class="sd">    involutory_generator : list of tensors, involutory operator to use as generator.</span>
+<span class="sd">    device : string, device on which to run the computation.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    InvolutoryGenerator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">involutory_generator</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iden</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">involutory_generator</span> <span class="o">=</span> <span class="p">[</span><span class="n">identity</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">involutory_generator</span>
+
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepares the RotY gate for forward contraction by calling the forward method</span>
+<span class="sd">        and preparing the tt-factorized form of rotation matrix depending on theta (which is</span>
+<span class="sd">        typically updated every epoch through backprop via PyTorch Autograd).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Gate tensor for general forward pass.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">temp_iden</span><span class="p">,</span> <span class="n">temp_involutory_generator</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">iden</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">iden</span><span class="p">[</span><span class="mi">1</span><span class="p">::],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">involutory_generator</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">involutory_generator</span><span class="p">[</span><span class="mi">1</span><span class="p">::]</span>
+        <span class="k">return</span> <span class="n">tt_matrix_sum</span><span class="p">(</span><span class="n">temp_iden</span><span class="p">,</span> <span class="n">temp_involutory_generator</span><span class="p">)</span><span class="o">.</span><span class="n">factors</span>
 
 
 <div class="viewcode-block" id="RotY"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY">[docs]</a><span class="k">class</span> <span class="nc">RotY</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>

@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>tlquantum.density_tensor.DensityTensor &#8212; Tensor-Based Quantum Machine Learning</title> 
 <link rel="stylesheet" href="../../_static/tensorly_style.css">
@@ -27,6 +27,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
@@ -215,31 +216,27 @@
         <div class="content main-content">
           
   <section id="tlquantum-density-tensor-densitytensor">
-<h1><a class="reference internal" href="../api.html#module-tlquantum.density_tensor" title="tlquantum.density_tensor"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.density_tensor</span></code></a>.DensityTensor<a class="headerlink" href="#tlquantum-density-tensor-densitytensor" title="Permalink to this headline"></a></h1>
+<h1><a class="reference internal" href="../api.html#module-tlquantum.density_tensor" title="tlquantum.density_tensor"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tlquantum.density_tensor</span></code></a>.DensityTensor<a class="headerlink" href="#tlquantum-density-tensor-densitytensor" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tlquantum.density_tensor.DensityTensor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tlquantum.density_tensor.</span></span><span class="sig-name descname"><span class="pre">DensityTensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsystems</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/density_tensor.html#DensityTensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.density_tensor.DensityTensor" title="Permalink to this definition"></a></dt>
 <dd><p>A quantum state container for state and density matrix operations, including partial
 traces and quantum information metric calculations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tensor</strong><span class="classifier">tt-tensor, state or density matrix</span></dt><dd></dd>
 <dt><strong>subsystems</strong><span class="classifier">list of ints, system sizes in correspondence of the size of tensor</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>DensityTensor</dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tlquantum.density_tensor.DensityTensor.mutual_information" title="tlquantum.density_tensor.DensityTensor.mutual_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mutual_information</span></code></a>(kept_indices1, kept_indices2)</p></td>
 <td><p>Mutual Information for the partial traces of the specified kept indices.</p></td>
@@ -260,12 +257,12 @@ traces and quantum information metric calculations.</p>
 <span class="sig-name descname"><span class="pre">partial_trace_dm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kept_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/density_tensor.html#DensityTensor.partial_trace_dm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.density_tensor.DensityTensor.partial_trace_dm" title="Permalink to this definition"></a></dt>
 <dd><p>Partial trace for density matrix.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>kept_indices</strong><span class="classifier">list of int, indices to not trace over and keep for ptrace</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>DensityTensor, result of partial trace</dt><dd></dd>
 </dl>
@@ -278,12 +275,12 @@ traces and quantum information metric calculations.</p>
 <span class="sig-name descname"><span class="pre">partial_trace_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kept_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/density_tensor.html#DensityTensor.partial_trace_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.density_tensor.DensityTensor.partial_trace_state" title="Permalink to this definition"></a></dt>
 <dd><p>Partial trace for state vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>kept_indices</strong><span class="classifier">list of int, indices to not trace over and keep for partial trace</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>DensityTensor, result of partial trace</dt><dd></dd>
 </dl>
@@ -296,12 +293,12 @@ traces and quantum information metric calculations.</p>
 <span class="sig-name descname"><span class="pre">vonneumann_entropy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kept_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/density_tensor.html#DensityTensor.vonneumann_entropy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.density_tensor.DensityTensor.vonneumann_entropy" title="Permalink to this definition"></a></dt>
 <dd><p>Von Neumann entropy for the partial trace of the density tensor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>kept_indices</strong><span class="classifier">list of int, indices to not trace over and keep for partial trace</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, Von Neumann entropy of specified partial trace</dt><dd></dd>
 </dl>
@@ -314,13 +311,13 @@ traces and quantum information metric calculations.</p>
 <span class="sig-name descname"><span class="pre">mutual_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kept_indices1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kept_indices2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/tlquantum/density_tensor.html#DensityTensor.mutual_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tlquantum.density_tensor.DensityTensor.mutual_information" title="Permalink to this definition"></a></dt>
 <dd><p>Mutual Information for the partial traces of the specified kept indices.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>kept_indices1</strong><span class="classifier">list of int, indices to not trace over and keep for partial trace</span></dt><dd></dd>
 <dt><strong>kept_indices2</strong><span class="classifier">list of int, indices to not trace over and keep for partial trace</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>float, Mutual Information of specified partial traces</dt><dd></dd>
 </dl>
