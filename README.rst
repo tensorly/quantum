@@ -20,6 +20,7 @@ and `PyTorch <https://pytorch.org/>`_.
 
 - **Website:** http://tensorly.org/quantum/
 - **Source-code:**  https://github.com/tensorly/quantum
+- **If TensorLy-Quantum is useful in your research, please cite us at:**  https://arxiv.org/abs/2112.10239
 
 With TensorLy-Quantum, you can easily: 
 
