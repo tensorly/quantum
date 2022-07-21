@@ -561,20 +561,17 @@ def _so4_01(theta, dtype=complex64, device=None):
     -------
     (SO4_01_L, SO4_01_R)
     """
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,0,0,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
-    T01I = [core1, core2]
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,1,1,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
-    T23I = [core1*cos(theta), core2]
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,1,1,0] = core2[0,1,0,0] = 1
-    core2[0,0,1,0] = -1
-    R23I = [core1*sin(theta), core2]
-    return [*tt_matrix_sum(TTMatrix(T01I), tt_matrix_sum(TTMatrix(T23I), TTMatrix(R23I)))]
+    core0, core1 = tl.zeros((1,2,2,2), dtype=dtype, device=device), tl.zeros((2,2,2,1), dtype=dtype, device=device)
+    core0[0,0,0,0] = core1[0,0,0,0] = core1[0,1,1,0] = 1
+    core0[0,1,1,1] = 1
+    core1[1,0,0,0] = core1[1,1,1,0] = cos(theta)
+    core1[1,0,1,0] = -sin(theta)
+    core1[1,1,0,0] = sin(theta)
+    return [core0, core1]
 
 
 def _so4_12(theta, dtype=complex64, device=None):
+    ### Is rank 4, not rank 6, but rank 4 decomposition non-trivial.
     """Two-qubit SO4 gates in tt-tensor form with rotations along first and second
     qubit states.
 
@@ -613,17 +610,13 @@ def _so4_23(theta, dtype=complex64, device=None):
     -------
     (SO4_23_L, SO4_23_R)
     """
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,1,1,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
-    T23I = [core1, core2]
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,0,0,0] = core2[0,0,0,0] = core2[0,1,1,0] = 1
-    T01I = [core1*cos(theta), core2]
-    core1, core2 = tl.zeros((1,2,2,1), dtype=dtype, device=device), tl.zeros((1,2,2,1), dtype=dtype, device=device)
-    core1[0,0,0,0] = core2[0,1,0,0] = 1
-    core2[0,0,1,0] = -1
-    R01I = [core1*sin(theta), core2]
-    return [*tt_matrix_sum(TTMatrix(T23I), tt_matrix_sum(TTMatrix(T01I), TTMatrix(R01I)))]
+    core0, core1 = tl.zeros((1,2,2,2), dtype=dtype, device=device), tl.zeros((2,2,2,1), dtype=dtype, device=device)
+    core0[0,1,1,0] = core1[0,0,0,0] = core1[0,1,1,0] = 1
+    core0[0,0,0,1] = 1
+    core1[1,0,0,0] = core1[1,1,1,0] = cos(theta)
+    core1[1,0,1,0] = -sin(theta)
+    core1[1,1,0,0] = sin(theta)
+    return [core0, core1]
 
 
 def o4_phases(phases=None, dtype=complex64, device=None):
