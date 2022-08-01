@@ -280,6 +280,7 @@ class RotZ(Module):
     def __init__(self, dtype=complex64, device=None):
         super().__init__()
         self.theta, self.dtype, self.device = Parameter(randn(1, device=device)), dtype, device
+        self.iden, self.epz = identity(dtype=dtype, device=self.theta.device), exp_pauli_z(dtype=dtype, device=self.theta.device)
 
 
     def forward(self):
@@ -291,7 +292,7 @@ class RotZ(Module):
         -------
         Gate tensor for general forward pass.
         """
-        return tl.tensor([[[[exp(-1j*self.theta/2)],[0]],[[0],[exp(1j*self.theta/2)]]]], dtype=self.dtype, device=self.device)
+        return self.iden*cos(self.theta/2)+self.epz*sin(self.theta/2)
 
 
 class IDENTITY(Module):
@@ -710,3 +711,14 @@ def exp_pauli_x(dtype=complex64, device=None):
     tt-tensor core, sin(theta) X-rotation component.
     """
     return tl.tensor([[[[0],[-1j]],[[-1j],[0]]]], dtype=dtype, device=device)
+
+def exp_pauli_z(dtype=complex64, device=None):
+    """Matrix for sin(theta) component of Z-axis rotation in tt-tensor form.
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+    Returns
+    -------
+    tt-tensor core, sin(theta) X-rotation component.
+    """
+    return tl.tensor([[[[-1j],[0.]],[[0],[1j]]]], dtype=dtype, device=device)
