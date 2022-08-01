@@ -721,4 +721,4 @@ def exp_pauli_z(dtype=complex64, device=None):
     -------
     tt-tensor core, sin(theta) X-rotation component.
     """
-    return tl.tensor([[[[1],[0.]],[[0],[-1]]]], dtype=dtype, device=device)
+    return tl.tensor([[[[-1j],[0.]],[[0],[1j]]]], dtype=dtype, device=device)
