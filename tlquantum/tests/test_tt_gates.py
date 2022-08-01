@@ -16,7 +16,7 @@ from ..tt_sum import tt_matrix_sum
 # License: BSD 3 clause
 
 
-err_tol = 5 #decimals precision
+err_tol = 4 #decimals precision
 def manual_rotY_unitary(thetas):
     nqubits, layer = len(thetas), []
     iden, epy = IDENTITY.to(thetas.device), EXP_PAULI_Y.to(thetas.device)
