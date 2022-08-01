@@ -1,9 +1,5 @@
 :orphan:
 
-
-
-.. _sphx_glr_auto_examples:
-
 Gallery of examples
 ===================
 
@@ -20,14 +16,42 @@ We provide examples of TensorLy-Quantum usage:
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Multi-Basis Encoding ([1]_) (MBE) quantum optimization algorithm for MaxCut using TensorLy-Quan...">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_mbe_maxcut_thumb.png
-     :alt: Multi-Basis Encoding
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_mbe_maxcut_thumb.png
+    :alt: Multi-Basis Encoding
 
-     :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py`
+  :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Multi-Basis Encoding</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Variational Quantum Eigensolver ([1]_) (VQE)  with Transverse Field Ising Model Hamiltonian usi...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_vqe_transverse_field_Ising_thumb.png
+    :alt: Variational Quantum Eigensolver
+
+  :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Variational Quantum Eigensolver</div>
+    </div>
+
 
 .. raw:: html
 
@@ -38,48 +62,20 @@ We provide examples of TensorLy-Quantum usage:
    :hidden:
 
    /auto_examples/plot_mbe_maxcut
+   /auto_examples/plot_vqe_transverse_field_Ising
 
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Variational Quantum Eigensolver ([1]_) (VQE)  with Transverse Field Ising Model Hamiltonian usi...">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_vqe_transverse_field_Ising_thumb.png
-     :alt: Variational Quantum Eigensolver
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
 
-     :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py`
+    .. container:: sphx-glr-download sphx-glr-download-python
 
-.. raw:: html
+      :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
 
-    </div>
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_vqe_transverse_field_Ising
-.. raw:: html
-
-    <div class="sphx-glr-clear"></div>
-
-
-
-.. only :: html
-
- .. container:: sphx-glr-footer
-    :class: sphx-glr-footer-gallery
-
-
-  .. container:: sphx-glr-download sphx-glr-download-python
-
-    :download:`Download all examples in Python source code: auto_examples_python.zip </auto_examples/auto_examples_python.zip>`
-
-
-
-  .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-    :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
+      :download:`Download all examples in Jupyter notebooks: auto_examples_jupyter.zip </auto_examples/auto_examples_jupyter.zip>`
 
 
 .. only:: html
