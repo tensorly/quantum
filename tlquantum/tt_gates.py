@@ -107,14 +107,14 @@ class UnaryGatesUnitary(Unitary):
     -------
     UnaryGatesUnitary
     """
-    def __init__(self, nqubits, ncontraq, axis='y', contrsets=None, dtype=complex64, device=None):
+    def __init__(self, nqubits, ncontraq, axis='y', contrsets=None, dtype=complex64, device=None, random=False):
         super().__init__([], nqubits, ncontraq, contrsets=contrsets, dtype=dtype, device=device)
         if axis == 'y':
-            self._set_gates([RotY(dtype=dtype, device=device) for i in range(self.nqubits)])
+            self._set_gates([RotY(dtype=dtype, device=device, random=random) for i in range(self.nqubits)])
         elif axis == 'x':
-            self._set_gates([RotX(dtype=dtype, device=device) for i in range(self.nqubits)])
+            self._set_gates([RotX(dtype=dtype, device=device, random=random) for i in range(self.nqubits)])
         elif axis == 'z':
-            self._set_gates([RotZ(dtype=dtype, device=device) for i in range(self.nqubits)])
+            self._set_gates([RotZ(dtype=dtype, device=device, random=random) for i in range(self.nqubits)])
         else:
             raise IndexError('UnaryGatesUnitary has no rotation axis {}.\n'
                              'UnaryGatesUnitary has 3 rotation axes: x, y, and z. The y-axis is default.'.format(index))
@@ -219,10 +219,11 @@ class RotY(Module):
     -------
     RotY
     """
-    def __init__(self, dtype=complex64, device=None):
+    def __init__(self, dtype=complex64, device=None, random=False):
         super().__init__()
-        self.theta = Parameter(randn(1, device=device))
-        self.iden, self.epy = identity(dtype=dtype, device=self.theta.device), exp_pauli_y(dtype=dtype, device=self.theta.device)
+        self.device, self.random = device, random
+        self.theta = Parameter(randn(1, device=self.device))
+        self.iden, self.epy = identity(dtype=dtype, device=self.device), exp_pauli_y(dtype=dtype, device=self.device)
 
 
     def forward(self):
@@ -234,6 +235,8 @@ class RotY(Module):
         -------
         Gate tensor for general forward pass.
         """
+        if self.random == True:
+            self.theta = Parameter(randn(1, device=self.device))
         return self.iden*cos(self.theta/2)+self.epy*sin(self.theta/2)
 
 
@@ -248,10 +251,11 @@ class RotX(Module):
     -------
     RotX
     """
-    def __init__(self, dtype=complex64, device=None):
+    def __init__(self, dtype=complex64, device=None, random=False):
         super().__init__()
-        self.theta = Parameter(randn(1, device=device))
-        self.iden, self.epx = identity(dtype=dtype, device=self.theta.device), exp_pauli_x(dtype=dtype, device=self.theta.device)
+        self.device, self.random = device, random
+        self.theta = Parameter(randn(1, device=self.device))
+        self.iden, self.epx = identity(dtype=dtype, device=self.device), exp_pauli_x(dtype=dtype, device=self.device)
 
 
     def forward(self):
@@ -263,6 +267,8 @@ class RotX(Module):
         -------
         Gate tensor for general forward pass.
         """
+        if self.random == True:
+            self.theta = Parameter(randn(1, device=self.device))
         return self.iden*cos(self.theta/2)+self.epx*sin(self.theta/2)
 
 
@@ -277,10 +283,11 @@ class RotZ(Module):
     -------
     RotZ
     """
-    def __init__(self, dtype=complex64, device=None):
+    def __init__(self, dtype=complex64, device=None, random=False):
         super().__init__()
-        self.theta, self.dtype, self.device = Parameter(randn(1, device=device)), dtype, device
-        self.iden, self.epz = identity(dtype=dtype, device=self.theta.device), exp_pauli_z(dtype=dtype, device=self.theta.device)
+        self.device, self.random = device, random
+        self.theta, self.dtype = Parameter(randn(1, device=self.device)), dtype
+        self.iden, self.epz = identity(dtype=dtype, device=self.device), exp_pauli_z(dtype=dtype, device=self.device)
 
 
     def forward(self):
@@ -292,6 +299,8 @@ class RotZ(Module):
         -------
         Gate tensor for general forward pass.
         """
+        if self.random == True:
+            self.theta = Parameter(randn(1, device=self.device))
         return self.iden*cos(self.theta/2)+self.epz*sin(self.theta/2)
 
 
