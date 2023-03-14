@@ -3,12 +3,15 @@
 
 .. _sphx_glr_auto_examples_sg_execution_times:
 
+
 Computation times
 =================
-**00:02.657** total execution time for **auto_examples** files:
+**00:01.928** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py` (``plot_mbe_maxcut.py``)                                 | 00:01.777 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py` (``plot_mbe_maxcut.py``)                                 | 00:01.290 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py` (``plot_vqe_transverse_field_Ising.py``) | 00:00.879 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py` (``plot_vqe_transverse_field_Ising.py``) | 00:00.638 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_htaacqsdp.py` (``htaacqsdp.py``)                                             | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------------+-----------+--------+

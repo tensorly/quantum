@@ -1,4 +1,4 @@
-/*! bulma.io v0.9.3 | MIT License | github.com/jgthms/bulma */
+/*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .button, .input, .textarea, .select select, .file-cta,
 .file-name, .pagination-previous,
@@ -486,7 +486,7 @@ a.box:active {
     .button.is-white[disabled],
     fieldset[disabled] .button.is-white {
       background-color: white;
-      border-color: transparent;
+      border-color: white;
       box-shadow: none; }
     .button.is-white.is-inverted {
       background-color: #0a0a0a;
@@ -554,7 +554,7 @@ a.box:active {
     .button.is-black[disabled],
     fieldset[disabled] .button.is-black {
       background-color: #0a0a0a;
-      border-color: transparent;
+      border-color: #0a0a0a;
       box-shadow: none; }
     .button.is-black.is-inverted {
       background-color: white;
@@ -622,7 +622,7 @@ a.box:active {
     .button.is-light[disabled],
     fieldset[disabled] .button.is-light {
       background-color: whitesmoke;
-      border-color: transparent;
+      border-color: whitesmoke;
       box-shadow: none; }
     .button.is-light.is-inverted {
       background-color: rgba(0, 0, 0, 0.7);
@@ -692,7 +692,7 @@ a.box:active {
     fieldset[disabled] .button.note,
     fieldset[disabled] blockquote.button {
       background-color: #363636;
-      border-color: transparent;
+      border-color: #363636;
       box-shadow: none; }
     .button.is-dark.is-inverted, .button.is-inverted.note, blockquote.button.is-inverted {
       background-color: #fff;
@@ -767,7 +767,7 @@ a.box:active {
     fieldset[disabled] .button.is-primary,
     fieldset[disabled] .button.hint {
       background-color: #00d1b2;
-      border-color: transparent;
+      border-color: #00d1b2;
       box-shadow: none; }
     .button.is-primary.is-inverted, .button.is-inverted.hint {
       background-color: #fff;
@@ -850,7 +850,7 @@ a.box:active {
     fieldset[disabled] .button.is-link,
     fieldset[disabled] .button.important {
       background-color: #485fc7;
-      border-color: transparent;
+      border-color: #485fc7;
       box-shadow: none; }
     .button.is-link.is-inverted, .button.is-inverted.important {
       background-color: #fff;
@@ -934,7 +934,7 @@ a.box:active {
     fieldset[disabled] .button.tip,
     fieldset[disabled] .button.info {
       background-color: #3e8ed0;
-      border-color: transparent;
+      border-color: #3e8ed0;
       box-shadow: none; }
     .button.is-info.is-inverted, .button.is-inverted.tip, .button.is-inverted.info {
       background-color: #fff;
@@ -1019,7 +1019,7 @@ a.box:active {
     .button.is-success[disabled],
     fieldset[disabled] .button.is-success {
       background-color: #48c78e;
-      border-color: transparent;
+      border-color: #48c78e;
       box-shadow: none; }
     .button.is-success.is-inverted {
       background-color: #fff;
@@ -1101,7 +1101,7 @@ a.box:active {
     fieldset[disabled] .button.warning,
     fieldset[disabled] .versionchanged > p.button {
       background-color: #ffe08a;
-      border-color: transparent;
+      border-color: #ffe08a;
       box-shadow: none; }
     .button.is-warning.is-inverted, .button.is-inverted.caution, .button.is-inverted.warning, .versionchanged > p.button.is-inverted {
       background-color: rgba(0, 0, 0, 0.7);
@@ -1192,7 +1192,7 @@ a.box:active {
     fieldset[disabled] .button.danger,
     fieldset[disabled] .button.error {
       background-color: #f14668;
-      border-color: transparent;
+      border-color: #f14668;
       box-shadow: none; }
     .button.is-danger.is-inverted, .button.is-inverted.attention, .button.is-inverted.danger, .button.is-inverted.error {
       background-color: #fff;
@@ -1347,6 +1347,28 @@ a.box:active {
     .buttons.is-right:not(.has-addons) .button:not(.is-fullwidth) {
       margin-left: 0.25rem;
       margin-right: 0.25rem; }
+
+@media screen and (max-width: 768px) {
+  .button.is-responsive.is-small {
+    font-size: 0.5625rem; }
+  .button.is-responsive,
+  .button.is-responsive.is-normal {
+    font-size: 0.65625rem; }
+  .button.is-responsive.is-medium {
+    font-size: 0.75rem; }
+  .button.is-responsive.is-large {
+    font-size: 1rem; } }
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .button.is-responsive.is-small {
+    font-size: 0.65625rem; }
+  .button.is-responsive,
+  .button.is-responsive.is-normal {
+    font-size: 0.75rem; }
+  .button.is-responsive.is-medium {
+    font-size: 1rem; }
+  .button.is-responsive.is-large {
+    font-size: 1.25rem; } }
 
 .container {
   flex-grow: 1;
@@ -1926,7 +1948,7 @@ div.icon-text {
   .table th {
     color: #363636; }
     .table th:not([align]) {
-      text-align: inherit; }
+      text-align: left; }
   .table tr.is-selected {
     background-color: #00d1b2;
     color: #fff; }
@@ -2497,7 +2519,8 @@ a.tag:hover {
   .select.is-large {
     font-size: 1.5rem; }
   .select.is-disabled::after {
-    border-color: #7a7a7a; }
+    border-color: #7a7a7a !important;
+    opacity: 0.5; }
   .select.is-fullwidth {
     width: 100%; }
     .select.is-fullwidth select {
@@ -4312,6 +4335,11 @@ body.has-navbar-fixed-bottom {
 
 .navbar-burger {
   color: #4a4a4a;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
   cursor: pointer;
   display: block;
   height: 4rem;
@@ -4655,9 +4683,11 @@ a.navbar-item,
   .pagination-next:active,
   .pagination-link:active {
     box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2); }
-  .pagination-previous[disabled],
+  .pagination-previous[disabled], .pagination-previous.is-disabled,
   .pagination-next[disabled],
-  .pagination-link[disabled] {
+  .pagination-next.is-disabled,
+  .pagination-link[disabled],
+  .pagination-link.is-disabled {
     background-color: #dbdbdb;
     border-color: #dbdbdb;
     box-shadow: none;
@@ -4997,121 +5027,121 @@ label.panel-block {
   flex-grow: 1;
   flex-shrink: 1;
   padding: 0; }
-  .columns.is-mobile > .column.is-narrow {
+  .columns.is-mobile > .column.is-narrow, .is-mobile.footnote > .column.is-narrow, .is-mobile.citation > .column.is-narrow {
     flex: none;
     width: unset; }
-  .columns.is-mobile > .column.is-full {
+  .columns.is-mobile > .column.is-full, .is-mobile.footnote > .column.is-full, .is-mobile.citation > .column.is-full {
     flex: none;
     width: 100%; }
-  .columns.is-mobile > .column.is-three-quarters {
+  .columns.is-mobile > .column.is-three-quarters, .is-mobile.footnote > .column.is-three-quarters, .is-mobile.citation > .column.is-three-quarters {
     flex: none;
     width: 75%; }
-  .columns.is-mobile > .column.is-two-thirds {
+  .columns.is-mobile > .column.is-two-thirds, .is-mobile.footnote > .column.is-two-thirds, .is-mobile.citation > .column.is-two-thirds {
     flex: none;
     width: 66.6666%; }
-  .columns.is-mobile > .column.is-half {
+  .columns.is-mobile > .column.is-half, .is-mobile.footnote > .column.is-half, .is-mobile.citation > .column.is-half {
     flex: none;
     width: 50%; }
-  .columns.is-mobile > .column.is-one-third {
+  .columns.is-mobile > .column.is-one-third, .is-mobile.footnote > .column.is-one-third, .is-mobile.citation > .column.is-one-third {
     flex: none;
     width: 33.3333%; }
-  .columns.is-mobile > .column.is-one-quarter {
+  .columns.is-mobile > .column.is-one-quarter, .is-mobile.footnote > .column.is-one-quarter, .is-mobile.citation > .column.is-one-quarter {
     flex: none;
     width: 25%; }
-  .columns.is-mobile > .column.is-one-fifth {
+  .columns.is-mobile > .column.is-one-fifth, .is-mobile.footnote > .column.is-one-fifth, .is-mobile.citation > .column.is-one-fifth {
     flex: none;
     width: 20%; }
-  .columns.is-mobile > .column.is-two-fifths {
+  .columns.is-mobile > .column.is-two-fifths, .is-mobile.footnote > .column.is-two-fifths, .is-mobile.citation > .column.is-two-fifths {
     flex: none;
     width: 40%; }
-  .columns.is-mobile > .column.is-three-fifths {
+  .columns.is-mobile > .column.is-three-fifths, .is-mobile.footnote > .column.is-three-fifths, .is-mobile.citation > .column.is-three-fifths {
     flex: none;
     width: 60%; }
-  .columns.is-mobile > .column.is-four-fifths {
+  .columns.is-mobile > .column.is-four-fifths, .is-mobile.footnote > .column.is-four-fifths, .is-mobile.citation > .column.is-four-fifths {
     flex: none;
     width: 80%; }
-  .columns.is-mobile > .column.is-offset-three-quarters {
+  .columns.is-mobile > .column.is-offset-three-quarters, .is-mobile.footnote > .column.is-offset-three-quarters, .is-mobile.citation > .column.is-offset-three-quarters {
     margin-left: 75%; }
-  .columns.is-mobile > .column.is-offset-two-thirds {
+  .columns.is-mobile > .column.is-offset-two-thirds, .is-mobile.footnote > .column.is-offset-two-thirds, .is-mobile.citation > .column.is-offset-two-thirds {
     margin-left: 66.6666%; }
-  .columns.is-mobile > .column.is-offset-half {
+  .columns.is-mobile > .column.is-offset-half, .is-mobile.footnote > .column.is-offset-half, .is-mobile.citation > .column.is-offset-half {
     margin-left: 50%; }
-  .columns.is-mobile > .column.is-offset-one-third {
+  .columns.is-mobile > .column.is-offset-one-third, .is-mobile.footnote > .column.is-offset-one-third, .is-mobile.citation > .column.is-offset-one-third {
     margin-left: 33.3333%; }
-  .columns.is-mobile > .column.is-offset-one-quarter {
+  .columns.is-mobile > .column.is-offset-one-quarter, .is-mobile.footnote > .column.is-offset-one-quarter, .is-mobile.citation > .column.is-offset-one-quarter {
     margin-left: 25%; }
-  .columns.is-mobile > .column.is-offset-one-fifth {
+  .columns.is-mobile > .column.is-offset-one-fifth, .is-mobile.footnote > .column.is-offset-one-fifth, .is-mobile.citation > .column.is-offset-one-fifth {
     margin-left: 20%; }
-  .columns.is-mobile > .column.is-offset-two-fifths {
+  .columns.is-mobile > .column.is-offset-two-fifths, .is-mobile.footnote > .column.is-offset-two-fifths, .is-mobile.citation > .column.is-offset-two-fifths {
     margin-left: 40%; }
-  .columns.is-mobile > .column.is-offset-three-fifths {
+  .columns.is-mobile > .column.is-offset-three-fifths, .is-mobile.footnote > .column.is-offset-three-fifths, .is-mobile.citation > .column.is-offset-three-fifths {
     margin-left: 60%; }
-  .columns.is-mobile > .column.is-offset-four-fifths {
+  .columns.is-mobile > .column.is-offset-four-fifths, .is-mobile.footnote > .column.is-offset-four-fifths, .is-mobile.citation > .column.is-offset-four-fifths {
     margin-left: 80%; }
-  .columns.is-mobile > .column.is-0 {
+  .columns.is-mobile > .column.is-0, .is-mobile.footnote > .column.is-0, .is-mobile.citation > .column.is-0 {
     flex: none;
     width: 0%; }
-  .columns.is-mobile > .column.is-offset-0 {
+  .columns.is-mobile > .column.is-offset-0, .is-mobile.footnote > .column.is-offset-0, .is-mobile.citation > .column.is-offset-0 {
     margin-left: 0%; }
-  .columns.is-mobile > .column.is-1 {
+  .columns.is-mobile > .column.is-1, .is-mobile.footnote > .column.is-1, .is-mobile.citation > .column.is-1 {
     flex: none;
     width: 8.33333%; }
-  .columns.is-mobile > .column.is-offset-1 {
+  .columns.is-mobile > .column.is-offset-1, .is-mobile.footnote > .column.is-offset-1, .is-mobile.citation > .column.is-offset-1 {
     margin-left: 8.33333%; }
-  .columns.is-mobile > .column.is-2 {
+  .columns.is-mobile > .column.is-2, .is-mobile.footnote > .column.is-2, .is-mobile.citation > .column.is-2 {
     flex: none;
     width: 16.66667%; }
-  .columns.is-mobile > .column.is-offset-2 {
+  .columns.is-mobile > .column.is-offset-2, .is-mobile.footnote > .column.is-offset-2, .is-mobile.citation > .column.is-offset-2 {
     margin-left: 16.66667%; }
-  .columns.is-mobile > .column.is-3 {
+  .columns.is-mobile > .column.is-3, .is-mobile.footnote > .column.is-3, .is-mobile.citation > .column.is-3 {
     flex: none;
     width: 25%; }
-  .columns.is-mobile > .column.is-offset-3 {
+  .columns.is-mobile > .column.is-offset-3, .is-mobile.footnote > .column.is-offset-3, .is-mobile.citation > .column.is-offset-3 {
     margin-left: 25%; }
-  .columns.is-mobile > .column.is-4 {
+  .columns.is-mobile > .column.is-4, .is-mobile.footnote > .column.is-4, .is-mobile.citation > .column.is-4 {
     flex: none;
     width: 33.33333%; }
-  .columns.is-mobile > .column.is-offset-4 {
+  .columns.is-mobile > .column.is-offset-4, .is-mobile.footnote > .column.is-offset-4, .is-mobile.citation > .column.is-offset-4 {
     margin-left: 33.33333%; }
-  .columns.is-mobile > .column.is-5 {
+  .columns.is-mobile > .column.is-5, .is-mobile.footnote > .column.is-5, .is-mobile.citation > .column.is-5 {
     flex: none;
     width: 41.66667%; }
-  .columns.is-mobile > .column.is-offset-5 {
+  .columns.is-mobile > .column.is-offset-5, .is-mobile.footnote > .column.is-offset-5, .is-mobile.citation > .column.is-offset-5 {
     margin-left: 41.66667%; }
-  .columns.is-mobile > .column.is-6 {
+  .columns.is-mobile > .column.is-6, .is-mobile.footnote > .column.is-6, .is-mobile.citation > .column.is-6 {
     flex: none;
     width: 50%; }
-  .columns.is-mobile > .column.is-offset-6 {
+  .columns.is-mobile > .column.is-offset-6, .is-mobile.footnote > .column.is-offset-6, .is-mobile.citation > .column.is-offset-6 {
     margin-left: 50%; }
-  .columns.is-mobile > .column.is-7 {
+  .columns.is-mobile > .column.is-7, .is-mobile.footnote > .column.is-7, .is-mobile.citation > .column.is-7 {
     flex: none;
     width: 58.33333%; }
-  .columns.is-mobile > .column.is-offset-7 {
+  .columns.is-mobile > .column.is-offset-7, .is-mobile.footnote > .column.is-offset-7, .is-mobile.citation > .column.is-offset-7 {
     margin-left: 58.33333%; }
-  .columns.is-mobile > .column.is-8 {
+  .columns.is-mobile > .column.is-8, .is-mobile.footnote > .column.is-8, .is-mobile.citation > .column.is-8 {
     flex: none;
     width: 66.66667%; }
-  .columns.is-mobile > .column.is-offset-8 {
+  .columns.is-mobile > .column.is-offset-8, .is-mobile.footnote > .column.is-offset-8, .is-mobile.citation > .column.is-offset-8 {
     margin-left: 66.66667%; }
-  .columns.is-mobile > .column.is-9 {
+  .columns.is-mobile > .column.is-9, .is-mobile.footnote > .column.is-9, .is-mobile.citation > .column.is-9 {
     flex: none;
     width: 75%; }
-  .columns.is-mobile > .column.is-offset-9 {
+  .columns.is-mobile > .column.is-offset-9, .is-mobile.footnote > .column.is-offset-9, .is-mobile.citation > .column.is-offset-9 {
     margin-left: 75%; }
-  .columns.is-mobile > .column.is-10 {
+  .columns.is-mobile > .column.is-10, .is-mobile.footnote > .column.is-10, .is-mobile.citation > .column.is-10 {
     flex: none;
     width: 83.33333%; }
-  .columns.is-mobile > .column.is-offset-10 {
+  .columns.is-mobile > .column.is-offset-10, .is-mobile.footnote > .column.is-offset-10, .is-mobile.citation > .column.is-offset-10 {
     margin-left: 83.33333%; }
-  .columns.is-mobile > .column.is-11 {
+  .columns.is-mobile > .column.is-11, .is-mobile.footnote > .column.is-11, .is-mobile.citation > .column.is-11 {
     flex: none;
     width: 91.66667%; }
-  .columns.is-mobile > .column.is-offset-11 {
+  .columns.is-mobile > .column.is-offset-11, .is-mobile.footnote > .column.is-offset-11, .is-mobile.citation > .column.is-offset-11 {
     margin-left: 91.66667%; }
-  .columns.is-mobile > .column.is-12 {
+  .columns.is-mobile > .column.is-12, .is-mobile.footnote > .column.is-12, .is-mobile.citation > .column.is-12 {
     flex: none;
     width: 100%; }
-  .columns.is-mobile > .column.is-offset-12 {
+  .columns.is-mobile > .column.is-offset-12, .is-mobile.footnote > .column.is-offset-12, .is-mobile.citation > .column.is-offset-12 {
     margin-left: 100%; }
   @media screen and (max-width: 768px) {
     .column.is-narrow-mobile {
@@ -5816,307 +5846,307 @@ label.panel-block {
     .column.is-offset-12-fullhd {
       margin-left: 100%; } }
 
-.columns {
+.columns, .footnote, .citation {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0; }
-  .columns:last-child {
+  .columns:last-child, .footnote:last-child, .citation:last-child {
     margin-bottom: 0; }
-  .columns:not(:last-child) {
+  .columns:not(:last-child), .footnote:not(:last-child), .citation:not(:last-child) {
     margin-bottom: calc(1.5rem - 0); }
-  .columns.is-centered {
+  .columns.is-centered, .is-centered.footnote, .is-centered.citation {
     justify-content: center; }
-  .columns.is-gapless {
+  .columns.is-gapless, .is-gapless.footnote, .is-gapless.citation {
     margin-left: 0;
     margin-right: 0;
     margin-top: 0; }
-    .columns.is-gapless > .column {
+    .columns.is-gapless > .column, .is-gapless.footnote > .column, .is-gapless.citation > .column {
       margin: 0;
       padding: 0 !important; }
-    .columns.is-gapless:not(:last-child) {
+    .columns.is-gapless:not(:last-child), .is-gapless.footnote:not(:last-child), .is-gapless.citation:not(:last-child) {
       margin-bottom: 1.5rem; }
-    .columns.is-gapless:last-child {
+    .columns.is-gapless:last-child, .is-gapless.footnote:last-child, .is-gapless.citation:last-child {
       margin-bottom: 0; }
-  .columns.is-mobile {
+  .columns.is-mobile, .is-mobile.footnote, .is-mobile.citation {
     display: flex; }
-  .columns.is-multiline {
+  .columns.is-multiline, .is-multiline.footnote, .is-multiline.citation {
     flex-wrap: wrap; }
-  .columns.is-vcentered {
+  .columns.is-vcentered, .is-vcentered.footnote, .is-vcentered.citation {
     align-items: center; }
   @media screen and (min-width: 769px), print {
-    .columns:not(.is-desktop) {
+    .columns:not(.is-desktop), .footnote:not(.is-desktop), .citation:not(.is-desktop) {
       display: flex; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-desktop {
+    .columns.is-desktop, .is-desktop.footnote, .is-desktop.citation {
       display: flex; } }
 
-.columns.is-variable {
+.columns.is-variable, .is-variable.footnote, .is-variable.citation {
   --columnGap: 0.75rem;
   margin-left: calc(-1 * var(--columnGap));
   margin-right: calc(-1 * var(--columnGap)); }
-  .columns.is-variable > .column {
+  .columns.is-variable > .column, .is-variable.footnote > .column, .is-variable.citation > .column {
     padding-left: var(--columnGap);
     padding-right: var(--columnGap); }
-  .columns.is-variable.is-0 {
+  .columns.is-variable.is-0, .is-variable.is-0.footnote, .is-variable.is-0.citation {
     --columnGap: 0rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-0-mobile {
+    .columns.is-variable.is-0-mobile, .is-variable.is-0-mobile.footnote, .is-variable.is-0-mobile.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-0-tablet {
+    .columns.is-variable.is-0-tablet, .is-variable.is-0-tablet.footnote, .is-variable.is-0-tablet.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-0-tablet-only {
+    .columns.is-variable.is-0-tablet-only, .is-variable.is-0-tablet-only.footnote, .is-variable.is-0-tablet-only.citation {
       --columnGap: 0rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-0-touch {
+    .columns.is-variable.is-0-touch, .is-variable.is-0-touch.footnote, .is-variable.is-0-touch.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-0-desktop {
+    .columns.is-variable.is-0-desktop, .is-variable.is-0-desktop.footnote, .is-variable.is-0-desktop.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-0-desktop-only {
+    .columns.is-variable.is-0-desktop-only, .is-variable.is-0-desktop-only.footnote, .is-variable.is-0-desktop-only.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-0-widescreen {
+    .columns.is-variable.is-0-widescreen, .is-variable.is-0-widescreen.footnote, .is-variable.is-0-widescreen.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-0-widescreen-only {
+    .columns.is-variable.is-0-widescreen-only, .is-variable.is-0-widescreen-only.footnote, .is-variable.is-0-widescreen-only.citation {
       --columnGap: 0rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-0-fullhd {
+    .columns.is-variable.is-0-fullhd, .is-variable.is-0-fullhd.footnote, .is-variable.is-0-fullhd.citation {
       --columnGap: 0rem; } }
-  .columns.is-variable.is-1 {
+  .columns.is-variable.is-1, .is-variable.is-1.footnote, .is-variable.is-1.citation {
     --columnGap: 0.25rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-1-mobile {
+    .columns.is-variable.is-1-mobile, .is-variable.is-1-mobile.footnote, .is-variable.is-1-mobile.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-1-tablet {
+    .columns.is-variable.is-1-tablet, .is-variable.is-1-tablet.footnote, .is-variable.is-1-tablet.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-1-tablet-only {
+    .columns.is-variable.is-1-tablet-only, .is-variable.is-1-tablet-only.footnote, .is-variable.is-1-tablet-only.citation {
       --columnGap: 0.25rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-1-touch {
+    .columns.is-variable.is-1-touch, .is-variable.is-1-touch.footnote, .is-variable.is-1-touch.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-1-desktop {
+    .columns.is-variable.is-1-desktop, .is-variable.is-1-desktop.footnote, .is-variable.is-1-desktop.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-1-desktop-only {
+    .columns.is-variable.is-1-desktop-only, .is-variable.is-1-desktop-only.footnote, .is-variable.is-1-desktop-only.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-1-widescreen {
+    .columns.is-variable.is-1-widescreen, .is-variable.is-1-widescreen.footnote, .is-variable.is-1-widescreen.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-1-widescreen-only {
+    .columns.is-variable.is-1-widescreen-only, .is-variable.is-1-widescreen-only.footnote, .is-variable.is-1-widescreen-only.citation {
       --columnGap: 0.25rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-1-fullhd {
+    .columns.is-variable.is-1-fullhd, .is-variable.is-1-fullhd.footnote, .is-variable.is-1-fullhd.citation {
       --columnGap: 0.25rem; } }
-  .columns.is-variable.is-2 {
+  .columns.is-variable.is-2, .is-variable.is-2.footnote, .is-variable.is-2.citation {
     --columnGap: 0.5rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-2-mobile {
+    .columns.is-variable.is-2-mobile, .is-variable.is-2-mobile.footnote, .is-variable.is-2-mobile.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-2-tablet {
+    .columns.is-variable.is-2-tablet, .is-variable.is-2-tablet.footnote, .is-variable.is-2-tablet.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-2-tablet-only {
+    .columns.is-variable.is-2-tablet-only, .is-variable.is-2-tablet-only.footnote, .is-variable.is-2-tablet-only.citation {
       --columnGap: 0.5rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-2-touch {
+    .columns.is-variable.is-2-touch, .is-variable.is-2-touch.footnote, .is-variable.is-2-touch.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-2-desktop {
+    .columns.is-variable.is-2-desktop, .is-variable.is-2-desktop.footnote, .is-variable.is-2-desktop.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-2-desktop-only {
+    .columns.is-variable.is-2-desktop-only, .is-variable.is-2-desktop-only.footnote, .is-variable.is-2-desktop-only.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-2-widescreen {
+    .columns.is-variable.is-2-widescreen, .is-variable.is-2-widescreen.footnote, .is-variable.is-2-widescreen.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-2-widescreen-only {
+    .columns.is-variable.is-2-widescreen-only, .is-variable.is-2-widescreen-only.footnote, .is-variable.is-2-widescreen-only.citation {
       --columnGap: 0.5rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-2-fullhd {
+    .columns.is-variable.is-2-fullhd, .is-variable.is-2-fullhd.footnote, .is-variable.is-2-fullhd.citation {
       --columnGap: 0.5rem; } }
-  .columns.is-variable.is-3 {
+  .columns.is-variable.is-3, .is-variable.is-3.footnote, .is-variable.is-3.citation {
     --columnGap: 0.75rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-3-mobile {
+    .columns.is-variable.is-3-mobile, .is-variable.is-3-mobile.footnote, .is-variable.is-3-mobile.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-3-tablet {
+    .columns.is-variable.is-3-tablet, .is-variable.is-3-tablet.footnote, .is-variable.is-3-tablet.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-3-tablet-only {
+    .columns.is-variable.is-3-tablet-only, .is-variable.is-3-tablet-only.footnote, .is-variable.is-3-tablet-only.citation {
       --columnGap: 0.75rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-3-touch {
+    .columns.is-variable.is-3-touch, .is-variable.is-3-touch.footnote, .is-variable.is-3-touch.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-3-desktop {
+    .columns.is-variable.is-3-desktop, .is-variable.is-3-desktop.footnote, .is-variable.is-3-desktop.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-3-desktop-only {
+    .columns.is-variable.is-3-desktop-only, .is-variable.is-3-desktop-only.footnote, .is-variable.is-3-desktop-only.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-3-widescreen {
+    .columns.is-variable.is-3-widescreen, .is-variable.is-3-widescreen.footnote, .is-variable.is-3-widescreen.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-3-widescreen-only {
+    .columns.is-variable.is-3-widescreen-only, .is-variable.is-3-widescreen-only.footnote, .is-variable.is-3-widescreen-only.citation {
       --columnGap: 0.75rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-3-fullhd {
+    .columns.is-variable.is-3-fullhd, .is-variable.is-3-fullhd.footnote, .is-variable.is-3-fullhd.citation {
       --columnGap: 0.75rem; } }
-  .columns.is-variable.is-4 {
+  .columns.is-variable.is-4, .is-variable.is-4.footnote, .is-variable.is-4.citation {
     --columnGap: 1rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-4-mobile {
+    .columns.is-variable.is-4-mobile, .is-variable.is-4-mobile.footnote, .is-variable.is-4-mobile.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-4-tablet {
+    .columns.is-variable.is-4-tablet, .is-variable.is-4-tablet.footnote, .is-variable.is-4-tablet.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-4-tablet-only {
+    .columns.is-variable.is-4-tablet-only, .is-variable.is-4-tablet-only.footnote, .is-variable.is-4-tablet-only.citation {
       --columnGap: 1rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-4-touch {
+    .columns.is-variable.is-4-touch, .is-variable.is-4-touch.footnote, .is-variable.is-4-touch.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-4-desktop {
+    .columns.is-variable.is-4-desktop, .is-variable.is-4-desktop.footnote, .is-variable.is-4-desktop.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-4-desktop-only {
+    .columns.is-variable.is-4-desktop-only, .is-variable.is-4-desktop-only.footnote, .is-variable.is-4-desktop-only.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-4-widescreen {
+    .columns.is-variable.is-4-widescreen, .is-variable.is-4-widescreen.footnote, .is-variable.is-4-widescreen.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-4-widescreen-only {
+    .columns.is-variable.is-4-widescreen-only, .is-variable.is-4-widescreen-only.footnote, .is-variable.is-4-widescreen-only.citation {
       --columnGap: 1rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-4-fullhd {
+    .columns.is-variable.is-4-fullhd, .is-variable.is-4-fullhd.footnote, .is-variable.is-4-fullhd.citation {
       --columnGap: 1rem; } }
-  .columns.is-variable.is-5 {
+  .columns.is-variable.is-5, .is-variable.is-5.footnote, .is-variable.is-5.citation {
     --columnGap: 1.25rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-5-mobile {
+    .columns.is-variable.is-5-mobile, .is-variable.is-5-mobile.footnote, .is-variable.is-5-mobile.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-5-tablet {
+    .columns.is-variable.is-5-tablet, .is-variable.is-5-tablet.footnote, .is-variable.is-5-tablet.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-5-tablet-only {
+    .columns.is-variable.is-5-tablet-only, .is-variable.is-5-tablet-only.footnote, .is-variable.is-5-tablet-only.citation {
       --columnGap: 1.25rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-5-touch {
+    .columns.is-variable.is-5-touch, .is-variable.is-5-touch.footnote, .is-variable.is-5-touch.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-5-desktop {
+    .columns.is-variable.is-5-desktop, .is-variable.is-5-desktop.footnote, .is-variable.is-5-desktop.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-5-desktop-only {
+    .columns.is-variable.is-5-desktop-only, .is-variable.is-5-desktop-only.footnote, .is-variable.is-5-desktop-only.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-5-widescreen {
+    .columns.is-variable.is-5-widescreen, .is-variable.is-5-widescreen.footnote, .is-variable.is-5-widescreen.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-5-widescreen-only {
+    .columns.is-variable.is-5-widescreen-only, .is-variable.is-5-widescreen-only.footnote, .is-variable.is-5-widescreen-only.citation {
       --columnGap: 1.25rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-5-fullhd {
+    .columns.is-variable.is-5-fullhd, .is-variable.is-5-fullhd.footnote, .is-variable.is-5-fullhd.citation {
       --columnGap: 1.25rem; } }
-  .columns.is-variable.is-6 {
+  .columns.is-variable.is-6, .is-variable.is-6.footnote, .is-variable.is-6.citation {
     --columnGap: 1.5rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-6-mobile {
+    .columns.is-variable.is-6-mobile, .is-variable.is-6-mobile.footnote, .is-variable.is-6-mobile.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-6-tablet {
+    .columns.is-variable.is-6-tablet, .is-variable.is-6-tablet.footnote, .is-variable.is-6-tablet.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-6-tablet-only {
+    .columns.is-variable.is-6-tablet-only, .is-variable.is-6-tablet-only.footnote, .is-variable.is-6-tablet-only.citation {
       --columnGap: 1.5rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-6-touch {
+    .columns.is-variable.is-6-touch, .is-variable.is-6-touch.footnote, .is-variable.is-6-touch.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-6-desktop {
+    .columns.is-variable.is-6-desktop, .is-variable.is-6-desktop.footnote, .is-variable.is-6-desktop.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-6-desktop-only {
+    .columns.is-variable.is-6-desktop-only, .is-variable.is-6-desktop-only.footnote, .is-variable.is-6-desktop-only.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-6-widescreen {
+    .columns.is-variable.is-6-widescreen, .is-variable.is-6-widescreen.footnote, .is-variable.is-6-widescreen.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-6-widescreen-only {
+    .columns.is-variable.is-6-widescreen-only, .is-variable.is-6-widescreen-only.footnote, .is-variable.is-6-widescreen-only.citation {
       --columnGap: 1.5rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-6-fullhd {
+    .columns.is-variable.is-6-fullhd, .is-variable.is-6-fullhd.footnote, .is-variable.is-6-fullhd.citation {
       --columnGap: 1.5rem; } }
-  .columns.is-variable.is-7 {
+  .columns.is-variable.is-7, .is-variable.is-7.footnote, .is-variable.is-7.citation {
     --columnGap: 1.75rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-7-mobile {
+    .columns.is-variable.is-7-mobile, .is-variable.is-7-mobile.footnote, .is-variable.is-7-mobile.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-7-tablet {
+    .columns.is-variable.is-7-tablet, .is-variable.is-7-tablet.footnote, .is-variable.is-7-tablet.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-7-tablet-only {
+    .columns.is-variable.is-7-tablet-only, .is-variable.is-7-tablet-only.footnote, .is-variable.is-7-tablet-only.citation {
       --columnGap: 1.75rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-7-touch {
+    .columns.is-variable.is-7-touch, .is-variable.is-7-touch.footnote, .is-variable.is-7-touch.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-7-desktop {
+    .columns.is-variable.is-7-desktop, .is-variable.is-7-desktop.footnote, .is-variable.is-7-desktop.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-7-desktop-only {
+    .columns.is-variable.is-7-desktop-only, .is-variable.is-7-desktop-only.footnote, .is-variable.is-7-desktop-only.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-7-widescreen {
+    .columns.is-variable.is-7-widescreen, .is-variable.is-7-widescreen.footnote, .is-variable.is-7-widescreen.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-7-widescreen-only {
+    .columns.is-variable.is-7-widescreen-only, .is-variable.is-7-widescreen-only.footnote, .is-variable.is-7-widescreen-only.citation {
       --columnGap: 1.75rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-7-fullhd {
+    .columns.is-variable.is-7-fullhd, .is-variable.is-7-fullhd.footnote, .is-variable.is-7-fullhd.citation {
       --columnGap: 1.75rem; } }
-  .columns.is-variable.is-8 {
+  .columns.is-variable.is-8, .is-variable.is-8.footnote, .is-variable.is-8.citation {
     --columnGap: 2rem; }
   @media screen and (max-width: 768px) {
-    .columns.is-variable.is-8-mobile {
+    .columns.is-variable.is-8-mobile, .is-variable.is-8-mobile.footnote, .is-variable.is-8-mobile.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 769px), print {
-    .columns.is-variable.is-8-tablet {
+    .columns.is-variable.is-8-tablet, .is-variable.is-8-tablet.footnote, .is-variable.is-8-tablet.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 769px) and (max-width: 1023px) {
-    .columns.is-variable.is-8-tablet-only {
+    .columns.is-variable.is-8-tablet-only, .is-variable.is-8-tablet-only.footnote, .is-variable.is-8-tablet-only.citation {
       --columnGap: 2rem; } }
   @media screen and (max-width: 1023px) {
-    .columns.is-variable.is-8-touch {
+    .columns.is-variable.is-8-touch, .is-variable.is-8-touch.footnote, .is-variable.is-8-touch.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 1024px) {
-    .columns.is-variable.is-8-desktop {
+    .columns.is-variable.is-8-desktop, .is-variable.is-8-desktop.footnote, .is-variable.is-8-desktop.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 1024px) and (max-width: 1215px) {
-    .columns.is-variable.is-8-desktop-only {
+    .columns.is-variable.is-8-desktop-only, .is-variable.is-8-desktop-only.footnote, .is-variable.is-8-desktop-only.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 1216px) {
-    .columns.is-variable.is-8-widescreen {
+    .columns.is-variable.is-8-widescreen, .is-variable.is-8-widescreen.footnote, .is-variable.is-8-widescreen.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 1216px) and (max-width: 1407px) {
-    .columns.is-variable.is-8-widescreen-only {
+    .columns.is-variable.is-8-widescreen-only, .is-variable.is-8-widescreen-only.footnote, .is-variable.is-8-widescreen-only.citation {
       --columnGap: 2rem; } }
   @media screen and (min-width: 1408px) {
-    .columns.is-variable.is-8-fullhd {
+    .columns.is-variable.is-8-fullhd, .is-variable.is-8-fullhd.footnote, .is-variable.is-8-fullhd.citation {
       --columnGap: 2rem; } }
 
 .tile {
@@ -8197,6 +8227,9 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .localtoc {
   padding: 2em 0em 1em 0em; }
 
+.localtoc-list {
+  font-size: 85%; }
+
 .sidebar-menu {
   padding: 2em 0em 1em 0em;
   font-size: 1rem;
@@ -8215,7 +8248,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     padding: 0.5em; }
   .sidebar-menu-toc li.toctree-l1 a {
     color: lightgray;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
     padding: 0.4em 0.4em 0.4em 1em; }
     .sidebar-menu-toc li.toctree-l1 a:hover {
@@ -8314,8 +8347,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   min-width: 0; }
 
 .main-content {
-  padding: 0.5em;
-  padding-left: 1rem; }
+  padding: 2rem; }
 
 body {
   overflow-wrap: break-word; }
@@ -8369,7 +8401,6 @@ span.brackets {
     content: "]"; }
 
 .footnote, .citation {
-  display: grid;
   grid-template-columns: fit-content(5%) auto;
   padding-left: 1em; }
   .footnote dt.label, .citation dt.label {
@@ -8407,7 +8438,8 @@ td {
 code {
   background: transparent;
   color: #202764;
-  font-weight: bold; }
+  font-weight: bold;
+  padding: 0; }
 
 @media screen and (max-width: 768px) {
   div.section {
@@ -8416,6 +8448,9 @@ code {
 @media screen and (min-width: 769px) {
   div.section {
     padding: 2rem 1rem; } }
+
+.content .section {
+  padding-bottom: 1.5em; }
 
 .py {
   margin-top: 2.5em; }

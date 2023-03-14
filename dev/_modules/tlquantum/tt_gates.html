@@ -24,10 +24,8 @@
 
   
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
  
@@ -51,15 +49,11 @@
     <navbar>
       <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
         <div class="navbar-brand">
-        <!-- Always displayed, last item has to be navbar-burger -->
+        
 
           <a class="navbar-item" href="../../index.html">
             <img src="../../_static/tensorly-quantum-logo.png" height="28">
           </a>
-
-          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
-            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-          </a> -->
           <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon"><i class="fab fa-github"></i></span>
           </a>
@@ -73,44 +67,30 @@
         </div>
         
         <div class="navbar-menu" id="top-nav-menu">
-        <!-- only on larger displays (> 1024px) -->
+        
 
           <div class="navbar-start">
-          <!-- RIGHT -->
-            <a class="navbar-item" href="../../install.html">
+            
+              <a class="navbar-item" href="../../install.html">
               Install
             </a>
-            <a class="navbar-item" href="../../user_guide/index.html">
+              <a class="navbar-item" href="../../user_guide/index.html">
               User Guide
             </a>
-            <a class="navbar-item" href="../../modules/api.html">
+              <a class="navbar-item" href="../../modules/api.html">
               API
             </a>
-            <a class="navbar-item" href="../../auto_examples/index.html">
+              <a class="navbar-item" href="../../auto_examples/index.html">
               Examples
             </a>
-            <a class="navbar-item" href="../../about.html">
+              <a class="navbar-item" href="../../about.html">
               About Us
             </a>
-            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
-              TensorLy
-            </a>
-
           </div>
         
           <div class="navbar-end">
             <div class="navbar-item">
-            <!-- LEFT -->
-
-            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
-              <span class="icon-text">
-                <span class="icon">
-                  <i class="fa fa-home"></i>
-                </span>
-                <span>Home</span>
-              </span>
-              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-            </a> -->
+            
             <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon-text">
                 <span class="icon is-large">
@@ -118,32 +98,33 @@
                 </span>
                 <span>Github</span>
               </span>
-                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
             </a>
 
-            </div> <!-- navbar item -->
-          </div> <!-- navbar end -->
-        </div> <!-- only large items -->
+            </div> 
+          </div> 
+        </div> 
 
       </nav>
       
     </navbar>
   </header>
 
+
   <div id="column-container">
   <div class="columns is-mobile is-centered">
 	
+  
 
-    <div class="column main-column">
+  <div class="column main-column">
 
-      <!-- Main content  -->
-      <section class="main-section">
+    
+    <div class="main-section">
 
-        <!-- Toggle menu button -->
-		
+      
+      
 
-        <div class="content main-content">
-          
+      <div class="container content main-content">
+        
   <h1>Source code for tlquantum.tt_gates</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
@@ -165,7 +146,7 @@
 
 
 <div class="viewcode-block" id="Unitary"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.Unitary.html#tlquantum.tt_gates.Unitary">[docs]</a><span class="k">class</span> <span class="nc">Unitary</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A unitary for all qubits in a TTCircuit, using tensor ring tensors</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A unitary for all qubits in a TTCircuit, using tensor ring tensors</span>
 <span class="sd">    with PyTorch Autograd support.</span>
 <span class="sd">    Can be defined with arbitrary gates or used as a base-class for set circuit</span>
 <span class="sd">    types.</span>
@@ -194,14 +175,14 @@
 
 
     <span class="k">def</span> <span class="nf">_set_gates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gates</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sets the gate class instances as a PyTorch ModuleList for Unitary.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the gate class instances as a PyTorch ModuleList for Unitary.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gates</span> <span class="o">=</span> <span class="n">ModuleList</span><span class="p">(</span><span class="n">gates</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Unitary.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.Unitary.html#tlquantum.tt_gates.Unitary.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the tensors of Unitary for forward contraction by calling the gate instances&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the tensors of Unitary for forward contraction by calling the gate instances&#39;</span>
 <span class="sd">        forward method and doing qubit-wise (horizonal) pre-contraction.</span>
 
 <span class="sd">        Returns</span>
@@ -215,7 +196,7 @@
 
 
 <div class="viewcode-block" id="BinaryGatesUnitary"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.BinaryGatesUnitary.html#tlquantum.tt_gates.BinaryGatesUnitary">[docs]</a><span class="k">class</span> <span class="nc">BinaryGatesUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a layer of a single two-qubit gates accross</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a layer of a single two-qubit gates accross</span>
 <span class="sd">    all qubits in a TTCircuit.</span>
 
 <span class="sd">    Parameters</span>
@@ -239,7 +220,7 @@
 
 
 <div class="viewcode-block" id="UnaryGatesUnitary"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.UnaryGatesUnitary.html#tlquantum.tt_gates.UnaryGatesUnitary">[docs]</a><span class="k">class</span> <span class="nc">UnaryGatesUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a layer of unitary, single-qubit rotations.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a layer of unitary, single-qubit rotations.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -268,7 +249,7 @@
 
 
 <span class="k">class</span> <span class="nc">InvolutoryGeneratorUnitary</span><span class="p">(</span><span class="n">Unitary</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a unitary layer with a generator that is involutory (its own inverse).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Unitary sub-class that generates a unitary layer with a generator that is involutory (its own inverse).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -290,7 +271,7 @@
 
 
 <span class="k">def</span> <span class="nf">build_binary_gates_unitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">q2gate</span><span class="p">,</span> <span class="n">parity</span><span class="p">,</span> <span class="n">random_initialization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate a layer of two-qubit gates.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a layer of two-qubit gates.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -324,7 +305,7 @@
 
 
 <span class="k">class</span> <span class="nc">InvolutoryGenerator</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Qubit rotations about the involutory generator.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Qubit rotations about the involutory generator.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -343,7 +324,7 @@
 
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the RotY gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the RotY gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of rotation matrix depending on theta (which is</span>
 <span class="sd">        typically updated every epoch through backprop via PyTorch Autograd).</span>
 
@@ -356,7 +337,7 @@
 
 
 <div class="viewcode-block" id="RotY"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY">[docs]</a><span class="k">class</span> <span class="nc">RotY</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Qubit rotations about the Y-axis with randomly initiated theta.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Qubit rotations about the Y-axis with randomly initiated theta.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -374,7 +355,7 @@
 
 
 <div class="viewcode-block" id="RotY.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotY.html#tlquantum.tt_gates.RotY.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the RotY gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the RotY gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of rotation matrix depending on theta (which is</span>
 <span class="sd">        typically updated every epoch through backprop via PyTorch Autograd).</span>
 
@@ -388,7 +369,7 @@
 
 
 <div class="viewcode-block" id="RotX"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotX.html#tlquantum.tt_gates.RotX">[docs]</a><span class="k">class</span> <span class="nc">RotX</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Qubit rotations about the X-axis with randomly initiated theta.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Qubit rotations about the X-axis with randomly initiated theta.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -406,7 +387,7 @@
 
 
 <div class="viewcode-block" id="RotX.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotX.html#tlquantum.tt_gates.RotX.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the RotX gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the RotX gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of rotation matrix depending on theta (which is</span>
 <span class="sd">        typically updated every epoch through backprop via PyTorch Autograd).</span>
 
@@ -420,7 +401,7 @@
 
 
 <div class="viewcode-block" id="RotZ"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotZ.html#tlquantum.tt_gates.RotZ">[docs]</a><span class="k">class</span> <span class="nc">RotZ</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Qubit rotations about the Z-axis with randomly initiated theta.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Qubit rotations about the Z-axis with randomly initiated theta.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -438,7 +419,7 @@
 
 
 <div class="viewcode-block" id="RotZ.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.RotZ.html#tlquantum.tt_gates.RotZ.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the RotZ gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the RotZ gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of rotation matrix depending on theta (which is</span>
 <span class="sd">        typically updated every epoch through backprop via PyTorch Autograd).</span>
 
@@ -452,7 +433,7 @@
 
 
 <div class="viewcode-block" id="IDENTITY"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.IDENTITY.html#tlquantum.tt_gates.IDENTITY">[docs]</a><span class="k">class</span> <span class="nc">IDENTITY</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Identity gate (does not change the state of the qubit on which it acts).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Identity gate (does not change the state of the qubit on which it acts).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -468,7 +449,7 @@
 
 
 <div class="viewcode-block" id="IDENTITY.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.IDENTITY.html#tlquantum.tt_gates.IDENTITY.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the left qubit of the IDENTITY gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the left qubit of the IDENTITY gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of matrix representation.</span>
 
 <span class="sd">        Returns</span>
@@ -479,7 +460,7 @@
 
 
 <div class="viewcode-block" id="cnot"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.cnot.html#tlquantum.tt_gates.cnot">[docs]</a><span class="k">def</span> <span class="nf">cnot</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pair of CNOT class instances, one left (control) and one right (transformed).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pair of CNOT class instances, one left (control) and one right (transformed).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -493,7 +474,7 @@
 
 
 <div class="viewcode-block" id="CNOTL"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CNOTL.html#tlquantum.tt_gates.CNOTL">[docs]</a><span class="k">class</span> <span class="nc">CNOTL</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Left (control-qubit) core of a CNOT gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Left (control-qubit) core of a CNOT gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -511,7 +492,7 @@
 
 
 <div class="viewcode-block" id="CNOTL.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CNOTL.html#tlquantum.tt_gates.CNOTL.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the left qubit of the CNOT gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the left qubit of the CNOT gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of matrix representation.</span>
 
 <span class="sd">        Returns</span>
@@ -526,7 +507,7 @@
 
 
 <div class="viewcode-block" id="CNOTR"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CNOTR.html#tlquantum.tt_gates.CNOTR">[docs]</a><span class="k">class</span> <span class="nc">CNOTR</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Right (transformed qubit) core of a CNOT gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Right (transformed qubit) core of a CNOT gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -545,7 +526,7 @@
 
 
 <div class="viewcode-block" id="CNOTR.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CNOTR.html#tlquantum.tt_gates.CNOTR.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the right qubit of the CNOT gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the right qubit of the CNOT gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of matrix representation.</span>
 
 <span class="sd">        Returns</span>
@@ -560,7 +541,7 @@
 
 
 <div class="viewcode-block" id="cz"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.cz.html#tlquantum.tt_gates.cz">[docs]</a><span class="k">def</span> <span class="nf">cz</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pair of CZ class instances, one left (control) and one right (transformed).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pair of CZ class instances, one left (control) and one right (transformed).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -574,7 +555,7 @@
 
 
 <div class="viewcode-block" id="CZL"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CZL.html#tlquantum.tt_gates.CZL">[docs]</a><span class="k">class</span> <span class="nc">CZL</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Left (control-qubit) core of a CZ gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Left (control-qubit) core of a CZ gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -592,7 +573,7 @@
 
 
 <div class="viewcode-block" id="CZL.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CZL.html#tlquantum.tt_gates.CZL.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the left qubit of the CZ gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the left qubit of the CZ gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of matrix representation.</span>
 
 <span class="sd">        Returns</span>
@@ -607,7 +588,7 @@
 
 
 <div class="viewcode-block" id="CZR"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CZR.html#tlquantum.tt_gates.CZR">[docs]</a><span class="k">class</span> <span class="nc">CZR</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Right (transformed qubit) core of a CZ gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Right (transformed qubit) core of a CZ gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -625,7 +606,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">core</span> <span class="o">=</span> <span class="n">core</span>
 
 <div class="viewcode-block" id="CZR.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.CZR.html#tlquantum.tt_gates.CZR.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the right qubit of the CZ gate for forward contraction by calling the forward method</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the right qubit of the CZ gate for forward contraction by calling the forward method</span>
 <span class="sd">        and preparing the tt-factorized form of matrix representation.</span>
 
 <span class="sd">        Returns</span>
@@ -640,7 +621,7 @@
 
 
 <div class="viewcode-block" id="so4"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.so4.html#tlquantum.tt_gates.so4">[docs]</a><span class="k">def</span> <span class="nf">so4</span><span class="p">(</span><span class="n">state1</span><span class="p">,</span> <span class="n">state2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pair of SO4 two-qubit rotation class instances, with rotations over</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pair of SO4 two-qubit rotation class instances, with rotations over</span>
 <span class="sd">    different states.</span>
 
 <span class="sd">    Parameters</span>
@@ -658,7 +639,7 @@
 
 
 <div class="viewcode-block" id="SO4LR"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.SO4LR.html#tlquantum.tt_gates.SO4LR">[docs]</a><span class="k">class</span> <span class="nc">SO4LR</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Left or right core of the two-qubit SO4 rotations gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Left or right core of the two-qubit SO4 rotations gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -690,7 +671,7 @@
 
 
 <div class="viewcode-block" id="SO4LR.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.SO4LR.html#tlquantum.tt_gates.SO4LR.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the left or right qubit of the SO4 two-qubit rotation gate for forward contraction</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the left or right qubit of the SO4 two-qubit rotation gate for forward contraction</span>
 <span class="sd">        by calling the forward method and preparing the tt-factorized form of matrix representation.</span>
 <span class="sd">        Update is based on theta (which is typically updated every epoch through backprop via Pytorch Autograd).</span>
 
@@ -706,7 +687,7 @@
 
 
 <span class="k">def</span> <span class="nf">_so4_01</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along zeroth and first</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along zeroth and first</span>
 <span class="sd">    qubit states.</span>
 
 <span class="sd">    Parameters</span>
@@ -729,7 +710,7 @@
 
 <span class="k">def</span> <span class="nf">_so4_12</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1">### Is rank 4, not rank 6, but rank 4 decomposition non-trivial.</span>
-    <span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along first and second</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along first and second</span>
 <span class="sd">    qubit states.</span>
 
 <span class="sd">    Parameters</span>
@@ -755,7 +736,7 @@
 
 
 <span class="k">def</span> <span class="nf">_so4_23</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along second and third</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Two-qubit SO4 gates in tt-tensor form with rotations along second and third</span>
 <span class="sd">    qubit states.</span>
 
 <span class="sd">    Parameters</span>
@@ -777,7 +758,7 @@
 
 
 <span class="k">def</span> <span class="nf">o4_phases</span><span class="p">(</span><span class="n">phases</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Pair of O4 phase rotations class instances. Each of four phases</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pair of O4 phase rotations class instances. Each of four phases</span>
 <span class="sd">    is imparted to each of the 4 states of O4.</span>
 
 <span class="sd">    Parameters</span>
@@ -795,7 +776,7 @@
 
 
 <div class="viewcode-block" id="O4LR"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.O4LR.html#tlquantum.tt_gates.O4LR">[docs]</a><span class="k">class</span> <span class="nc">O4LR</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Left and right core of the two-qubit O4 phase gate.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Left and right core of the two-qubit O4 phase gate.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -815,7 +796,7 @@
 
 
 <div class="viewcode-block" id="O4LR.forward"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_gates.O4LR.html#tlquantum.tt_gates.O4LR.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the left or right qubit of the SO4 two-qubit rotation gate for forward contraction</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the left or right qubit of the SO4 two-qubit rotation gate for forward contraction</span>
 <span class="sd">        by calling the forward method and preparing the tt-factorized form of matrix representation.</span>
 <span class="sd">        Update is based on theta (which is typically updated every epoch through backprop via Pytorch Autograd).</span>
 
@@ -842,7 +823,7 @@
 
 
 <span class="k">def</span> <span class="nf">exp_pauli_y</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of Y-axis rotation in tt-tensor form.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of Y-axis rotation in tt-tensor form.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -856,7 +837,7 @@
 
 
 <span class="k">def</span> <span class="nf">exp_pauli_x</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of X-axis rotation in tt-tensor form.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of X-axis rotation in tt-tensor form.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -869,7 +850,7 @@
     <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">]],[[</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],[</span><span class="mi">0</span><span class="p">]]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">exp_pauli_z</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of Z-axis rotation in tt-tensor form.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Matrix for sin(theta) component of Z-axis rotation in tt-tensor form.</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    device : string, device on which to run the computation.</span>
@@ -880,28 +861,28 @@
     <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],[</span><span class="mf">0.</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="n">j</span><span class="p">]]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 
-        </div>
+      </div>
 
-		
-
-      </section>
+      
 
         <footer class="footer">
     <div class="content has-text-centered">
         <div class="block">
-          &copy; Copyright 2022, TensorLy-Quantum developers.<br/>
+          &copy; Copyright 2023, TensorLy-Quantum developers.<br/>
         </div>
     </div>
   </footer>
 
     </div>
 
+  </div>  
+
 	
 
-  </div>
-  </div>
+  </div>  
+  </div> 
 
-  <!-- Include here scripts that need to be added after the page is loaded -->
+  
   <script>
     function toggle_sidebar() {
         var element = document.getElementById("sidebar");

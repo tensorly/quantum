@@ -25,10 +25,8 @@
 
   
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
  <script src="../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
  
@@ -54,15 +52,11 @@
     <navbar>
       <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
         <div class="navbar-brand">
-        <!-- Always displayed, last item has to be navbar-burger -->
+        
 
           <a class="navbar-item" href="../index.html">
             <img src="../_static/tensorly-quantum-logo.png" height="28">
           </a>
-
-          <!-- <a class="navbar-item is-hidden-desktop" href="../index.html">
-            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-          </a> -->
           <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon"><i class="fab fa-github"></i></span>
           </a>
@@ -76,44 +70,30 @@
         </div>
         
         <div class="navbar-menu" id="top-nav-menu">
-        <!-- only on larger displays (> 1024px) -->
+        
 
           <div class="navbar-start">
-          <!-- RIGHT -->
-            <a class="navbar-item" href="../install.html">
+            
+              <a class="navbar-item" href="../install.html">
               Install
             </a>
-            <a class="navbar-item" href="../user_guide/index.html">
+              <a class="navbar-item" href="../user_guide/index.html">
               User Guide
             </a>
-            <a class="navbar-item" href="../modules/api.html">
+              <a class="navbar-item" href="../modules/api.html">
               API
             </a>
-            <a class="navbar-item" href="index.html">
+              <a class="navbar-item" href="index.html">
               Examples
             </a>
-            <a class="navbar-item" href="../about.html">
+              <a class="navbar-item" href="../about.html">
               About Us
             </a>
-            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
-              TensorLy
-            </a>
-
           </div>
         
           <div class="navbar-end">
             <div class="navbar-item">
-            <!-- LEFT -->
-
-            <!-- <a class="navbar-item is-hidden-touch" href="../index.html">
-              <span class="icon-text">
-                <span class="icon">
-                  <i class="fa fa-home"></i>
-                </span>
-                <span>Home</span>
-              </span>
-              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-            </a> -->
+            
             <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon-text">
                 <span class="icon is-large">
@@ -121,61 +101,39 @@
                 </span>
                 <span>Github</span>
               </span>
-                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
             </a>
 
-            </div> <!-- navbar item -->
-          </div> <!-- navbar end -->
-        </div> <!-- only large items -->
+            </div> 
+          </div> 
+        </div> 
 
       </nav>
       
     </navbar>
   </header>
 
+
   <div id="column-container">
   <div class="columns is-mobile is-centered">
 	
+  
       <div class="column is-10-mobile is-one-third-tablet is-3-desktop is-hidden-mobile" id="sidebar">
-    <!-- Side menu  -->
+    
     <aside class="sticky-nav sidebar-menu">
 <div class="sidebar-search">
   <form class="field" id="searchbox" role="search" action="../search.html" method="get">
     <!-- <label class="label" id="searchlabel">Quick search</label> -->
     <div class="field has-addons">
       <div class="control is-expanded">
-        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel">
+        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       </div>
       <div class="control">
         <input class="button is-info" type="submit" value="Go" />
       </div>
     </div>
   </form>
-  <script>$('#searchbox').show(0);</script>
-  <script>
-  $(document).ready(function() {
-    Document.highlightSearchWords = function() {
-      var params = $.getQueryParameters();
-      var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
-      if (terms.length) {
-        var body = $('div.body');
-        if (!body.length) {
-          body = $('body');
-        }
-        window.setTimeout(function() {
-          $.each(terms, function() {
-            body.highlightText(this.toLowerCase(), 'highlighted');
-          });
-        }, 10);
-        $('<p class="highlight-link"><a href="javascript:Documentation.' +
-          'hideSearchWords()">' + _('Hide All')
-          + '<span class="tag is-delete"></span>'
-          + '</a></p>')
-            .appendTo($('#searchbox'));
-      }
-    };
-  });
-  </script>
+  <script>document.getElementById('searchbox').style.display = "block"</script>
+
 </div>
       
       <div class="sidebar-menu-toc">
@@ -189,6 +147,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html">Variational Quantum Eigensolver</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htaacqsdp.html">HTAAC-QSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htaacqsdp.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
@@ -199,26 +159,26 @@
   </div>
   
 
-    <div class="column main-column">
+  <div class="column main-column">
 
-      <!-- Main content  -->
-      <section class="main-section">
+    
+    <div class="main-section">
 
-        <!-- Toggle menu button -->
-		
-        <div class="side-menu-toggle">
-          <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
-            <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
-            <span>menu</span> 
-          </button>
-        </div>
+      
+      
+      <div class="side-menu-toggle">
+        <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
+          <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+          <span>menu</span> 
+        </button>
+      </div>
+      
+
+      <div class="container content main-content">
         
-
-        <div class="content main-content">
-          
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-mbe-maxcut-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-mbe-maxcut-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="multi-basis-encoding">
@@ -297,165 +257,165 @@ If y-axis included, we can encode three vertices per qubit.</p>
 </div>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>tensor([[ 1.,  0.],
         [ 0., -1.]])
-Relaxation (raw) loss at epoch 0: 1.0134198665618896.
+Relaxation (raw) loss at epoch 0: 0.49455568194389343.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(3.9337).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(3.2569).
 
-Relaxation (raw) loss at epoch 1: -1.7006405591964722.
+Relaxation (raw) loss at epoch 1: -1.8736557960510254.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(8.2817).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(7.8402).
 
-Relaxation (raw) loss at epoch 2: -1.9110199213027954.
+Relaxation (raw) loss at epoch 2: -3.252228260040283.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(7.7101).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(9.1829).
 
-Relaxation (raw) loss at epoch 3: -2.7214949131011963.
+Relaxation (raw) loss at epoch 3: -3.156343460083008.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(9.9300).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4433).
 
-Relaxation (raw) loss at epoch 4: -3.3128068447113037.
+Relaxation (raw) loss at epoch 4: -3.6008846759796143.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(8.9002).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4433).
 
-Relaxation (raw) loss at epoch 5: -3.411897659301758.
+Relaxation (raw) loss at epoch 5: -4.164065837860107.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(9.3714).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4433).
 
-Relaxation (raw) loss at epoch 6: -3.513552665710449.
+Relaxation (raw) loss at epoch 6: -4.502040386199951.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(10.7642).
 
-Relaxation (raw) loss at epoch 7: -3.4202206134796143.
+Relaxation (raw) loss at epoch 7: -4.711174488067627.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 8: -3.713740110397339.
+Relaxation (raw) loss at epoch 8: -4.938051223754883.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 9: -3.8029236793518066.
+Relaxation (raw) loss at epoch 9: -5.106287479400635.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.2558).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 10: -3.6966023445129395.
+Relaxation (raw) loss at epoch 10: -5.197707653045654.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.2558).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 11: -3.770678997039795.
+Relaxation (raw) loss at epoch 11: -5.283626556396484.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(9.7846).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 12: -3.782165765762329.
+Relaxation (raw) loss at epoch 12: -5.37721061706543.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(9.7846).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 13: -3.8620667457580566.
+Relaxation (raw) loss at epoch 13: -5.456652641296387.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(9.9300).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2206).
 
-Relaxation (raw) loss at epoch 14: -4.030314922332764.
+Relaxation (raw) loss at epoch 14: -5.498775005340576.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2206).
 
-Relaxation (raw) loss at epoch 15: -4.070723533630371.
+Relaxation (raw) loss at epoch 15: -5.521753787994385.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2206).
 
-Relaxation (raw) loss at epoch 16: -4.053244590759277.
+Relaxation (raw) loss at epoch 16: -5.576903820037842.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 17: -4.077620029449463.
+Relaxation (raw) loss at epoch 17: -5.636231422424316.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 18: -4.094445705413818.
+Relaxation (raw) loss at epoch 18: -5.663819313049316.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 19: -4.142518997192383.
+Relaxation (raw) loss at epoch 19: -5.6667985916137695.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 20: -4.180716037750244.
+Relaxation (raw) loss at epoch 20: -5.6791582107543945.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 21: -4.156665802001953.
+Relaxation (raw) loss at epoch 21: -5.7090044021606445.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 22: -4.162487983703613.
+Relaxation (raw) loss at epoch 22: -5.724669933319092.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 23: -4.178105354309082.
+Relaxation (raw) loss at epoch 23: -5.729409694671631.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 24: -4.168662071228027.
+Relaxation (raw) loss at epoch 24: -5.748327255249023.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 25: -4.198676109313965.
+Relaxation (raw) loss at epoch 25: -5.776831150054932.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2131).
 
-Relaxation (raw) loss at epoch 26: -4.229739665985107.
+Relaxation (raw) loss at epoch 26: -5.799093246459961.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2206).
 
-Relaxation (raw) loss at epoch 27: -4.22123384475708.
+Relaxation (raw) loss at epoch 27: -5.803663730621338.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.2206).
 
-Relaxation (raw) loss at epoch 28: -4.22605562210083.
+Relaxation (raw) loss at epoch 28: -5.794264316558838.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 29: -4.228914260864258.
+Relaxation (raw) loss at epoch 29: -5.795022010803223.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 30: -4.222712516784668.
+Relaxation (raw) loss at epoch 30: -5.819240093231201.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 31: -4.232889652252197.
+Relaxation (raw) loss at epoch 31: -5.846096515655518.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 32: -4.239409446716309.
+Relaxation (raw) loss at epoch 32: -5.850635528564453.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 33: -4.237216472625732.
+Relaxation (raw) loss at epoch 33: -5.838127136230469.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 34: -4.254941940307617.
+Relaxation (raw) loss at epoch 34: -5.832602500915527.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 35: -4.265634536743164.
+Relaxation (raw) loss at epoch 35: -5.8464131355285645.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 36: -4.2512712478637695.
+Relaxation (raw) loss at epoch 36: -5.867568492889404.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 37: -4.248299598693848.
+Relaxation (raw) loss at epoch 37: -5.876226902008057.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3017).
 
-Relaxation (raw) loss at epoch 38: -4.258838176727295.
+Relaxation (raw) loss at epoch 38: -5.868500709533691.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 
-Relaxation (raw) loss at epoch 39: -4.26630973815918.
+Relaxation (raw) loss at epoch 39: -5.8583221435546875.
 
-Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
+Rounded MaxCut value (algorithm&#39;s solution): tensor(11.3092).
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">)</span>
@@ -484,7 +444,7 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
 </ol>
 </aside>
 </aside>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.777 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.290 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-mbe-maxcut-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4e3aa0f7c8fad1eb9d1a0b3c66ce49c0/plot_mbe_maxcut.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_mbe_maxcut.py</span></code></a></p>
@@ -497,12 +457,12 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
 </section>
 
 
-        </div>
+      </div>
 
-		
+      
         <nav class="pagination" role="navigation" aria-label="pagination">
     
-    <a class="button is-medium pagination-previous" href="index.html" title="previous page" accesskey="p">
+    <a class="button pagination-previous" href="index.html" title="previous page" accesskey="p">
         <span class="icon">
             <i class="fa fa-arrow-circle-left"></i>
         </span>
@@ -510,7 +470,7 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
     </a>
     
     
-    <a class="button is-medium pagination-next" href="plot_vqe_transverse_field_Ising.html" title="next page" accesskey="n">
+    <a class="button pagination-next" href="plot_vqe_transverse_field_Ising.html" title="next page" accesskey="n">
         <span>Variational Quantum Eigensolver </span>
         <span class="icon">
             <i class="fa fa-arrow-circle-right"></i>
@@ -519,27 +479,33 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
     
 </nav>
 
-        
-
-      </section>
+      
 
         <footer class="footer">
     <div class="content has-text-centered">
         <div class="block">
-          &copy; Copyright 2022, TensorLy-Quantum developers.<br/>
+          &copy; Copyright 2023, TensorLy-Quantum developers.<br/>
         </div>
     </div>
   </footer>
 
     </div>
 
+  </div>  
+
 	
     
     <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
 
-    <aside class="sticky-nav localtoc">  
-        <div class="menu menu-list">
-        <p class="menu-label">On this page</p>
+    <aside class="sticky-nav localtoc"> 
+        <p class="menu-label"> 
+            <span class="icon-text">
+                <span class="icon"><i class="fas fa-duotone fa-list"></i></span>
+                <span> On this page </span>
+            </span>
+        </p>
+
+        <div class="menu menu-list localtoc-list">
         <ul>
 <li><a class="reference internal" href="#">Multi-Basis Encoding</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
@@ -549,12 +515,12 @@ Rounded MaxCut value (algorithm&#39;s solution): tensor(10.4012).
     </aside>
     </div>
 
-    
+  
 
-  </div>
-  </div>
+  </div>  
+  </div> 
 
-  <!-- Include here scripts that need to be added after the page is loaded -->
+  
   <script>
     function toggle_sidebar() {
         var element = document.getElementById("sidebar");

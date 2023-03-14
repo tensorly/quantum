@@ -26,7 +26,7 @@ We provide examples of TensorLy-Quantum usage:
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_plot_mbe_maxcut_thumb.png
-    :alt: Multi-Basis Encoding
+    :alt:
 
   :ref:`sphx_glr_auto_examples_plot_mbe_maxcut.py`
 
@@ -43,13 +43,30 @@ We provide examples of TensorLy-Quantum usage:
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_plot_vqe_transverse_field_Ising_thumb.png
-    :alt: Variational Quantum Eigensolver
+    :alt:
 
   :ref:`sphx_glr_auto_examples_plot_vqe_transverse_field_Ising.py`
 
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">Variational Quantum Eigensolver</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="HTAAC-QSDP">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_htaacqsdp_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_htaacqsdp.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">HTAAC-QSDP</div>
     </div>
 
 
@@ -63,6 +80,7 @@ We provide examples of TensorLy-Quantum usage:
 
    /auto_examples/plot_mbe_maxcut
    /auto_examples/plot_vqe_transverse_field_Ising
+   /auto_examples/htaacqsdp
 
 
 .. only:: html

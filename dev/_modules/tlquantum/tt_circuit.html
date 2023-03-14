@@ -24,10 +24,8 @@
 
   
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
  
@@ -51,15 +49,11 @@
     <navbar>
       <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
         <div class="navbar-brand">
-        <!-- Always displayed, last item has to be navbar-burger -->
+        
 
           <a class="navbar-item" href="../../index.html">
             <img src="../../_static/tensorly-quantum-logo.png" height="28">
           </a>
-
-          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
-            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-          </a> -->
           <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon"><i class="fab fa-github"></i></span>
           </a>
@@ -73,44 +67,30 @@
         </div>
         
         <div class="navbar-menu" id="top-nav-menu">
-        <!-- only on larger displays (> 1024px) -->
+        
 
           <div class="navbar-start">
-          <!-- RIGHT -->
-            <a class="navbar-item" href="../../install.html">
+            
+              <a class="navbar-item" href="../../install.html">
               Install
             </a>
-            <a class="navbar-item" href="../../user_guide/index.html">
+              <a class="navbar-item" href="../../user_guide/index.html">
               User Guide
             </a>
-            <a class="navbar-item" href="../../modules/api.html">
+              <a class="navbar-item" href="../../modules/api.html">
               API
             </a>
-            <a class="navbar-item" href="../../auto_examples/index.html">
+              <a class="navbar-item" href="../../auto_examples/index.html">
               Examples
             </a>
-            <a class="navbar-item" href="../../about.html">
+              <a class="navbar-item" href="../../about.html">
               About Us
             </a>
-            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
-              TensorLy
-            </a>
-
           </div>
         
           <div class="navbar-end">
             <div class="navbar-item">
-            <!-- LEFT -->
-
-            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
-              <span class="icon-text">
-                <span class="icon">
-                  <i class="fa fa-home"></i>
-                </span>
-                <span>Home</span>
-              </span>
-              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-            </a> -->
+            
             <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon-text">
                 <span class="icon is-large">
@@ -118,32 +98,33 @@
                 </span>
                 <span>Github</span>
               </span>
-                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
             </a>
 
-            </div> <!-- navbar item -->
-          </div> <!-- navbar end -->
-        </div> <!-- only large items -->
+            </div> 
+          </div> 
+        </div> 
 
       </nav>
       
     </navbar>
   </header>
 
+
   <div id="column-container">
   <div class="columns is-mobile is-centered">
 	
+  
 
-    <div class="column main-column">
+  <div class="column main-column">
 
-      <!-- Main content  -->
-      <section class="main-section">
+    
+    <div class="main-section">
 
-        <!-- Toggle menu button -->
-		
+      
+      
 
-        <div class="content main-content">
-          
+      <div class="container content main-content">
+        
   <h1>Source code for tlquantum.tt_circuit</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
@@ -164,7 +145,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit">[docs]</a><span class="k">class</span> <span class="nc">TTCircuit</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A simulator for variational quantum circuits using tensor ring tensors</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A simulator for variational quantum circuits using tensor ring tensors</span>
 <span class="sd">    with PyTorch Autograd support.</span>
 <span class="sd">    Can be used to compute: 1) the expectation value of an operator, 2) the single-qubit</span>
 <span class="sd">    measurements of circuit&#39;s qubits; specifically for Multi-Basis Encoding [1], and </span>
@@ -209,7 +190,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.forward_expectation_value"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_expectation_value">[docs]</a>    <span class="k">def</span> <span class="nf">forward_expectation_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">precontract_operator</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Full expectation value of self.measurement of the unitary evolved state.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Full expectation value of self.measurement of the unitary evolved state.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -232,7 +213,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.forward_single_qubit"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_single_qubit">[docs]</a>    <span class="k">def</span> <span class="nf">forward_single_qubit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Expectation values of op for each qubit of state. Takes partial trace of subset of qubits and then</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Expectation values of op for each qubit of state. Takes partial trace of subset of qubits and then</span>
 <span class="sd">        takes single-operator measurements of these qubits.</span>
 <span class="sd">        Specifically useful for Multi-Basis Encoding [1] (MBE).</span>
 <span class="sd">        [1] T. L. Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, &quot;Variational Quantum Optimization with Multi-Basis Encodings,&quot; (2021), arXiv:2106.13304.</span>
@@ -263,7 +244,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.forward_partial_trace"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.forward_partial_trace">[docs]</a>    <span class="k">def</span> <span class="nf">forward_partial_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">kept_inds</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Partial trace for specified qubits in the output state of TTCircuit.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Partial trace for specified qubits in the output state of TTCircuit.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -283,7 +264,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.state_inner_product"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.state_inner_product">[docs]</a>    <span class="k">def</span> <span class="nf">state_inner_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">compare_state</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Inner product of input state evolved in unitary with a comparison state.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Inner product of input state evolved in unitary with a comparison state.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -301,7 +282,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.to_ket"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.to_ket">[docs]</a>    <span class="k">def</span> <span class="nf">to_ket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;State vector output of the quantum circuit.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;State vector output of the quantum circuit.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -318,7 +299,7 @@
 
 
 <div class="viewcode-block" id="TTCircuit.to_operator"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_circuit.TTCircuit.html#tlquantum.tt_circuit.TTCircuit.to_operator">[docs]</a>    <span class="k">def</span> <span class="nf">to_operator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Matrix/operator representation of the quantum circuit</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Matrix/operator representation of the quantum circuit</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -331,7 +312,7 @@
 
 
     <span class="k">def</span> <span class="nf">_build_circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the circuit gates and operators for forward pass of the tensor network.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the circuit gates and operators for forward pass of the tensor network.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -349,7 +330,7 @@
 
 
     <span class="k">def</span> <span class="nf">_build_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares the ket unitary gates gates for forward pass of the tensor network.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the ket unitary gates gates for forward pass of the tensor network.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -362,7 +343,7 @@
 
 
     <span class="k">def</span> <span class="nf">_generate_partial_trace_contraction_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shapes</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Populates the partial trace equations and contractions attributes for each of the the single-qubit</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Populates the partial trace equations and contractions attributes for each of the the single-qubit</span>
 <span class="sd">        measurements, as required by Multi-Basis Encoding.</span>
 
 <span class="sd">        Parameters</span>
@@ -378,7 +359,7 @@
 
 
     <span class="k">def</span> <span class="nf">_generate_partial_trace_equation_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Generates the partial trace equations for each of the the single-qubit measurements,</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates the partial trace equations for each of the the single-qubit measurements,</span>
 <span class="sd">        as required by Multi-Basis Encoding.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -390,7 +371,7 @@
 
 
 <span class="k">def</span> <span class="nf">tt_dagger</span><span class="p">(</span><span class="n">tt</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Transpose single-qubit matrices in tt-tensor format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transpose single-qubit matrices in tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -403,28 +384,28 @@
     <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">transpose</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
-        </div>
+      </div>
 
-		
-
-      </section>
+      
 
         <footer class="footer">
     <div class="content has-text-centered">
         <div class="block">
-          &copy; Copyright 2022, TensorLy-Quantum developers.<br/>
+          &copy; Copyright 2023, TensorLy-Quantum developers.<br/>
         </div>
     </div>
   </footer>
 
     </div>
 
+  </div>  
+
 	
 
-  </div>
-  </div>
+  </div>  
+  </div> 
 
-  <!-- Include here scripts that need to be added after the page is loaded -->
+  
   <script>
     function toggle_sidebar() {
         var element = document.getElementById("sidebar");

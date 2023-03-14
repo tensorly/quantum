@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>HTAAC-QSDP &#8212; Tensor-Based Quantum Machine Learning</title> 
+<link rel="stylesheet" href="../_static/tensorly_style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../_static/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon/favicon-16x16.png">
+<link rel="manifest" href="../_static/favicon/site.webmanifest">
+<link rel="mask-icon" href="../_static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="../_static/favicon/favicon.ico">
+<meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tensorly_style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+
+  
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+ <script src="../_static/navbar_burger.js"></script>
+ <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V91QCZR03"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0WBR1J14K6');
+</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About Us" href="../about.html" />
+    <link rel="prev" title="Variational Quantum Eigensolver" href="plot_vqe_transverse_field_Ising.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  </head>
+<body  class="has-navbar-fixed-top">
+
+  <header>
+    <navbar>
+      <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
+        <div class="navbar-brand">
+        
+
+          <a class="navbar-item" href="../index.html">
+            <img src="../_static/tensorly-quantum-logo.png" height="28">
+          </a>
+          <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" data-target="top-nav-menu" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+
+        </div>
+        
+        <div class="navbar-menu" id="top-nav-menu">
+        
+
+          <div class="navbar-start">
+            
+              <a class="navbar-item" href="../install.html">
+              Install
+            </a>
+              <a class="navbar-item" href="../user_guide/index.html">
+              User Guide
+            </a>
+              <a class="navbar-item" href="../modules/api.html">
+              API
+            </a>
+              <a class="navbar-item" href="index.html">
+              Examples
+            </a>
+              <a class="navbar-item" href="../about.html">
+              About Us
+            </a>
+          </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+            
+            <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
+              <span class="icon-text">
+                <span class="icon is-large">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Github</span>
+              </span>
+            </a>
+
+            </div> 
+          </div> 
+        </div> 
+
+      </nav>
+      
+    </navbar>
+  </header>
+
+
+  <div id="column-container">
+  <div class="columns is-mobile is-centered">
+	
+  
+      <div class="column is-10-mobile is-one-third-tablet is-3-desktop is-hidden-mobile" id="sidebar">
+    
+    <aside class="sticky-nav sidebar-menu">
+<div class="sidebar-search">
+  <form class="field" id="searchbox" role="search" action="../search.html" method="get">
+    <!-- <label class="label" id="searchlabel">Quick search</label> -->
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input" type="text" placeholder="Search the doc" name="q" aria-labelledby="searchlabel autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      </div>
+      <div class="control">
+        <input class="button is-info" type="submit" value="Go" />
+      </div>
+    </div>
+  </form>
+  <script>document.getElementById('searchbox').style.display = "block"</script>
+
+</div>
+      
+      <div class="sidebar-menu-toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html#variational-quantum-algorithms-with-tensorly-quantum">Variational Quantum Algorithms with TensorLy-Quantum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/api.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gallery of examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_mbe_maxcut.html">Multi-Basis Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_mbe_maxcut.html#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html">Variational Quantum Eigensolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_vqe_transverse_field_Ising.html#references">References</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTAAC-QSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Us</a></li>
+</ul>
+ 
+      </div>
+    </aside>
+  </div>
+  
+
+  <div class="column main-column">
+
+    
+    <div class="main-section">
+
+      
+      
+      <div class="side-menu-toggle">
+        <button class="button" id="toggle-sidebar" onclick="toggle_sidebar()">
+          <span class="icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+          <span>menu</span> 
+        </button>
+      </div>
+      
+
+      <div class="container content main-content">
+        
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-htaacqsdp-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="htaac-qsdp">
+<span id="sphx-glr-auto-examples-htaacqsdp-py"></span><h1>HTAAC-QSDP<a class="headerlink" href="#htaac-qsdp" title="Permalink to this heading"></a></h1>
+<p>Hadamard Test and Approximate Amplitude Constraint Quantum Semidefinite Programming (<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) (HTAAC-QSDP) quantum optimization algorithm for MaxCut using TensorLy-Quantum.
+TensorLy-Quantum provides a Python interface
+to build TT-tensor network circuit simulator
+for large-scale simulation of variational quantum circuits
+with full Autograd support similar to traditional PyTorch Neural Networks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tlquantum</span> <span class="k">as</span> <span class="nn">tlq</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;cuda:0&#39;</span>
+<span class="c1">#device = &#39;cpu&#39;</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">complex64</span>
+<span class="n">constraint_dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">float32</span>
+
+<span class="n">ncontraq</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#number of qubits to pre-contract into single core</span>
+<span class="n">ncontral</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">#number of layers to pre-contract into a single core</span>
+
+<span class="c1">### hyperparameters simulation</span>
+<span class="n">nepochs</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># number of epochs per experiment</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># number of repititions of experiment (full runs)</span>
+
+<span class="c1">### hyperparamters optimizer</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># learning rate</span>
+
+<span class="c1">### circuit hyperparameters</span>
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of qubits</span>
+<span class="n">gate_rep</span> <span class="o">=</span> <span class="mi">120</span> <span class="c1"># number of gates per qubit or circuit-depth</span>
+<span class="n">ps_order</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">nterms</span> <span class="o">=</span> <span class="mi">800</span> <span class="c1"># number of variables in SDP</span>
+<span class="n">W_divisor</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># divisor coefficient, not relevant for GSET graphs</span>
+
+<span class="c1">### graph hyperparameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># unitary phase</span>
+<span class="n">U_P_multiplier</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1">### G11, G12, and G13 Graph Parameters</span>
+<span class="c1">#name = &#39;Graphs/G11&#39; # graph name</span>
+<span class="c1">#sdp_value = 542 # best-known classical SDP value</span>
+<span class="c1">#coeff_base = 100 #10 # size of coefficient</span>
+<span class="c1">#reg = 1.2</span>
+
+<span class="c1">### G14 and G15 Graph Parameters</span>
+<span class="c1">#name = &#39;Graphs/G14&#39; # graph name</span>
+<span class="c1">#sdp_value = 2922 # best-known classical SDP value</span>
+<span class="c1">#coeff_base = 100 #10 # size of coefficient</span>
+<span class="c1">#reg = 3.0</span>
+
+<span class="c1">### G20 and G21 Graph Parameters</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Graphs/G20&#39;</span> <span class="c1"># graph name</span>
+<span class="n">sdp_value</span> <span class="o">=</span> <span class="mi">838</span> <span class="c1"># best-known classical SDP value</span>
+<span class="n">coeff_base</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#10 # size of coefficient</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="mf">3.0</span>
+
+<span class="c1">### build trivial input state as a tensor</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">spins_to_tt_state</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)],</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">qubits_contract</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">)</span>
+
+
+<span class="c1">### Alternative constraint vectors (dot product) instead of matrices (inner product with state)</span>
+<span class="n">pauli_obs_vec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">):</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">constraint_dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)):</span>
+        <span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">j</span><span class="o">//</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">nqubits</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">pauli_obs_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+<span class="n">reset</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ps_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">gate_indices</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)),</span> <span class="n">i</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">gate_indices</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
+                    <span class="n">op</span> <span class="o">=</span> <span class="n">pauli_obs_vec</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+                    <span class="n">reset</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">op</span> <span class="o">=</span> <span class="n">op</span><span class="o">*</span><span class="n">pauli_obs_vec</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">pauli_obs_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+        <span class="n">reset</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">nconstraints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pauli_obs_vec</span><span class="p">)</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">coeff_base</span><span class="o">*</span><span class="n">alpha</span><span class="o">/</span><span class="n">nconstraints</span>
+
+<span class="n">constraint_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">pauli_obs_vec</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">pauli_obs_vec</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="n">op</span>
+
+
+<span class="c1">### build the two unitary matrices</span>
+
+<span class="n">vertices1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_wspins1.pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">vertices2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_wspins2.pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_weights.pt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span><span class="o">/</span><span class="n">W_divisor</span>
+<span class="c1"># half of the terms are missing because we don&#39;t add the reflection, but we save memory and just multiply by 2 below</span>
+<span class="n">U_W_sparse</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">sparse_coo_tensor</span><span class="p">([</span><span class="n">vertices1</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">vertices2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span> <span class="n">weights</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">constraint_dtype</span><span class="p">)</span>
+<span class="c1">### V is generator of the population balancing unitary U_P</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">vertices1</span><span class="p">,</span> <span class="n">vertices2</span><span class="p">)))</span>
+<span class="n">max_bins</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">U_P_vectorized</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">nqubits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nterms</span><span class="p">:</span>
+        <span class="n">U_P_vectorized</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">max_bins</span><span class="o">-</span><span class="n">bins</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">reg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">U_P_vectorized</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">max_bins</span><span class="o">/</span><span class="n">reg</span><span class="p">)</span>
+
+<span class="n">U_P_vectorized</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">alpha</span><span class="o">*</span><span class="n">U_P_vectorized</span><span class="p">))</span> <span class="o">*</span> <span class="n">U_P_multiplier</span>
+
+
+<span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">reps</span><span class="p">):</span>
+
+    <span class="c1">### build the unitary gates layer by layer</span>
+    <span class="c1">### rebuild each rep to get new circuit/random initialization</span>
+    <span class="n">CZ0</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">CZ1</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">BinaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">unitaries</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gate_rep</span><span class="p">):</span>
+        <span class="n">unitaries</span> <span class="o">+=</span> <span class="p">[</span><span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">CZ0</span><span class="p">,</span> <span class="n">tlq</span><span class="o">.</span><span class="n">UnaryGatesUnitary</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span> <span class="n">CZ1</span><span class="p">]</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">TTCircuit</span><span class="p">(</span><span class="n">unitaries</span><span class="p">,</span> <span class="n">ncontraq</span><span class="p">,</span> <span class="n">ncontral</span><span class="p">)</span>
+    <span class="n">opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">amsgrad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># basic ADAM AMSGrad optimizer</span>
+
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nepochs</span><span class="p">):</span>
+
+        <span class="n">output_state</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">to_ket</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+
+        <span class="c1">### loss from the objective function and population balancing unitaries</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">U_W_sparse</span><span class="p">,</span> <span class="n">output_state</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">output_state</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span> <span class="c1"># multiply by 2 because we don&#39;t have the reflected terms</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">cut_vec</span> <span class="o">=</span> <span class="n">tlq</span><span class="o">.</span><span class="n">calculate_cut</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">output_state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">nterms</span><span class="p">])),</span> <span class="n">vertices1</span><span class="p">,</span> <span class="n">vertices2</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">get_cut</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch Number &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">),</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ratio of HTAAC-QSDP cut to classical SDP cut &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cut_vec</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">/</span><span class="n">sdp_value</span><span class="p">),</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+
+        <span class="c1">### square the state (abs val but real as these are all real states)</span>
+        <span class="n">output_state</span> <span class="o">=</span> <span class="n">output_state</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">U_P_result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">U_P_vectorized</span><span class="p">,</span> <span class="n">output_state</span><span class="p">)</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">constraint_matrix</span><span class="p">,</span> <span class="n">output_state</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1">### add the constraint loss for full backprop</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span> <span class="o">+</span> <span class="n">U_P_result</span> <span class="o">+</span> <span class="n">coeff</span><span class="o">*</span><span class="n">constraints</span>
+
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h1>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="20">
+<li><ol class="upperalpha simple" start="12">
+<li><p>Patti, J. Kossaifi, A. Anandkumar, and S. F. Yelin, “Quantum Semidefinite Programming with the Hadamard Test and Approximate Amplitude Constraints”, (2022), arXiv:2206.14999.</p></li>
+</ol>
+</li>
+</ol>
+</aside>
+</aside>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-htaacqsdp-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/9110858a46c3a7491760cd0a40b3e7bd/htaacqsdp.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">htaacqsdp.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/6a21dadf301ea53015700e78deda8c9d/htaacqsdp.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">htaacqsdp.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+      </div>
+
+      
+        <nav class="pagination" role="navigation" aria-label="pagination">
+    
+    <a class="button pagination-previous" href="plot_vqe_transverse_field_Ising.html" title="previous page" accesskey="p">
+        <span class="icon">
+            <i class="fa fa-arrow-circle-left"></i>
+        </span>
+        <span>Variational Quantum Eigensolver</span>
+    </a>
+    
+    
+    <a class="button pagination-next" href="../about.html" title="next page" accesskey="n">
+        <span>About Us </span>
+        <span class="icon">
+            <i class="fa fa-arrow-circle-right"></i>
+        </span>
+    </a>
+    
+</nav>
+
+      
+
+        <footer class="footer">
+    <div class="content has-text-centered">
+        <div class="block">
+          &copy; Copyright 2023, TensorLy-Quantum developers.<br/>
+        </div>
+    </div>
+  </footer>
+
+    </div>
+
+  </div>  
+
+	
+    
+    <div class="column is-hidden-touch is-2-desktop is-one-fifth-widescreen" id="localtoc-column">
+
+    <aside class="sticky-nav localtoc"> 
+        <p class="menu-label"> 
+            <span class="icon-text">
+                <span class="icon"><i class="fas fa-duotone fa-list"></i></span>
+                <span> On this page </span>
+            </span>
+        </p>
+
+        <div class="menu menu-list localtoc-list">
+        <ul>
+<li><a class="reference internal" href="#">HTAAC-QSDP</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+        </div>
+    </aside>
+    </div>
+
+  
+
+  </div>  
+  </div> 
+
+  
+  <script>
+    function toggle_sidebar() {
+        var element = document.getElementById("sidebar");
+        var container = document.getElementById("column-container");
+        var localtoccolumn = document.getElementById("localtoc-column");
+        element.classList.toggle("hide-tablet");
+        element.classList.toggle("is-hidden-mobile");
+        container.classList.toggle("sidemenu-hidden");
+        localtoccolumn.classList.toggle("is-one-fifth-widescreen");
+        localtoccolumn.classList.toggle("is-2-desktop");
+        localtoccolumn.classList.toggle("is-3-desktop");
+    }
+  </script> 
+
+
+
+  </body>
+</html>

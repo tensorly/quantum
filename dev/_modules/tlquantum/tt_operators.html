@@ -24,10 +24,8 @@
 
   
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
  <script src="../../_static/navbar_burger.js"></script>
  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
  
@@ -51,15 +49,11 @@
     <navbar>
       <nav class="navbar top-navbar is-fixed-top has-shadow is-flex-wrap-wrap" role="navigation" aria-label="main top navigation">
         <div class="navbar-brand">
-        <!-- Always displayed, last item has to be navbar-burger -->
+        
 
           <a class="navbar-item" href="../../index.html">
             <img src="../../_static/tensorly-quantum-logo.png" height="28">
           </a>
-
-          <!-- <a class="navbar-item is-hidden-desktop" href="../../index.html">
-            <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-          </a> -->
           <a class="navbar-item is-hidden-desktop" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon"><i class="fab fa-github"></i></span>
           </a>
@@ -73,44 +67,30 @@
         </div>
         
         <div class="navbar-menu" id="top-nav-menu">
-        <!-- only on larger displays (> 1024px) -->
+        
 
           <div class="navbar-start">
-          <!-- RIGHT -->
-            <a class="navbar-item" href="../../install.html">
+            
+              <a class="navbar-item" href="../../install.html">
               Install
             </a>
-            <a class="navbar-item" href="../../user_guide/index.html">
+              <a class="navbar-item" href="../../user_guide/index.html">
               User Guide
             </a>
-            <a class="navbar-item" href="../../modules/api.html">
+              <a class="navbar-item" href="../../modules/api.html">
               API
             </a>
-            <a class="navbar-item" href="../../auto_examples/index.html">
+              <a class="navbar-item" href="../../auto_examples/index.html">
               Examples
             </a>
-            <a class="navbar-item" href="../../about.html">
+              <a class="navbar-item" href="../../about.html">
               About Us
             </a>
-            <a class="navbar-item" href="http://tensorly.org/dev" target="_blank">
-              TensorLy
-            </a>
-
           </div>
         
           <div class="navbar-end">
             <div class="navbar-item">
-            <!-- LEFT -->
-
-            <!-- <a class="navbar-item is-hidden-touch" href="../../index.html">
-              <span class="icon-text">
-                <span class="icon">
-                  <i class="fa fa-home"></i>
-                </span>
-                <span>Home</span>
-              </span>
-              <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
-            </a> -->
+            
             <a class="button is-hidden-touch is-dark" href="https://github.com/tensorly/quantum" target="_blank">
               <span class="icon-text">
                 <span class="icon is-large">
@@ -118,32 +98,33 @@
                 </span>
                 <span>Github</span>
               </span>
-                <!-- <span class="icon"><i class="fab fa-github"></i></span> -->
             </a>
 
-            </div> <!-- navbar item -->
-          </div> <!-- navbar end -->
-        </div> <!-- only large items -->
+            </div> 
+          </div> 
+        </div> 
 
       </nav>
       
     </navbar>
   </header>
 
+
   <div id="column-container">
   <div class="columns is-mobile is-centered">
 	
+  
 
-    <div class="column main-column">
+  <div class="column main-column">
 
-      <!-- Main content  -->
-      <section class="main-section">
+    
+    <div class="main-section">
 
-        <!-- Toggle menu button -->
-		
+      
+      
 
-        <div class="content main-content">
-          
+      <div class="container content main-content">
+        
   <h1>Source code for tlquantum.tt_operators</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">tensorly</span> <span class="k">as</span> <span class="nn">tl</span>
 <span class="n">tl</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;pytorch&#39;</span><span class="p">)</span>
@@ -159,7 +140,7 @@
 
 
 <div class="viewcode-block" id="binary_hamiltonian"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.binary_hamiltonian.html#tlquantum.tt_operators.binary_hamiltonian">[docs]</a><span class="k">def</span> <span class="nf">binary_hamiltonian</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits1</span><span class="p">,</span> <span class="n">qubits2</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates tt-tensor classical Ising model Hamiltonian (two-qubit interaction terms in a single basis).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates tt-tensor classical Ising model Hamiltonian (two-qubit interaction terms in a single basis).</span>
 <span class="sd">    Hamiltonian of the form:</span>
 <span class="sd">    </span>
 <span class="sd">    H = sum_i omega_i sigma_ind1(i) sigma_ind2(i)</span>
@@ -188,7 +169,7 @@
 
 
 <div class="viewcode-block" id="unary_hamiltonian"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.unary_hamiltonian.html#tlquantum.tt_operators.unary_hamiltonian">[docs]</a><span class="k">def</span> <span class="nf">unary_hamiltonian</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">,</span> <span class="n">qubits</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates tt-tensor unitary of one single-qubit operator per qubit.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates tt-tensor unitary of one single-qubit operator per qubit.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -209,7 +190,7 @@
 
 
 <span class="k">def</span> <span class="nf">_two_qubit_interaction</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">,</span> <span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates tt-tensor Hamiltonian of two single-qubit operators with given weight.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates tt-tensor Hamiltonian of two single-qubit operators with given weight.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -230,7 +211,7 @@
 
 
 <div class="viewcode-block" id="identity"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.identity.html#tlquantum.tt_operators.identity">[docs]</a><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single-qubit identity opertor in the tt-tensor format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single-qubit identity opertor in the tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -244,7 +225,7 @@
 
 
 <div class="viewcode-block" id="pauli_x"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.pauli_x.html#tlquantum.tt_operators.pauli_x">[docs]</a><span class="k">def</span> <span class="nf">pauli_x</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single-qubit Pauli-X opertor in the tt-tensor format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single-qubit Pauli-X opertor in the tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -258,7 +239,7 @@
 
 
 <div class="viewcode-block" id="pauli_y"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.pauli_y.html#tlquantum.tt_operators.pauli_y">[docs]</a><span class="k">def</span> <span class="nf">pauli_y</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single-qubit Pauli-Y opertor in the tt-tensor format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single-qubit Pauli-Y opertor in the tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -272,7 +253,7 @@
 
 
 <div class="viewcode-block" id="pauli_z"><a class="viewcode-back" href="../../modules/generated/tlquantum.tt_operators.pauli_z.html#tlquantum.tt_operators.pauli_z">[docs]</a><span class="k">def</span> <span class="nf">pauli_z</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">complex64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Single-qubit Pauli-Z opertor in the tt-tensor format.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Single-qubit Pauli-Z opertor in the tt-tensor format.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -285,28 +266,28 @@
     <span class="k">return</span> <span class="n">tl</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span></div>
 </pre></div>
 
-        </div>
+      </div>
 
-		
-
-      </section>
+      
 
         <footer class="footer">
     <div class="content has-text-centered">
         <div class="block">
-          &copy; Copyright 2022, TensorLy-Quantum developers.<br/>
+          &copy; Copyright 2023, TensorLy-Quantum developers.<br/>
         </div>
     </div>
   </footer>
 
     </div>
 
+  </div>  
+
 	
 
-  </div>
-  </div>
+  </div>  
+  </div> 
 
-  <!-- Include here scripts that need to be added after the page is loaded -->
+  
   <script>
     function toggle_sidebar() {
         var element = document.getElementById("sidebar");
