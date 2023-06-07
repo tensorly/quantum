@@ -331,6 +331,34 @@ class IDENTITY(Module):
         return self.core
 
 
+class GPI2(Module):
+    """Qubit rotation according to the GPI2 gates of the IonQ native architecture.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    GPI2
+    """
+    def __init__(self, dtype=complex64, device=None):
+        super().__init__()
+        self.dtype, self.device, self.phi = dtype, device, Parameter(randn(1, device=device))
+
+
+    def forward(self):
+        """Prepares the GPI2 gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of rotation matrix depending on theta (which is
+        typically updated every epoch through backprop via PyTorch Autograd).
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        return tl.tensor([[[[1],[-1j*exp(-1j*self.phi)]],[[-1j*exp(1j*self.phi)],[1]]]], dtype=self.dtype, device=self.device)
+
+
 def cnot(dtype=complex64, device=None):
     """Pair of CNOT class instances, one left (control) and one right (transformed).
 
@@ -692,6 +720,101 @@ class O4LR(Module):
     def reinitialize(self):
         for phase in self.phases:
             phase.data = randn(1, device=self.device)
+
+
+def ms(dtype=complex64, device=None):
+    """Pair of MS class instances, as per the IonQ native gate architecture.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    (MSL, MSR)
+    """
+    return MSL(dtype=dtype, device=device), MSR(dtype=dtype, device=device)
+
+
+class MSL(Module):
+    """Left core of a MS gate.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    Left core of MS gate.
+    """
+    def __init__(self, dtype=complex64, device=None):
+        super().__init__()
+        self.dtype, self.device = dtype, device
+        core, self.dtype, self.device = tl.zeros((1,2,2,3), dtype=dtype, device=device), dtype, device
+        core[0,0,0,0] = core[0,1,1,0] = core[0,0,1,1] = core[0,1,0,2] = 1
+        self.core = core
+
+
+    def forward(self):
+        """Prepares the left qubit of the MS gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of matrix representation.
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        return self.core
+
+
+    def reinitialize(self):
+        pass
+
+
+class MSR(Module):
+    """Right core of a MS gate.
+
+    Parameters
+    ----------
+    device : string, device on which to run the computation.
+
+    Returns
+    -------
+    Right core of MS gate.
+    """
+    def __init__(self, theta=None, phi0=None, phi1=None, dtype=complex64, device=None):
+        super().__init__()
+        self.theta, self.phi0, self.phi1, self.dtype, self.device = Parameter(randn(1, device=device)), Parameter(randn(1, device=device)), Parameter(randn(1, device=device)), dtype, device
+        if theta is not None:
+            self.theta.data = theta.data
+        if phi0 is not None:
+            self.phi0.data = phi0.data
+        if phi1 is not None:
+            self.phi1.data = phi1.data
+        core, self.dtype, self.device = tl.zeros((3,2,2,1), dtype=dtype, device=device), dtype, device
+        c, s = cos(self.theta), -1j*sin(self.theta)
+        core[0,0,0,0] = core[0,1,1,0] = c
+        core[1,0,1,0] = s*exp(-1j*(self.phi0+self.phi1))
+        core[1,1,0,0] = s*exp(-1j*(self.phi0-self.phi1))
+        core[2,0,1,0] = s*exp(1j*(self.phi0-self.phi1))
+        core[2,1,0,0] = s*exp(1j*(self.phi0+self.phi1))
+        self.core = core
+
+
+    def forward(self):
+        """Prepares the right qubit of the MS gate for forward contraction by calling the forward method
+        and preparing the tt-factorized form of matrix representation.
+
+        Returns
+        -------
+        Gate tensor for general forward pass.
+        """
+        return self.core
+
+
+    def reinitialize(self):
+        self.theta.data = randn(1, device=self.device)
+        self.phi0.data = randn(1, device=self.device)
+        self.phi1.data = randn(1, device=self.device)
 
 
 def exp_pauli_y(dtype=complex64, device=None):

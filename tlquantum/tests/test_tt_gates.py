@@ -5,7 +5,7 @@ from tensorly.testing import assert_array_almost_equal
 from torch import cos, sin, complex64, float32, exp, randn, matrix_exp
 from opt_einsum import contract
 
-from ..tt_gates import exp_pauli_y, UnaryGatesUnitary, RotY, cnot, cz, so4, o4_phases, BinaryGatesUnitary, InvolutoryGeneratorUnitary
+from ..tt_gates import exp_pauli_y, UnaryGatesUnitary, RotY, GPI2, cnot, cz, so4, o4_phases, ms, BinaryGatesUnitary, InvolutoryGeneratorUnitary
 from ..tt_operators import identity, pauli_y, pauli_x
 from ..tt_contraction import contraction_eq
 from ..tt_sum import tt_matrix_sum
@@ -36,6 +36,13 @@ def test_RotY():
     theta = tl.tensor([rotY.theta])
     RotY_dense = tl.tensor([[1,0],[0,1]])*tl.cos(theta/2) + tl.tensor([[0, -1],[1, 0]])*tl.sin(theta/2)
     assert_array_almost_equal(RotY_temp.to_matrix(), RotY_dense)
+
+
+def test_GPI2():
+    gpi2 = GPI2()
+    phi = gpi2.phi
+    true_gpi2 = tl.tensor([[1, -1j*exp(-1j*phi)], [-1j*exp(1j*phi), 1]], dtype=complex64)
+    assert_array_almost_equal(TTMatrix([gpi2.forward()]).to_matrix(), true_gpi2)
 
 
 def test_CNOT():
@@ -273,3 +280,13 @@ def test_o4_phases():
     inner_prod = contract(eq, *state, *unitary1, *unitary0, *state)
     true_inner_prod = tl.dot(tl.transpose(dense_state), tl.dot(true_unitary0, tl.dot(true_unitary1, dense_state)))
     assert_array_almost_equal(inner_prod, true_inner_prod[0], decimal=err_tol)
+
+
+def test_ms_gate():
+    ms_inst, dtype = ms(), complex64
+    theta, phi0, phi1 = ms_inst[1].theta, ms_inst[1].phi0, ms_inst[1].phi1
+    true_ms = tl.tensor([[cos(theta), 0, 0, sin(theta) * -1j * exp(-1j*(phi0+phi1))],
+                        [0, cos(theta), sin(theta) * -1j * exp(-1j*(phi0-phi1)), 0],
+                        [0, sin(theta) * -1j * exp(1j * (phi0-phi1)), cos(theta), 0],
+                        [sin(theta) * -1j * exp(1j * (phi0+phi1)), 0, 0, cos(theta)]], dtype=dtype)
+    assert_array_almost_equal(TTMatrix([ms_inst[0].forward(), ms_inst[1].forward()]).to_matrix(), true_ms, decimal=err_tol)
